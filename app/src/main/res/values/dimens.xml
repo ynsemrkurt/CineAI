@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin Size -->
+    <dimen name="margin_medium">16dp</dimen>
+
+    <!-- Image Size -->
+    <dimen name="image_size_large">64dp</dimen>
+</resources>
