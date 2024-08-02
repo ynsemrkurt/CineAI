@@ -17,6 +17,9 @@ class MovieViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> get() = _movies
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
+
     fun fetchPopularMovies() {
         viewModelScope.launch {
             RetrofitClient.api.getPopularMovies().enqueue(object : Callback<MovieResponse> {
@@ -27,7 +30,7 @@ class MovieViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                    t.printStackTrace()
+                    _errorMessage.value = t.message
                 }
             })
         }
