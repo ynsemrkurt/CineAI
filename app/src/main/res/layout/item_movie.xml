@@ -1,30 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/margin_medium">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageViewMovie"
-        android:layout_width="@dimen/image_size_large"
-        android:layout_height="@dimen/image_size_large"
-        android:src="@drawable/ic_launcher_background"
-        android:contentDescription="@string/movie_image"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="@dimen/layout_x_large"
+        android:layout_height="@dimen/layout_xx_large"
+        android:layout_margin="@dimen/margin_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewMovie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/movie_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/textViewMovieName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_x_small"
+        android:text="@string/def_movie_deadpool"
+        android:textAppearance="?textAppearanceTitleLarge"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+        app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+
+    <TextView
+        android:id="@+id/textViewMovieOverviewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/def_movie_deadpool"
-        android:layout_marginStart="@dimen/margin_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewMovie"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/overview"
+        android:textColor="@color/hint"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMovieOverview"
+        app:layout_constraintStart_toStartOf="@+id/textViewMovieOverview" />
 
+    <TextView
+        android:id="@+id/textViewMovieOverview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/def_movie_overview"
+        android:maxLines="4"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewStar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMovieName" />
+
+    <ImageView
+        android:id="@+id/imageViewStar"
+        android:layout_width="@dimen/icon_size_medium"
+        android:layout_height="@dimen/icon_size_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:contentDescription="@string/movie_star"
+        android:src="@drawable/star_32"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView" />
+
+    <TextView
+        android:id="@+id/textViewMovieStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/def_movie_star"
+        android:maxLength="3"
+        android:textAppearance="?textAppearanceBody1"
+        android:layout_marginStart="@dimen/margin_x_small"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewStar"
+        app:layout_constraintStart_toEndOf="@+id/imageViewStar"
+        app:layout_constraintTop_toTopOf="@+id/imageViewStar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
