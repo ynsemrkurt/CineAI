@@ -1,8 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.CineAI" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Color -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="backgroundColor">@color/white</item>
+
+        <!-- Typography -->
+        <item name="textAppearanceTitleLarge">@style/TitleLargeTextStyle</item>
+        <item name="textAppearanceBody1">@style/Body1TextStyle</item>
+
     </style>
 
     <style name="Theme.CineAI" parent="Base.Theme.CineAI" />
