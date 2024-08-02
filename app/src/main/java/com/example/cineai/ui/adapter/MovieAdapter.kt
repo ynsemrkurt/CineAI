@@ -20,6 +20,8 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.binding.textViewMovieName.text = movie.title
+        holder.binding.textViewMovieStar.text = movie.voteAverage.toString()
+        holder.binding.textViewMovieOverview.text = movie.overview
         Glide.with(holder.itemView.context)
             .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
             .placeholder(R.drawable.ic_launcher_background)
