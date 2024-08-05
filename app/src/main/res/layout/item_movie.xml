@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/movie_image"
             android:scaleType="centerCrop"
+            android:background="?backgroundColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

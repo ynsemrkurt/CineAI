@@ -17,4 +17,16 @@ interface TMDbService {
         @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1
     ): Call<MovieResponse>
+
+    @GET("movie/now_playing")
+    fun getNowPlayingMovies(
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int = 1
+    ): Call<MovieResponse>
+
+    @GET("movie/upcoming")
+    fun getUpcomingMovies(
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int = 1
+    ): Call<MovieResponse>
 }
