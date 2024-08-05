@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.R
 import com.example.cineai.data.model.Movie
+import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.databinding.FragmentListBinding
 import com.example.cineai.ui.adapter.MovieAdapter
 import com.example.cineai.ui.viewmodel.MovieViewModel
+import com.google.android.material.tabs.TabLayout
 
 class ListFragment : Fragment() {
 
@@ -29,9 +31,27 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieViewModel.fetchPopularMovies()
+        setList()
         observeMovies()
         observeErrorMessage()
+    }
+
+    private fun setList() {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                movieViewModel.fetchMovies(
+                    when (tab?.position) {
+                        0 -> RetrofitClient.api.getPopularMovies()
+                        1 -> RetrofitClient.api.getTopRatedMovies()
+                        else -> RetrofitClient.api.getPopularMovies()
+                    }
+                )
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
     }
 
     private fun observeMovies() {
