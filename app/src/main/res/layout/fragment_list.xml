@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ListFragment"
-    android:background="?backgroundColor">
+    android:background="?backgroundColor"
+    tools:context=".ui.fragment.ListFragment">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_x_small"
         android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_x_small"
         android:text="@string/app_name"
         android:textAppearance="?textAppearanceTitleLarge"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/top_rated" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/now_playing" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upcoming" />
 
 
     </com.google.android.material.tabs.TabLayout>
