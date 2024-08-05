@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.model.MovieResponse
-import com.example.cineai.data.network.RetrofitClient
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,12 +19,17 @@ class MovieViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    fun fetchPopularMovies() {
+    fun fetchMovies(call: Call<MovieResponse>) {
         viewModelScope.launch {
-            RetrofitClient.api.getPopularMovies().enqueue(object : Callback<MovieResponse> {
-                override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+            call.enqueue(object : Callback<MovieResponse> {
+                override fun onResponse(
+                    call: Call<MovieResponse>,
+                    response: Response<MovieResponse>
+                ) {
                     if (response.isSuccessful) {
                         _movies.value = response.body()?.results
+                    } else {
+                        _errorMessage.value = "Response not successful"
                     }
                 }
 
