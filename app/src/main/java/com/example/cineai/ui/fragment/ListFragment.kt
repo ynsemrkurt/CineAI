@@ -43,6 +43,8 @@ class ListFragment : Fragment() {
                     when (tab?.position) {
                         0 -> RetrofitClient.api.getPopularMovies()
                         1 -> RetrofitClient.api.getTopRatedMovies()
+                        2 -> RetrofitClient.api.getNowPlayingMovies()
+                        3 -> RetrofitClient.api.getUpcomingMovies()
                         else -> RetrofitClient.api.getPopularMovies()
                     }
                 )
