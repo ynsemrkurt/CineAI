@@ -19,6 +19,7 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
     private val movieViewModel: MovieViewModel by viewModels()
+    private var selectedTabPosition: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,13 +35,21 @@ class ListFragment : Fragment() {
         setList()
         observeMovies()
         observeErrorMessage()
+
+        if (savedInstanceState == null) {
+            movieViewModel.fetchMovies(RetrofitClient.api.getPopularMovies())
+        } else {
+            selectedTabPosition = savedInstanceState.getInt("selectedTabPosition", 0)
+            binding.tabLayout.getTabAt(selectedTabPosition)?.select()
+        }
     }
 
     private fun setList() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                selectedTabPosition = tab?.position ?: 0
                 movieViewModel.fetchMovies(
-                    when (tab?.position) {
+                    when (selectedTabPosition) {
                         0 -> RetrofitClient.api.getPopularMovies()
                         1 -> RetrofitClient.api.getTopRatedMovies()
                         2 -> RetrofitClient.api.getNowPlayingMovies()
@@ -77,5 +86,10 @@ class ListFragment : Fragment() {
                 }
                 .show()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedTabPosition", selectedTabPosition)
     }
 }
