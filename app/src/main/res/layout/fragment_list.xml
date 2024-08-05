@@ -25,7 +25,10 @@
         android:background="?backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:tabMode="auto"
+        app:tabIndicatorColor="@color/indicator"
+        app:tabSelectedTextColor="@color/indicator">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
