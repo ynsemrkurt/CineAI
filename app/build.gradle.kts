@@ -6,9 +6,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
-val localPropertiesFile = rootProject.file("local.properties")
-val localProperties = Properties()
-localProperties.load(FileInputStream(localPropertiesFile))
+val properties = Properties().apply {
+    load(FileInputStream(rootProject.file("gradle.properties")))
+}
 
 android {
     namespace = "com.example.cineai"
@@ -23,7 +23,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_KEY", localProperties.getProperty("API_KEY"))
+        buildConfigField("String", "API_KEY", properties.getProperty("API_KEY"))
+        buildConfigField("String", "TMDB_BASE_URL", properties.getProperty("TMDB_BASE_URL"))
     }
 
     buildTypes {
