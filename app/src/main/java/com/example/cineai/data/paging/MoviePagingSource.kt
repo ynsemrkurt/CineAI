@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.network.RetrofitClient
+import com.example.cineai.ui.classes.MovieCategory
 
 class MoviePagingSource(
     private val category: String
@@ -13,10 +14,10 @@ class MoviePagingSource(
         val position = params.key ?: 1
         return try {
             val response = when (category) {
-                "popular" -> RetrofitClient.api.getPopularMovies(position)
-                "top_rated" -> RetrofitClient.api.getTopRatedMovies(position)
-                "now_playing" -> RetrofitClient.api.getNowPlayingMovies(position)
-                "upcoming" -> RetrofitClient.api.getUpcomingMovies(position)
+                MovieCategory.POPULAR.value -> RetrofitClient.api.getPopularMovies(position)
+                MovieCategory.TOP_RATED.value -> RetrofitClient.api.getTopRatedMovies(position)
+                MovieCategory.NOW_PLAYING.value -> RetrofitClient.api.getNowPlayingMovies(position)
+                MovieCategory.UPCOMING.value -> RetrofitClient.api.getUpcomingMovies(position)
                 else -> RetrofitClient.api.getPopularMovies(position)
             }
 
