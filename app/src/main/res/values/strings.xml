@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">CineAI</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="def_movie_deadpool">Deadpool</string>
+    <string name="error">Error</string>
+    <string name="error_dialog">Error: %1$s</string>
+    <string name="ok">OK</string>
+    <string name="movie_star">Movie Star</string>
+    <string name="def_movie_star">5.0</string>
+    <string name="def_movie_overview">The Amazing Movie</string>
+    <string name="overview">Overview :</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
 </resources>
