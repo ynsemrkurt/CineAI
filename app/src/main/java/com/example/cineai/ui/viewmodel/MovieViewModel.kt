@@ -10,12 +10,10 @@ import com.example.cineai.data.model.Movie
 import com.example.cineai.data.paging.MoviePagingSource
 import kotlinx.coroutines.flow.Flow
 
-class MovieViewModel(private val category: String) : ViewModel() {
+class MovieViewModel : ViewModel() {
 
-    fun getMovies(): Flow<PagingData<Movie>> {
-        return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-            pagingSourceFactory = { MoviePagingSource(category) }
-        ).flow.cachedIn(viewModelScope)
+    fun getMovies(category: String): Flow<PagingData<Movie>> {
+        return Pager(config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            pagingSourceFactory = { MoviePagingSource(category) }).flow.cachedIn(viewModelScope)
     }
 }
