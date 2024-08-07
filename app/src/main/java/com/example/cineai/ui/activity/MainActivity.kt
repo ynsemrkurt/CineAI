@@ -1,8 +1,6 @@
 package com.example.cineai.ui.activity
 
-import android.app.AlertDialog
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -13,13 +11,11 @@ import com.example.cineai.ui.fragment.NowPlayingMovieFragment
 import com.example.cineai.ui.fragment.PopularMovieFragment
 import com.example.cineai.ui.fragment.TopRatedMovieFragment
 import com.example.cineai.ui.fragment.UpcomingMovieFragment
-import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val movieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewPager()
-        observeErrorMessage()
-    }
-
-
-    private fun observeErrorMessage() {
-        movieViewModel.errorMessage.observe(this) { errorMessage ->
-            AlertDialog.Builder(this)
-                .setTitle(getString(R.string.error))
-                .setMessage(getString(R.string.error_dialog, errorMessage))
-                .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        }
     }
 
     private fun setupViewPager() {

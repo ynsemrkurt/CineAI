@@ -2,13 +2,16 @@ package com.example.cineai.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
 
-class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     inner class MovieViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -18,17 +21,25 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
-        holder.binding.textViewMovieName.text = movie.title
-        holder.binding.textViewMovieStar.text = movie.voteAverage.toString()
-        holder.binding.textViewMovieOverview.text = movie.overview
-        Glide.with(holder.itemView.context)
-            .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-            .placeholder(R.drawable.image_32)
-            .into(holder.binding.imageViewMovie)
+        val movie = getItem(position)
+        movie?.let {
+            holder.binding.textViewMovieName.text = it.title
+            holder.binding.textViewMovieStar.text = it.voteAverage.toString()
+            holder.binding.textViewMovieOverview.text = it.overview
+            Glide.with(holder.itemView.context)
+                .load("https://image.tmdb.org/t/p/w500${it.posterPath}")
+                .placeholder(R.drawable.image_32)
+                .into(holder.binding.imageViewMovie)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
+    class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
+        }
     }
 }
