@@ -14,4 +14,7 @@
 
     <!-- Icon Size -->
     <dimen name="icon_size_medium">32dp</dimen>
+
+    <!-- Corner Radius Size -->
+    <dimen name="corner_radius_large">16dp</dimen>
 </resources>

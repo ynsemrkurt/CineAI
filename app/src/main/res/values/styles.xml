@@ -10,4 +10,12 @@
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Button Style -->
+    <style name="CustomButtonStyle">
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:colorBackground">?color</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>

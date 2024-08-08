@@ -7,11 +7,14 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="backgroundColor">@color/white</item>
+        <item name="color">@color/black</item>
 
         <!-- Typography -->
         <item name="textAppearanceTitleLarge">@style/TitleLargeTextStyle</item>
         <item name="textAppearanceBody1">@style/Body1TextStyle</item>
 
+        <!-- Button Style -->
+        <item name="android:buttonStyle">@style/CustomButtonStyle</item>
     </style>
 
     <style name="Theme.CineAI" parent="Base.Theme.CineAI" />
