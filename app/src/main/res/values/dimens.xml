@@ -6,6 +6,7 @@
 
     <!-- Spacer Size -->
     <dimen name="spacer_x_small">4dp</dimen>
+    <dimen name="spacer_small">8dp</dimen>
     <dimen name="spacer_medium">16dp</dimen>
     <dimen name="spacer_large">32dp</dimen>
     <dimen name="spacer_xx_large">64dp</dimen>
@@ -19,4 +20,7 @@
 
     <!-- Corner Radius Size -->
     <dimen name="corner_radius_large">16dp</dimen>
+
+    <!-- Border Width -->
+    <dimen name="border_width_small">1dp</dimen>
 </resources>
