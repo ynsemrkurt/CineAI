@@ -19,4 +19,11 @@
         <item name="android:padding">@dimen/spacer_medium</item>
         <item name="android:textAlignment">center</item>
     </style>
+
+    <!-- EditText Style -->
+    <style name="CustomEditTextStyle">
+        <item name="android:background">@drawable/edit_text_style</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:padding">@dimen/spacer_medium</item>
+    </style>
 </resources>

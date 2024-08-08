@@ -12,7 +12,8 @@
         <item name="textAppearanceTitleLarge">@style/TitleLargeTextStyle</item>
         <item name="textAppearanceBody1">@style/Body1TextStyle</item>
 
-        <!-- Button Style -->
+        <!-- View Style -->
         <item name="android:buttonStyle">@style/CustomButtonStyle</item>
+        <item name="android:editTextStyle">@style/CustomEditTextStyle</item>
     </style>
 </resources>
