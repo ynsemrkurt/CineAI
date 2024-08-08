@@ -18,10 +18,13 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="app_slogan">Discover Your Next Favorite Movie with AI-Driven Recommendations!</string>
+    <string name="register_slogan">Sign Up Now and Dive into the \n Ultimate Movie Experience!</string>
     <string name="def_user_name">JohnDoe35</string>
     <string name="user_name">User Name:</string>
     <string name="email">Email:</string>
     <string name="password">Password:</string>
     <string name="def_email">john_doe@example.com</string>
     <string name="john_america123">John.America123</string>
+    <string name="login_slogan">Log In Now!</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>
