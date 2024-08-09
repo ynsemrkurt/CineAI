@@ -40,4 +40,7 @@
     <string name="login_error">Login Error: %1$s</string>
     <string name="password_reset_sent_successfully">Password reset email sent successfully</string>
     <string name="error_send">Error: %1$s</string>
+    <string name="send">Send</string>
+    <string name="forgot_password_context">Enter your registered email...\nCheck your inbox for a link to reset your password.</string>
+    <string name="please_enter_your_email">Please enter your email!</string>
 </resources>

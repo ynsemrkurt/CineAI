@@ -18,5 +18,9 @@
         <item name="android:editTextStyle">@style/CustomEditTextStyle</item>
     </style>
 
+    <style name="TransparentDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="Theme.CineAI" parent="Base.Theme.CineAI" />
 </resources>
