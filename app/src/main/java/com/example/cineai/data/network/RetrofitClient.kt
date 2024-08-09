@@ -7,9 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
-    private const val API_KEY = BuildConfig.API_KEY
-
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
@@ -18,7 +15,7 @@ object RetrofitClient {
             val originalRequest = chain.request()
             val url = originalRequest.url()
                 .newBuilder()
-                .addQueryParameter("api_key", API_KEY)
+                .addQueryParameter("api_key", BuildConfig.API_KEY)
                 .build()
 
             val request = originalRequest.newBuilder()
@@ -32,7 +29,7 @@ object RetrofitClient {
 
     val api: TMDbService by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.TMDB_BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

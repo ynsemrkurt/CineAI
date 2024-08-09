@@ -8,6 +8,8 @@ data class MovieResponse(
 )
 
 data class Movie(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("title")
     val title: String,
     @SerializedName("poster_path")
@@ -15,6 +17,5 @@ data class Movie(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("overview")
-    val overview: String
+    val overview: String,
 )
-

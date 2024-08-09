@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?backgroundColor"
-    android:layout_margin="@dimen/margin_x_small">
+    android:layout_margin="@dimen/spacer_x_small">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:id="@+id/materialCardViewImage"
             android:layout_width="@dimen/layout_x_large"
             android:layout_height="@dimen/layout_xx_large"
-            android:layout_margin="@dimen/margin_medium"
+            android:layout_margin="@dimen/spacer_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -40,9 +40,9 @@
             android:id="@+id/textViewMovieName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_x_small"
-            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginTop="@dimen/spacer_x_small"
+            android:layout_marginEnd="@dimen/spacer_medium"
             android:maxLines="2"
             android:text="@string/def_movie_deadpool"
             android:textAppearance="?textAppearanceTitleLarge"
@@ -64,7 +64,7 @@
             android:id="@+id/textViewMovieOverview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
+            android:layout_margin="@dimen/spacer_medium"
             android:maxLines="3"
             android:text="@string/def_movie_overview"
             app:layout_constraintBottom_toTopOf="@+id/imageViewStar"
@@ -76,7 +76,7 @@
             android:id="@+id/imageViewStar"
             android:layout_width="@dimen/icon_size_medium"
             android:layout_height="@dimen/icon_size_medium"
-            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/spacer_medium"
             android:contentDescription="@string/movie_star"
             android:src="@drawable/star_32"
             app:layout_constraintBottom_toBottomOf="@+id/materialCardViewImage"
@@ -86,7 +86,7 @@
             android:id="@+id/textViewMovieStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_x_small"
+            android:layout_marginStart="@dimen/spacer_x_small"
             android:maxLength="3"
             android:text="@string/def_movie_star"
             android:textAppearance="?textAppearanceBody1"
