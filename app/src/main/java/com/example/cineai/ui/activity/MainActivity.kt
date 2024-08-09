@@ -7,10 +7,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cineai.R
 import com.example.cineai.databinding.ActivityMainBinding
-import com.example.cineai.ui.fragment.NowPlayingMovieFragment
-import com.example.cineai.ui.fragment.PopularMovieFragment
-import com.example.cineai.ui.fragment.TopRatedMovieFragment
-import com.example.cineai.ui.fragment.UpcomingMovieFragment
+import com.example.cineai.ui.classes.MovieCategory
+import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -45,11 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> PopularMovieFragment()
-                1 -> TopRatedMovieFragment()
-                2 -> NowPlayingMovieFragment()
-                3 -> UpcomingMovieFragment()
-                else -> PopularMovieFragment()
+                0 -> BaseMovieFragment.newInstance(MovieCategory.POPULAR)
+                1 -> BaseMovieFragment.newInstance(MovieCategory.TOP_RATED)
+                2 -> BaseMovieFragment.newInstance(MovieCategory.NOW_PLAYING)
+                3 -> BaseMovieFragment.newInstance(MovieCategory.UPCOMING)
+                else -> BaseMovieFragment.newInstance(MovieCategory.POPULAR)
             }
         }
     }
