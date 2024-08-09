@@ -1,5 +1,6 @@
 package com.example.cineai.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +15,36 @@ import com.example.cineai.ui.viewmodel.MovieViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseMovieFragment(private val movieCategory: MovieCategory) : Fragment() {
+class BaseMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentBaseMovieBinding
     private val movieViewModel: MovieViewModel by viewModels()
     private val movieAdapter = MovieAdapter()
+    private lateinit var movieCategory: MovieCategory
+
+    companion object {
+        private const val ARG_CATEGORY = "movieCategory"
+
+        fun newInstance(movieCategory: MovieCategory): BaseMovieFragment {
+            return BaseMovieFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("movieCategory", movieCategory)
+                }
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            movieCategory = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                arguments?.getSerializable(ARG_CATEGORY, MovieCategory::class.java)!!
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getSerializable(ARG_CATEGORY) as MovieCategory
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
