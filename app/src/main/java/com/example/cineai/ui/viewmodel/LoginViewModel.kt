@@ -1,5 +1,6 @@
 package com.example.cineai.ui.viewmodel
 
+import android.app.AlertDialog
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -48,7 +49,7 @@ class LoginViewModel : ViewModel() {
             }
     }
 
-    fun sendPasswordResetEmail(email: String, context: Context) {
+    fun sendPasswordResetEmail(email: String, context: Context, dialog: AlertDialog) {
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _loginStatus.value = context.getString(R.string.invalid_email_error)
         } else {
@@ -57,6 +58,7 @@ class LoginViewModel : ViewModel() {
                     if (task.isSuccessful) {
                         _loginStatus.value =
                             context.getString(R.string.password_reset_sent_successfully)
+                        dialog.dismiss()
                     } else {
                         _loginStatus.value =
                             context.getString(R.string.error_send, task.exception?.message)
