@@ -32,7 +32,10 @@ abstract class BaseMovieFragment(private val movieCategory: MovieCategory) : Fra
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerViewList.adapter = movieAdapter
+        getMovies()
+    }
 
+    private fun getMovies() {
         lifecycleScope.launch {
             movieViewModel.getMovies(movieCategory.value).collectLatest { pagingData ->
                 movieAdapter.submitData(pagingData)
