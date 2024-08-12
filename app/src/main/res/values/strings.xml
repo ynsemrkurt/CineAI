@@ -43,4 +43,6 @@
     <string name="send">Send</string>
     <string name="forgot_password_context">Enter your registered email...\nCheck your inbox for a link to reset your password.</string>
     <string name="please_enter_your_email">Please enter your email!</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
 </resources>
