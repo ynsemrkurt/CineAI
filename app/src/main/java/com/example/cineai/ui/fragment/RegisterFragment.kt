@@ -49,6 +49,7 @@ class RegisterFragment : Fragment() {
             Toast.makeText(requireContext(), status, Toast.LENGTH_SHORT).show()
             if (status == requireContext().getString(R.string.registration_successful)) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
+                activity?.finish()
             }
         }
     }
