@@ -5,4 +5,5 @@ enum class MovieCategory(val value: String) {
     TOP_RATED("top_rated"),
     NOW_PLAYING("now_playing"),
     UPCOMING("upcoming"),
+    FAVORITE("favorite"),
 }
