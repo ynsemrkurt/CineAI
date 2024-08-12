@@ -1,10 +1,10 @@
 package com.example.cineai.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentIntroBinding
 
@@ -18,21 +18,21 @@ class IntroFragment : Fragment() {
     ): View {
         binding = FragmentIntroBinding.inflate(inflater)
         return binding.root
-        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonRegister.setOnClickListener{
+        binding.buttonRegister.setOnClickListener {
             openFragment(RegisterFragment())
         }
 
-        binding.buttonLogin.setOnClickListener{
+        binding.buttonLogin.setOnClickListener {
             openFragment(LoginFragment())
         }
     }
 
-    private fun openFragment(fragment: Fragment){
+    private fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(
                 R.anim.slide_in_right,
