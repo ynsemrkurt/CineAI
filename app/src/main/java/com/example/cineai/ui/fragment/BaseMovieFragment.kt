@@ -19,7 +19,6 @@ class BaseMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentBaseMovieBinding
     private val movieViewModel: MovieViewModel by viewModels()
-    private val movieAdapter = MovieAdapter()
     private lateinit var movieCategory: MovieCategory
 
     companion object {
@@ -57,13 +56,26 @@ class BaseMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val movieAdapter = MovieAdapter(movieViewModel)
         binding.recyclerViewList.adapter = movieAdapter
-        getMovies()
+
+        if (movieCategory == MovieCategory.FAVORITE) {
+            movieViewModel.loadFavoriteMovieIds()
+            observeFavoriteMovieIds(movieAdapter)
+        } else {
+            getMovies(movieAdapter)
+        }
     }
 
-    private fun getMovies() {
+    private fun observeFavoriteMovieIds(adapter: MovieAdapter) {
+        movieViewModel.favoriteMovieIds.observe(viewLifecycleOwner) { favoriteMovieIds ->
+            getMovies(adapter, favoriteMovieIds)
+        }
+    }
+
+    private fun getMovies(movieAdapter: MovieAdapter, favList: List<String>? = null) {
         lifecycleScope.launch {
-            movieViewModel.getMovies(movieCategory.value).collectLatest { pagingData ->
+            movieViewModel.getMovies(movieCategory.value, favList).collectLatest { pagingData ->
                 movieAdapter.submitData(pagingData)
             }
         }
