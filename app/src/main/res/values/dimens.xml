@@ -13,6 +13,7 @@
     <dimen name="spacer_xx_large">64dp</dimen>
 
     <!-- Layout Size -->
+    <dimen name="layout_medium">48dp</dimen>
     <dimen name="layout_x_large">108dp</dimen>
     <dimen name="layout_xx_large">192dp</dimen>
 
