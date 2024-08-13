@@ -30,7 +30,7 @@ class MoviePagingSource(
             LoadResult.Page(
                 data = movies,
                 prevKey = if (position == 1) null else position - 1,
-                nextKey = if (movies.size < params.loadSize) null else position + 1
+                nextKey = if (movies.isEmpty()) null else position + 1
             )
         } catch (exception: Exception) {
             LoadResult.Error(exception)
