@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentLoginBinding
 import com.example.cineai.databinding.ItemForgotPasswordBinding
 import com.example.cineai.ui.activity.MainActivity
+import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginStatus() {
         loginViewModel.loginStatus.observe(viewLifecycleOwner) { status ->
-            Toast.makeText(requireContext(), status, Toast.LENGTH_SHORT).show()
+            LoginFragment().showToast(status)
             if (status == requireContext().getString(R.string.login_successful)) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
@@ -68,11 +68,7 @@ class LoginFragment : Fragment() {
         val dialog = builder.create()
         itemBinding.buttonSend.setOnClickListener {
             if (itemBinding.editTextMail.text.toString().trim().isEmpty()) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.please_enter_your_email),
-                    Toast.LENGTH_SHORT
-                ).show()
+                LoginFragment().showToast(getString(R.string.please_enter_your_email))
             } else {
                 loginViewModel.sendPasswordResetEmail(
                     itemBinding.editTextMail.text.toString().trim(),
