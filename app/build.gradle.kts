@@ -63,29 +63,29 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     // Glide
-    implementation (libs.glide)
+    implementation(libs.glide)
 
     // ViewModel and LiveData
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Coroutines
-    implementation (libs.kotlinx.coroutines.core)
-    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     //Paging
-    implementation (libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.runtime)
 
     //Lottie
-    implementation (libs.lottie)
+    implementation(libs.lottie)
 
     //Firebase
-    implementation (platform(libs.firebase.bom))
-    implementation (libs.firebase.analytics)
-    implementation (libs.firebase.auth)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
 }
