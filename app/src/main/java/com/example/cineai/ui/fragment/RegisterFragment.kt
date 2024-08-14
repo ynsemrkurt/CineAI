@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
 
     private fun observeRegistrationStatus() {
         registerViewModel.registrationStatus.observe(viewLifecycleOwner) { status ->
-            RegisterFragment().showToast(status)
+            showToast(status)
             if (status == requireContext().getString(R.string.registration_successful)) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()

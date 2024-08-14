@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginStatus() {
         loginViewModel.loginStatus.observe(viewLifecycleOwner) { status ->
-            LoginFragment().showToast(status)
+            showToast(status)
             if (status == requireContext().getString(R.string.login_successful)) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
@@ -68,7 +68,7 @@ class LoginFragment : Fragment() {
         val dialog = builder.create()
         itemBinding.buttonSend.setOnClickListener {
             if (itemBinding.editTextMail.text.toString().trim().isEmpty()) {
-                LoginFragment().showToast(getString(R.string.please_enter_your_email))
+                showToast(getString(R.string.please_enter_your_email))
             } else {
                 loginViewModel.sendPasswordResetEmail(
                     itemBinding.editTextMail.text.toString().trim(),
