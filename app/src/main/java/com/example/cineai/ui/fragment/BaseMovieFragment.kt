@@ -28,7 +28,7 @@ class BaseMovieFragment : Fragment() {
         fun newInstance(movieCategory: MovieCategory): BaseMovieFragment {
             return BaseMovieFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable("movieCategory", movieCategory)
+                    putSerializable(ARG_CATEGORY, movieCategory)
                 }
             }
         }
@@ -36,13 +36,11 @@ class BaseMovieFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            movieCategory = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getSerializable(ARG_CATEGORY, MovieCategory::class.java)!!
-            } else {
-                @Suppress("DEPRECATION")
-                arguments?.getSerializable(ARG_CATEGORY) as MovieCategory
-            }
+        movieCategory = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getSerializable(ARG_CATEGORY, MovieCategory::class.java)?: MovieCategory.POPULAR
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getSerializable(ARG_CATEGORY) as MovieCategory
         }
     }
 
