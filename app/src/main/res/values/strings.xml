@@ -31,13 +31,13 @@
     <string name="invalid_email_error">Invalid email address</string>
     <string name="password_characters_error">Password must be at least 6 characters</string>
     <string name="username_already_error">Username already taken</string>
-    <string name="error_checking_username">Error checking username: %1$s</string>
+    <string name="error_checking_username">Error checking username</string>
     <string name="registration_error">Registration Failed: %1$s</string>
     <string name="registration_successful">Registration Successful</string>
     <string name="error_saving_user_data">Error saving user data: %1$s</string>
     <string name="invalid_input">Invalid input</string>
     <string name="login_successful">Login successful</string>
-    <string name="login_error">Login Error: %1$s</string>
+    <string name="login_error">Login Error</string>
     <string name="password_reset_sent_successfully">Password reset email sent successfully</string>
     <string name="error_send">Error: %1$s</string>
     <string name="send">Send</string>
