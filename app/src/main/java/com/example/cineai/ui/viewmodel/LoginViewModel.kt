@@ -1,6 +1,5 @@
 package com.example.cineai.ui.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,7 @@ class LoginViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private val _loginStatus = MutableLiveData<@receiver:StringRes Int>()
+    private val _loginStatus = MutableLiveData<Int>()
     val loginStatus: LiveData<Int> get() = _loginStatus
 
     fun loginUser(email: String, password: String) {

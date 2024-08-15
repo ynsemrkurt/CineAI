@@ -1,6 +1,5 @@
 package com.example.cineai.ui.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +14,7 @@ class RegisterViewModel : ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    private val _registrationStatus = MutableLiveData<@receiver:StringRes Int>()
+    private val _registrationStatus = MutableLiveData<Int>()
     val registrationStatus: LiveData<Int> get() = _registrationStatus
 
     fun registerUser(username: String, email: String, password: String) {
