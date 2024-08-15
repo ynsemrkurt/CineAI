@@ -1,67 +1,64 @@
 package com.example.cineai.ui.viewmodel
 
-import android.app.AlertDialog
-import android.content.Context
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cineai.R
+import com.example.cineai.ui.classes.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private val _loginStatus = MutableLiveData<String>()
-    val loginStatus: LiveData<String> get() = _loginStatus
+    private val _loginStatus = MutableLiveData<@receiver:StringRes Int>()
+    val loginStatus: LiveData<Int> get() = _loginStatus
 
-    fun loginUser(email: String, password: String, context: Context) {
+    fun loginUser(email: String, password: String) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
-            validateInputs(email, password, context)
+            validateInputs(email, password)
         } else {
-            _loginStatus.value = context.getString(R.string.invalid_input)
+            _loginStatus.value = R.string.invalid_input
         }
     }
 
-    private fun validateInputs(email: String, password: String, context: Context) {
+    private fun validateInputs(email: String, password: String) {
         when {
-            !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                _loginStatus.value = context.getString(R.string.invalid_email_error)
+            !email.isValidEmail() -> {
+                _loginStatus.value = R.string.invalid_email_error
             }
 
             password.length < 6 -> {
-                _loginStatus.value = context.getString(R.string.password_characters_error)
+                _loginStatus.value = R.string.password_characters_error
             }
 
-            else -> performLogin(email, password, context)
+            else -> performLogin(email, password)
         }
     }
 
-    private fun performLogin(email: String, password: String, context: Context) {
+    private fun performLogin(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    _loginStatus.value = context.getString(R.string.login_successful)
+                    _loginStatus.value = R.string.login_successful
                 } else {
-                    _loginStatus.value =
-                        context.getString(R.string.login_error, task.exception?.message)
+                    _loginStatus.value = R.string.login_error
                 }
             }
     }
 
-    fun sendPasswordResetEmail(email: String, context: Context, dialog: AlertDialog) {
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _loginStatus.value = context.getString(R.string.invalid_email_error)
+    fun sendPasswordResetEmail(email: String, onDismiss: () -> Unit) {
+        if (!email.isValidEmail()) {
+            _loginStatus.value = R.string.invalid_email_error
         } else {
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        _loginStatus.value =
-                            context.getString(R.string.password_reset_sent_successfully)
-                        dialog.dismiss()
+                        _loginStatus.value = R.string.password_reset_sent_successfully
+                        onDismiss()
                     } else {
-                        _loginStatus.value =
-                            context.getString(R.string.error_send, task.exception?.message)
+                        _loginStatus.value = R.string.error_send
                     }
                 }
         }
