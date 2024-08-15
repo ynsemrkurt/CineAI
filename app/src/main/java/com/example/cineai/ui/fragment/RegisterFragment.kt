@@ -39,15 +39,14 @@ class RegisterFragment : Fragment() {
         registerViewModel.registerUser(
             editTextUserName.text.toString().trim(),
             editTextEmail.text.toString().trim(),
-            editTextPassword.text.toString().trim(),
-            requireContext()
+            editTextPassword.text.toString().trim()
         )
     }
 
     private fun observeRegistrationStatus() {
         registerViewModel.registrationStatus.observe(viewLifecycleOwner) { status ->
-            showToast(status)
-            if (status == requireContext().getString(R.string.registration_successful)) {
+            showToast(getString(status))
+            if (status == R.string.registration_successful) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }
