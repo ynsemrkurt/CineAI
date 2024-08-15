@@ -12,13 +12,13 @@ import com.example.cineai.R
 import com.example.cineai.databinding.FragmentLoginBinding
 import com.example.cineai.databinding.ItemForgotPasswordBinding
 import com.example.cineai.ui.activity.MainActivity
+import com.example.cineai.ui.classes.isValidEmail
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var itemBinding: ItemForgotPasswordBinding
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
@@ -45,15 +45,14 @@ class LoginFragment : Fragment() {
     private fun loginUser() = with(binding) {
         loginViewModel.loginUser(
             editTextEmail.text.toString().trim(),
-            editTextPassword.text.toString().trim(),
-            requireContext()
+            editTextPassword.text.toString().trim()
         )
     }
 
     private fun observeLoginStatus() {
         loginViewModel.loginStatus.observe(viewLifecycleOwner) { status ->
-            showToast(status)
-            if (status == requireContext().getString(R.string.login_successful)) {
+            showToast(getString(status))
+            if (status == R.string.login_successful) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }
@@ -62,19 +61,19 @@ class LoginFragment : Fragment() {
 
     private fun showForgotPasswordDialog() {
         val builder = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
-        itemBinding = ItemForgotPasswordBinding.inflate(layoutInflater)
+        val itemBinding = ItemForgotPasswordBinding.inflate(layoutInflater)
         val cardView = itemBinding.root
         builder.setView(cardView)
         val dialog = builder.create()
+
         itemBinding.buttonSend.setOnClickListener {
-            if (itemBinding.editTextMail.text.toString().trim().isEmpty()) {
+            val email = itemBinding.editTextMail.text.toString().trim()
+            if (!email.isValidEmail()) {
                 showToast(getString(R.string.please_enter_your_email))
             } else {
-                loginViewModel.sendPasswordResetEmail(
-                    itemBinding.editTextMail.text.toString().trim(),
-                    requireContext(),
-                    dialog
-                )
+                loginViewModel.sendPasswordResetEmail(email) {
+                    dialog.dismiss()
+                }
             }
         }
         dialog.show()
