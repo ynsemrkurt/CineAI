@@ -1,6 +1,5 @@
 package com.example.cineai.ui.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.cineai.databinding.FragmentBaseMovieBinding
 import com.example.cineai.ui.adapter.MovieAdapter
 import com.example.cineai.ui.classes.MovieCategory
+import com.example.cineai.ui.classes.getParcelable
+import com.example.cineai.ui.classes.putParcelable
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,21 +28,15 @@ class BaseMovieFragment : Fragment() {
 
         fun newInstance(movieCategory: MovieCategory): BaseMovieFragment {
             return BaseMovieFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(ARG_CATEGORY, movieCategory)
-                }
+                putParcelable(ARG_CATEGORY, movieCategory)
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieCategory = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getSerializable(ARG_CATEGORY, MovieCategory::class.java)?: MovieCategory.POPULAR
-        } else {
-            @Suppress("DEPRECATION")
-            arguments?.getSerializable(ARG_CATEGORY) as MovieCategory
-        }
+        movieCategory =
+            getParcelable(ARG_CATEGORY, MovieCategory::class.java) ?: MovieCategory.POPULAR
     }
 
     override fun onCreateView(
