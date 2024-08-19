@@ -63,4 +63,10 @@
     <string name="hobbies_default">e.g., Playing games, Coding, Exercising</string>
     <string name="what_types_of_places_do_you_like_to_visit">What types of places do you like to visit when you travel?</string>
     <string name="travel_default">e.g., Nature, Historical sites, Beaches</string>
+    <string name="save">Save</string>
+    <string name="profile_setup_successful">Profile successfully saved!</string>
+    <string name="error_saving_profile_data">An error occurred while saving profile data. Please try again.</string>
+    <string name="all_fields_required">All fields are required!</string>
+    <string name="profile_missing">Profile information is missing. You will be redirected to complete your profile…</string>
+    <string name="error_checking_profile">An error occurred while checking profile information.</string>
 </resources>
