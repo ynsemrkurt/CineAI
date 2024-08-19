@@ -13,6 +13,7 @@ import com.example.cineai.databinding.FragmentLoginBinding
 import com.example.cineai.databinding.ItemForgotPasswordBinding
 import com.example.cineai.ui.activity.MainActivity
 import com.example.cineai.ui.classes.isValidEmail
+import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.LoginViewModel
 
@@ -52,9 +53,15 @@ class LoginFragment : Fragment() {
     private fun observeLoginStatus() {
         loginViewModel.loginStatus.observe(viewLifecycleOwner) { status ->
             showToast(getString(status))
-            if (status == R.string.login_successful) {
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                activity?.finish()
+            when (status) {
+                R.string.login_successful -> {
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    activity?.finish()
+                }
+
+                R.string.profile_missing -> {
+                    openFragment(R.id.fragmentContainerView, ProfileSetupFragment())
+                }
             }
         }
     }
