@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.cineai.R
 import com.example.cineai.databinding.ActivityMainBinding
 import com.example.cineai.ui.classes.MovieCategory
+import com.example.cineai.ui.fragment.AiRecommendationFragment
 import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.example.cineai.ui.fragment.MovieFragment
 
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.menu_item_favorite -> {
                     openFragment(BaseMovieFragment.newInstance(MovieCategory.FAVORITE))
+                    true
+                }
+
+                R.id.menu_item_ai -> {
+                    openFragment(AiRecommendationFragment())
                     true
                 }
 
