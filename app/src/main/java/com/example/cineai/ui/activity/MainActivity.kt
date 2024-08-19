@@ -2,15 +2,9 @@ package com.example.cineai.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cineai.R
 import com.example.cineai.databinding.ActivityMainBinding
-import com.example.cineai.ui.fragment.NowPlayingMovieFragment
-import com.example.cineai.ui.fragment.PopularMovieFragment
-import com.example.cineai.ui.fragment.TopRatedMovieFragment
-import com.example.cineai.ui.fragment.UpcomingMovieFragment
+import com.example.cineai.ui.adapter.MoviePagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -36,21 +30,5 @@ class MainActivity : AppCompatActivity() {
                 else -> null
             }
         }.attach()
-    }
-
-    class MoviePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
-        override fun getItemCount(): Int {
-            return 4
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return when (position) {
-                0 -> PopularMovieFragment()
-                1 -> TopRatedMovieFragment()
-                2 -> NowPlayingMovieFragment()
-                3 -> UpcomingMovieFragment()
-                else -> PopularMovieFragment()
-            }
-        }
     }
 }

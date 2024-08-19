@@ -6,7 +6,11 @@
 
     <!-- Spacer Size -->
     <dimen name="spacer_x_small">4dp</dimen>
+    <dimen name="spacer_small">8dp</dimen>
+    <dimen name="spacer_small_ver2">10dp</dimen>
     <dimen name="spacer_medium">16dp</dimen>
+    <dimen name="spacer_large">32dp</dimen>
+    <dimen name="spacer_xx_large">64dp</dimen>
 
     <!-- Layout Size -->
     <dimen name="layout_x_large">108dp</dimen>
@@ -14,4 +18,11 @@
 
     <!-- Icon Size -->
     <dimen name="icon_size_medium">32dp</dimen>
+
+    <!-- Corner Radius Size -->
+    <dimen name="corner_radius_large">16dp</dimen>
+    <dimen name="corner_radius_x_large">32dp</dimen>
+
+    <!-- Border Width -->
+    <dimen name="border_width_small">1dp</dimen>
 </resources>

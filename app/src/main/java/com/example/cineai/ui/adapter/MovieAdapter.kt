@@ -23,13 +23,15 @@ class MovieAdapter : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(Movi
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = getItem(position)
         movie?.let {
-            holder.binding.textViewMovieName.text = it.title
-            holder.binding.textViewMovieStar.text = it.voteAverage.toString()
-            holder.binding.textViewMovieOverview.text = it.overview
-            Glide.with(holder.itemView.context)
-                .load("https://image.tmdb.org/t/p/w500${it.posterPath}")
-                .placeholder(R.drawable.image_32)
-                .into(holder.binding.imageViewMovie)
+            with(holder.binding) {
+                textViewMovieName.text = it.title
+                textViewMovieStar.text = it.voteAverage.toString()
+                textViewMovieOverview.text = it.overview
+                Glide.with(holder.itemView.context)
+                    .load("https://image.tmdb.org/t/p/w500${it.posterPath}")
+                    .placeholder(R.drawable.image_32)
+                    .into(imageViewMovie)
+            }
         }
     }
 
