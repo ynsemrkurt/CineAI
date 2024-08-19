@@ -23,6 +23,7 @@ class MoviePagingSource(
                     ?.map { movieId ->
                         RetrofitClient.api.getDetailsMovies(movieId)
                     } ?: emptyList()
+
                 MovieCategory.UPCOMING.value -> RetrofitClient.api.getUpcomingMovies(position).results
                 else -> emptyList()
             }
