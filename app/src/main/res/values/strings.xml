@@ -69,4 +69,5 @@
     <string name="all_fields_required">All fields are required!</string>
     <string name="profile_missing">Profile information is missing. You will be redirected to complete your profile…</string>
     <string name="error_checking_profile">An error occurred while checking profile information.</string>
+    <string name="ai">AI</string>
 </resources>

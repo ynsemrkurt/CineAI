@@ -41,7 +41,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBarView"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/layout_large"
         android:background="?backgroundColor"
         app:itemActiveIndicatorStyle="?color"
         app:layout_constraintBottom_toBottomOf="parent"
