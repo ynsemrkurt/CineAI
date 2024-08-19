@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentIntroBinding
+import com.example.cineai.ui.classes.openFragment
 
 class IntroFragment : Fragment() {
 
@@ -24,24 +25,11 @@ class IntroFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonRegister.setOnClickListener {
-            openFragment(RegisterFragment())
+            openFragment(R.id.fragmentContainerView, RegisterFragment())
         }
 
         binding.buttonLogin.setOnClickListener {
-            openFragment(LoginFragment())
+            openFragment(R.id.fragmentContainerView, LoginFragment())
         }
-    }
-
-    private fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left,
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
-            .replace(R.id.fragmentContainerView, fragment)
-            .addToBackStack(null)
-            .commit()
     }
 }
