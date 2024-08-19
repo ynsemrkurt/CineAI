@@ -41,11 +41,11 @@
     <string name="password_reset_sent_successfully">Password reset email sent successfully</string>
     <string name="error_send">Error: %1$s</string>
     <string name="send">Send</string>
-    <string name="forgot_password_context">Enter your registered email...\nCheck your inbox for a link to reset your password.</string>
+    <string name="forgot_password_context">Enter your registered email…\nCheck your inbox for a link to reset your password.</string>
     <string name="please_enter_your_email">Please enter your email!</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
-    <string name="introduce_yourself">Introduce Yourself...</string>
+    <string name="introduce_yourself">Introduce Yourself…</string>
     <string name="we_need_this_information">Why do we need this information? To analyze your character and use AI to recommend the best movies for you. Rest assured, your data is safe with us.</string>
     <string name="how_do_you_relax_in_stressful_situations">How do you relax in stressful situations?</string>
     <string name="stress_default">e.g., Exercising, Socializing, Reading</string>
@@ -70,4 +70,15 @@
     <string name="profile_missing">Profile information is missing. You will be redirected to complete your profile…</string>
     <string name="error_checking_profile">An error occurred while checking profile information.</string>
     <string name="ai">AI</string>
+    <string name="error_fetching_profile">Error fetching profile data.</string>
+    <string name="no_recommendations">No recommendations found.</string>
+    <string name="error_generating_recommendations">Error generating recommendations.</string>
+    <string name="ai_logo">AI Logo</string>
+    <string name="gemini">Gemini</string>
+    <string name="ai_slogan">Our AI has picked some awesome movies just for you!\nDive in and find your next favorite film.🎬✨</string>
+    <string name="create_recommendation">Create Recommendation</string>
+    <string name="movie_board">Movie Board</string>
+    <string name="hey">Hello!</string>
+    <string name="recommendation">Recommendation:</string>
+    <string name="data_info">ⓘ Your data is safe—used only for movie picks!</string>
 </resources>
