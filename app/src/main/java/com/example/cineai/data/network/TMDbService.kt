@@ -31,6 +31,11 @@ interface TMDbService {
     suspend fun getDetailsMovies(
         @Path("movie_id") movieId: String
     ): Movie
+
+    @GET(searchMovies)
+    suspend fun searchMovies(
+        @Query("query") query: String
+    ): MovieResponse
 }
 
 private const val popularMovies = "movie/popular"
@@ -38,3 +43,4 @@ private const val topRatedMovies = "movie/top_rated"
 private const val nowPlayingMovies = "movie/now_playing"
 private const val upcomingMovies = "movie/upcoming"
 private const val movieDetails = "movie/{movie_id}"
+private const val searchMovies = "search/movie"
