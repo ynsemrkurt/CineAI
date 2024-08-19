@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Text Size -->
-    <dimen name="text_size_small">14dp</dimen>
-    <dimen name="text_size_large">28dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_large">28sp</dimen>
+    <dimen name="text_size_x_large">64sp</dimen>
 
     <!-- Spacer Size -->
     <dimen name="spacer_x_small">4dp</dimen>
@@ -10,6 +11,7 @@
     <dimen name="spacer_small_ver2">10dp</dimen>
     <dimen name="spacer_medium">16dp</dimen>
     <dimen name="spacer_large">32dp</dimen>
+    <dimen name="spacer_x_large">48dp</dimen>
     <dimen name="spacer_xx_large">64dp</dimen>
 
     <!-- Layout Size -->
@@ -20,8 +22,10 @@
 
     <!-- Icon Size -->
     <dimen name="icon_size_medium">32dp</dimen>
+    <dimen name="icon_size_large">64dp</dimen>
 
     <!-- Corner Radius Size -->
+    <dimen name="corner_radius_medium">8dp</dimen>
     <dimen name="corner_radius_large">16dp</dimen>
     <dimen name="corner_radius_x_large">32dp</dimen>
 
