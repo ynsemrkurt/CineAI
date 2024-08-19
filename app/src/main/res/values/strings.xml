@@ -45,4 +45,22 @@
     <string name="please_enter_your_email">Please enter your email!</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
+    <string name="introduce_yourself">Introduce Yourself...</string>
+    <string name="we_need_this_information">Why do we need this information? To analyze your character and use AI to recommend the best movies for you. Rest assured, your data is safe with us.</string>
+    <string name="how_do_you_relax_in_stressful_situations">How do you relax in stressful situations?</string>
+    <string name="stress_default">e.g., Exercising, Socializing, Reading</string>
+    <string name="how_do_you_usually_solve_problems">How do you usually solve problems?</string>
+    <string name="problem_solving_default">e.g., Making a plan, Researching information, Asking for advice</string>
+    <string name="do_you_make_decisions_quickly_or_thoroughly">Do you make decisions quickly or take your time to think things through?</string>
+    <string name="decision_making_default">e.g., Quickly, Thoroughly, A mix of both</string>
+    <string name="do_you_prefer_leader_or_team_member">Do you prefer to be a leader or a team member in group work?</string>
+    <string name="teamwork_default">e.g., Leader, Team Member, Independent</string>
+    <string name="what_movie_genres_do_you_enjoy">What movie genres do you enjoy?</string>
+    <string name="movie_genres_default">e.g., Action, Comedy, Sci-Fi</string>
+    <string name="what_types_of_music_do_you_like">What types of music do you like to listen to?</string>
+    <string name="music_default">e.g., HipHop, Rock, Pop</string>
+    <string name="what_do_you_enjoy_doing_in_free_time">What do you enjoy doing in your free time?</string>
+    <string name="hobbies_default">e.g., Playing games, Coding, Exercising</string>
+    <string name="what_types_of_places_do_you_like_to_visit">What types of places do you like to visit when you travel?</string>
+    <string name="travel_default">e.g., Nature, Historical sites, Beaches</string>
 </resources>
