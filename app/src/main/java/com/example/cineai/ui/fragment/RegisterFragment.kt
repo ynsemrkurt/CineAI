@@ -1,6 +1,5 @@
 package com.example.cineai.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentRegisterBinding
-import com.example.cineai.ui.activity.MainActivity
+import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.RegisterViewModel
 
@@ -47,8 +46,7 @@ class RegisterFragment : Fragment() {
         registerViewModel.registrationStatus.observe(viewLifecycleOwner) { status ->
             showToast(getString(status))
             if (status == R.string.registration_successful) {
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                activity?.finish()
+                openFragment(R.id.fragmentContainerView, ProfileSetupFragment())
             }
         }
     }
