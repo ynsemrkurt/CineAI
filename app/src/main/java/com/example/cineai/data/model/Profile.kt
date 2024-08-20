@@ -8,5 +8,5 @@ data class Profile(
     val movieGenres: String = "",
     val music: String = "",
     val hobbies: String = "",
-    val travel: String = ""
+    val travel: String = "",
 )
