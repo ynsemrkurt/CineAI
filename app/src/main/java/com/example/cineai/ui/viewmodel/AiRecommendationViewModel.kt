@@ -3,9 +3,12 @@ package com.example.cineai.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.cineai.BuildConfig
 import com.example.cineai.R
+import com.example.cineai.data.model.Movie
 import com.example.cineai.data.model.Profile
+import com.example.cineai.data.network.RetrofitClient
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +27,9 @@ class AiRecommendationViewModel : ViewModel() {
 
     private val _recommendations = MutableLiveData<String>()
     val recommendations: LiveData<String> get() = _recommendations
+
+    private val _movies = MutableLiveData<List<Movie>>()
+    val movies: LiveData<List<Movie>> get() = _movies
 
     fun fetchAndRecommendMovies() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -85,5 +91,18 @@ class AiRecommendationViewModel : ViewModel() {
             Hobbies: ${profile.hobbies}
             Travel: ${profile.travel}
         """.trimIndent()
+    }
+
+    fun fetchMovies(movieTitles: List<String>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val movieList = movieTitles.mapNotNull { movieName ->
+                try {
+                    RetrofitClient.api.searchMovies(movieName).results.find { it.title == movieName }
+                } catch (e: Exception) {
+                    null
+                }
+            }
+            _movies.postValue(movieList)
+        }
     }
 }

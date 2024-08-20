@@ -4,23 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.databinding.FragmentRecommendationDialogBinding
 import com.example.cineai.ui.adapter.MovieAdapter
+import com.example.cineai.ui.viewmodel.AiRecommendationViewModel
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class RecommendationDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRecommendationDialogBinding
-    private lateinit var movieAdapter: MovieAdapter
-    private var recommendations: List<String>? = null
+    private val aiRecommendationViewModel: AiRecommendationViewModel by viewModels()
 
     companion object {
         private const val ARG_RECOMMENDATIONS = "recommendations"
@@ -46,34 +43,23 @@ class RecommendationDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recommendations = arguments?.getStringArrayList(ARG_RECOMMENDATIONS)
-        setupRecyclerView()
-    }
-
-    private fun setupRecyclerView() {
-        val movieViewModel = MovieViewModel()
-
-        movieAdapter = MovieAdapter(movieViewModel)
-        binding.list.layoutManager = LinearLayoutManager(requireContext())
+        val movieAdapter = MovieAdapter(MovieViewModel())
         binding.list.adapter = movieAdapter
 
-        fetchMovies()
+        setMovies()
+        observeMovies(movieAdapter)
     }
 
-    private fun fetchMovies() {
-        val movieNames = recommendations ?: return
+    private fun setMovies() {
+        arguments?.getStringArrayList(ARG_RECOMMENDATIONS)?.let {
+            aiRecommendationViewModel.fetchMovies(it)
+        }
+    }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val movies = movieNames.mapNotNull { movieName ->
-                try {
-                    RetrofitClient.api.searchMovies(movieName).results.find { it.title == movieName }
-                } catch (e: Exception) {
-                    null
-                }
-            }
-
-            withContext(Dispatchers.Main) {
-                movieAdapter.submitData(PagingData.from(movies))
+    private fun observeMovies(adapter: MovieAdapter) {
+        aiRecommendationViewModel.movies.observe(viewLifecycleOwner) { movieList ->
+            lifecycleScope.launch {
+                adapter.submitData(PagingData.from(movieList))
             }
         }
     }
