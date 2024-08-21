@@ -163,6 +163,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewImage" />
 
             <TextView
+                android:id="@+id/textViewCharactersTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_medium"
+                android:text="Characters :"
+                android:textColor="@color/hint"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerViewCharacters"
+                app:layout_constraintStart_toStartOf="@+id/recyclerViewCharacters" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCharacters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/spacer_large"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMovieOverview"
+                tools:listitem="@layout/item_character" />
+
+            <TextView
                 android:id="@+id/textViewTrailerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,8 +203,9 @@
                 android:layout_marginStart="@dimen/spacer_medium"
                 android:layout_marginEnd="@dimen/spacer_medium"
                 android:layout_marginTop="@dimen/spacer_large"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewMovieOverview">
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewCharacters">
 
                 <WebView
                     android:id="@+id/webView"
