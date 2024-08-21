@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?backgroundColor"
+    tools:context=".ui.activity.DetailsActivity">
+
+    <ImageView
+        android:id="@+id/imageViewBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/movie_backdrop"
+        android:foreground="@drawable/back_drop_style"
+        android:scaleType="fitStart"
+        android:src="@drawable/def_backdrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardViewImage"
+        android:layout_width="@dimen/layout_x_large"
+        android:layout_height="@dimen/layout_xx_large"
+        android:layout_marginStart="@dimen/spacer_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewBackdrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBackdrop">
+
+        <ImageView
+            android:id="@+id/imageViewMovie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?backgroundColor"
+            android:contentDescription="@string/movie_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/def_movie_image" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacer_medium"
+        android:paddingEnd="@dimen/spacer_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardViewImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/materialCardViewImage">
+
+        <TextView
+            android:id="@+id/textViewMovieName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="@string/def_movie_deadpool"
+            android:textAppearance="?textAppearanceTitleLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacer_medium"
+            app:layout_constraintStart_toStartOf="@+id/textViewMovieName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieName">
+
+            <TextView
+                android:id="@+id/genreName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comedy"
+                android:textColor="@color/hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:text="@string/released"
+                android:textColor="@color/hint"
+                app:layout_constraintStart_toStartOf="@+id/genreName"
+                app:layout_constraintTop_toBottomOf="@+id/genreName" />
+
+            <TextView
+                android:id="@+id/releasedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:text="@string/def_date"
+                android:textColor="@color/hint"
+                app:layout_constraintBottom_toBottomOf="@+id/status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/status" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageViewStar"
+            android:layout_width="@dimen/icon_size_medium"
+            android:layout_height="@dimen/icon_size_medium"
+            android:layout_marginTop="@dimen/spacer_medium"
+            android:contentDescription="@string/movie_star"
+            android:src="@drawable/filled_star_32"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+        <TextView
+            android:id="@+id/textViewMovieStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_x_small"
+            android:maxLength="3"
+            android:text="@string/def_movie_star"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewStar"
+            app:layout_constraintStart_toEndOf="@+id/imageViewStar"
+            app:layout_constraintTop_toTopOf="@+id/imageViewStar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textViewMovieOverviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview"
+        android:textColor="@color/hint"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMovieOverview"
+        app:layout_constraintStart_toStartOf="@+id/textViewMovieOverview" />
+
+    <TextView
+        android:id="@+id/textViewMovieOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_medium"
+        android:layout_marginTop="@dimen/spacer_x_large"
+        android:layout_marginEnd="@dimen/spacer_medium"
+        android:text="@string/def_movie_overview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardViewImage" />
+
+    <TextView
+        android:id="@+id/textViewTrailerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trailer"
+        android:textColor="@color/hint"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/spacer_x_small"
+        app:layout_constraintBottom_toTopOf="@+id/videoCard"
+        app:layout_constraintStart_toStartOf="@+id/videoCard" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/videoCard"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="@dimen/spacer_medium"
+        android:layout_marginEnd="@dimen/spacer_medium"
+        android:layout_marginTop="@dimen/spacer_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMovieOverview">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
