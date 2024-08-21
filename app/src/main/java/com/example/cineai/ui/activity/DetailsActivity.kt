@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.cineai.databinding.ActivityDetailsBinding
+import com.example.cineai.ui.adapter.CharacterAdapter
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -32,11 +33,19 @@ class DetailsActivity : AppCompatActivity() {
         getMovieId()
         observeMovieDetails()
         observeVideo()
+        observeCharacter()
     }
 
     private fun getMovieId() {
         intent.getStringExtra("movieId")?.let { movieId ->
             viewModel.fetchMovieDetails(movieId)
+        }
+    }
+
+    private fun observeCharacter() {
+        viewModel.character.observe(this) { character ->
+            val adapter = CharacterAdapter(character.cast)
+            binding.recyclerViewCharacters.adapter = adapter
         }
     }
 

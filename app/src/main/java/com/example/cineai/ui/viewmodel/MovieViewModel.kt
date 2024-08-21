@@ -8,6 +8,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.data.paging.MoviePagingSource
@@ -26,6 +27,9 @@ class MovieViewModel : ViewModel() {
 
     private val _video = MutableLiveData<String>()
     val video: LiveData<String> get() = _video
+
+    private val _character = MutableLiveData<CharacterResponse>()
+    val character: LiveData<CharacterResponse> get() = _character
 
     private val _favoriteMovieIds = MutableLiveData<List<String>>()
     val favoriteMovieIds: LiveData<List<String>> get() = _favoriteMovieIds
@@ -83,6 +87,7 @@ class MovieViewModel : ViewModel() {
                 val movie = RetrofitClient.api.getDetailsMovies(movieId)
                 _movieDetails.postValue(movie)
                 fetchVideo(movieId)
+                fetchCharacter(movieId)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -95,6 +100,17 @@ class MovieViewModel : ViewModel() {
                 RetrofitClient.api.searchVideo(movieId).results.find { it.type == "Trailer" }?.let {
                     _video.postValue(it.key)
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun fetchCharacter(movieId: String) {
+        viewModelScope.launch {
+            try {
+                val character = RetrofitClient.api.searchCharacter(movieId)
+                _character.postValue(character)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
