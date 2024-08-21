@@ -81,4 +81,9 @@
     <string name="hey">Hello!</string>
     <string name="recommendation">Recommendation:</string>
     <string name="data_info">ⓘ Your data is safe—used only for movie picks!</string>
+    <string name="movie_backdrop">Movie Backdrop</string>
+    <string name="comedy">Comedy</string>
+    <string name="def_date">2009-06-02</string>
+    <string name="released">Released</string>
+    <string name="trailer">Trailer :</string>
 </resources>
