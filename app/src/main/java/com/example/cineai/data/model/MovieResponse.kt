@@ -12,6 +12,20 @@ data class VideoResponse(
     val results: List<Video>
 )
 
+data class CharacterResponse(
+    @SerializedName("cast")
+    val cast: List<Character>
+)
+
+data class Character(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("character")
+    val character: String,
+    @SerializedName("profile_path")
+    val profilePath: String,
+)
+
 data class Video(
     @SerializedName("key")
     val key: String,
