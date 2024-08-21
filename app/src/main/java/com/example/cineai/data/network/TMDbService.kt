@@ -1,5 +1,6 @@
 package com.example.cineai.data.network
 
+import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.model.MovieResponse
 import com.example.cineai.data.model.VideoResponse
@@ -42,6 +43,11 @@ interface TMDbService {
     suspend fun searchVideo(
         @Path("movie_id") movieId: String
     ): VideoResponse
+
+    @GET(searchCharacter)
+    suspend fun searchCharacter(
+        @Path("movie_id") movieId: String
+    ): CharacterResponse
 }
 
 private const val popularMovies = "movie/popular"
@@ -51,3 +57,4 @@ private const val upcomingMovies = "movie/upcoming"
 private const val movieDetails = "movie/{movie_id}"
 private const val searchMovies = "search/movie"
 private const val searchVideo = "movie/{movie_id}/videos"
+private const val searchCharacter = "movie/{movie_id}/credits"
