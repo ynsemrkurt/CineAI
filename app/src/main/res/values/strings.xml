@@ -86,4 +86,6 @@
     <string name="def_date">2009-06-02</string>
     <string name="released">Released</string>
     <string name="trailer">Trailer :</string>
+    <string name="christian_bale">Christian Bale</string>
+    <string name="bruce_wayne">Bruce Wayne</string>
 </resources>
