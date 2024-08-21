@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?backgroundColor"
+    tools:context=".ui.fragment.ProfileSetupFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginEnd="@dimen/spacer_medium">
+
+            <TextView
+                android:id="@+id/textViewAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_x_small"
+                android:text="@string/app_name"
+                android:textAppearance="?textAppearanceTitleLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/introduce_yourself"
+                android:textAppearance="?textAppearanceTitleMedium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAppName" />
+
+            <TextView
+                android:id="@+id/textViewInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:layout_marginEnd="@dimen/spacer_xx_large"
+                android:text="@string/we_need_this_information"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+            <TextView
+                android:id="@+id/textViewQuestionStress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/how_do_you_relax_in_stressful_situations"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfo" />
+
+            <EditText
+                android:id="@+id/editTextQuestionStress"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/stress_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionStress" />
+
+            <TextView
+                android:id="@+id/textViewQuestionProblemSolving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/how_do_you_usually_solve_problems"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionStress" />
+
+            <EditText
+                android:id="@+id/editTextQuestionProblemSolving"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/problem_solving_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionProblemSolving" />
+
+            <TextView
+                android:id="@+id/textViewQuestionDecisionMaking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/do_you_make_decisions_quickly_or_thoroughly"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionProblemSolving" />
+
+            <EditText
+                android:id="@+id/editTextQuestionDecisionMaking"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/decision_making_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionDecisionMaking" />
+
+            <TextView
+                android:id="@+id/textViewQuestionTeamwork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/do_you_prefer_leader_or_team_member"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionDecisionMaking" />
+
+            <EditText
+                android:id="@+id/editTextQuestionTeamwork"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/teamwork_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTeamwork" />
+
+            <TextView
+                android:id="@+id/textViewQuestionMovieGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/what_movie_genres_do_you_enjoy"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionTeamwork" />
+
+            <EditText
+                android:id="@+id/editTextQuestionMovieGenres"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/movie_genres_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMovieGenres" />
+
+            <TextView
+                android:id="@+id/textViewQuestionMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/what_types_of_music_do_you_like"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionMovieGenres" />
+
+            <EditText
+                android:id="@+id/editTextQuestionMusic"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/music_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMusic" />
+
+            <TextView
+                android:id="@+id/textViewQuestionHobbies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/what_do_you_enjoy_doing_in_free_time"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionMusic" />
+
+            <EditText
+                android:id="@+id/editTextQuestionHobbies"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/hobbies_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionHobbies" />
+
+            <TextView
+                android:id="@+id/textViewQuestionTravel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:text="@string/what_types_of_places_do_you_like_to_visit"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionHobbies" />
+
+            <EditText
+                android:id="@+id/editTextQuestionTravel"
+                style="?android:editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacer_small"
+                android:autofillHints="text"
+                android:ellipsize="end"
+                android:hint="@string/travel_default"
+                android:inputType="text"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTravel" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacer_medium"
+                android:text="@string/save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionTravel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

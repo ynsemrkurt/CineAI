@@ -7,6 +7,17 @@
     tools:context=".ui.fragment.MovieFragment"
     android:background="?backgroundColor">
 
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_medium"
+        android:layout_marginTop="@dimen/spacer_x_small"
+        android:text="@string/app_name"
+        android:textAppearance="?textAppearanceTitleLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -14,7 +25,7 @@
         android:background="?backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
         app:tabIndicatorColor="@color/indicator"
         app:tabMode="auto"
         app:tabSelectedTextColor="@color/indicator">

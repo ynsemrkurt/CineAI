@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="hint">#767676</color>
     <color name="indicator">#00BCD4</color>
+    <color name="ai_blue">#29B6F3</color>
+    <color name="ai_water_blue">#29DBF3</color>
+    <color name="ai_green">#29F3B6</color>
 </resources>

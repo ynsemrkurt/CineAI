@@ -12,12 +12,14 @@ class MoviePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activ
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> BaseMovieFragment.newInstance(MovieCategory.POPULAR)
-            1 -> BaseMovieFragment.newInstance(MovieCategory.TOP_RATED)
-            2 -> BaseMovieFragment.newInstance(MovieCategory.NOW_PLAYING)
-            3 -> BaseMovieFragment.newInstance(MovieCategory.UPCOMING)
-            else -> BaseMovieFragment.newInstance(MovieCategory.POPULAR)
-        }
+        return BaseMovieFragment.newInstance(
+            when (position) {
+                0 -> MovieCategory.POPULAR
+                1 -> MovieCategory.TOP_RATED
+                2 -> MovieCategory.NOW_PLAYING
+                3 -> MovieCategory.UPCOMING
+                else -> MovieCategory.POPULAR
+            }
+        )
     }
 }

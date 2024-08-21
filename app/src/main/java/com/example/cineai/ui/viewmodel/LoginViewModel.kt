@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.example.cineai.R
 import com.example.cineai.ui.classes.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _loginStatus = MutableLiveData<Int>()
     val loginStatus: LiveData<Int> get() = _loginStatus
@@ -40,10 +42,27 @@ class LoginViewModel : ViewModel() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    _loginStatus.value = R.string.login_successful
+                    checkProfile()
                 } else {
                     _loginStatus.value = R.string.login_error
                 }
+            }
+    }
+
+    fun checkProfile() {
+        val userId = auth.currentUser?.uid ?: return
+        firestore.collection("users").document(userId).collection("profile")
+            .document("profile_info")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    _loginStatus.value = R.string.login_successful
+                } else {
+                    _loginStatus.value = R.string.profile_missing
+                }
+            }
+            .addOnFailureListener {
+                _loginStatus.value = R.string.error_checking_profile
             }
     }
 

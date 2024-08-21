@@ -13,9 +13,9 @@ object RetrofitClient {
         .writeTimeout(30, TimeUnit.SECONDS)
         .addInterceptor { chain ->
             val originalRequest = chain.request()
-            val url = originalRequest.url()
+            val url = originalRequest.url
                 .newBuilder()
-                .addQueryParameter("api_key", BuildConfig.API_KEY)
+                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
                 .build()
 
             val request = originalRequest.newBuilder()
