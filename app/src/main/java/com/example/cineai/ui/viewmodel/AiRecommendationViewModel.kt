@@ -31,6 +31,10 @@ class AiRecommendationViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> get() = _movies
 
+    companion object {
+        private const val AI_MODEL = "gemini-1.5-flash"
+    }
+
     fun fetchAndRecommendMovies() {
         CoroutineScope(Dispatchers.IO).launch {
             val profile = fetchUserProfile()
@@ -58,7 +62,7 @@ class AiRecommendationViewModel : ViewModel() {
 
     private suspend fun getMovieRecommendations(profile: Profile) {
         val model = GenerativeModel(
-            modelName = "gemini-1.5-flash",
+            modelName = AI_MODEL,
             apiKey = BuildConfig.AI_API_KEY
         )
 
