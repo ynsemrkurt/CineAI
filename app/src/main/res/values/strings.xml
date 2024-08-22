@@ -93,4 +93,5 @@
     <string name="error_fetching_video">Error fetching video!</string>
     <string name="error_fetching_details">Error fetching movie details!</string>
     <string name="error_loading_favorite">Error loading favorite movies!</string>
+    <string name="back">back</string>
 </resources>

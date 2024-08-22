@@ -23,6 +23,19 @@
             android:paddingBottom="@dimen/spacer_medium">
 
             <ImageView
+                android:layout_marginTop="@dimen/spacer_medium"
+                android:id="@+id/imageViewBack"
+                android:layout_width="@dimen/icon_size_large"
+                android:layout_height="@dimen/icon_size_large"
+                android:contentDescription="@string/back"
+                android:src="@drawable/back"
+                android:padding="@dimen/spacer_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:elevation="@dimen/spacer_x_small"
+                app:tint="?backgroundColor" />
+
+            <ImageView
                 android:id="@+id/imageViewBackdrop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

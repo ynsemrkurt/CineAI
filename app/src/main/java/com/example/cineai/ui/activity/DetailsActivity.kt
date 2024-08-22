@@ -33,6 +33,10 @@ class DetailsActivity : AppCompatActivity() {
         observeVideo()
         observeCharacter()
         observeError()
+
+        binding.imageViewBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun observeError() {
