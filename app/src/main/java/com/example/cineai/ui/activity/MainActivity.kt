@@ -10,6 +10,7 @@ import com.example.cineai.ui.classes.MovieCategory
 import com.example.cineai.ui.fragment.AiRecommendationFragment
 import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.example.cineai.ui.fragment.MovieFragment
+import com.example.cineai.ui.fragment.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.menu_item_ai -> {
                     openFragment(AiRecommendationFragment())
+                    true
+                }
+
+                R.id.settings -> {
+                    openFragment(SettingsFragment())
                     true
                 }
 
