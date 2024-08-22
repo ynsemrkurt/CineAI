@@ -19,6 +19,7 @@
     <dimen name="layout_large">64dp</dimen>
     <dimen name="layout_x_large">108dp</dimen>
     <dimen name="layout_xx_large">192dp</dimen>
+    <dimen name="layout_xxx_large">250dp</dimen>
 
     <!-- Icon Size -->
     <dimen name="icon_size_medium">32dp</dimen>

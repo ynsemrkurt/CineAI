@@ -88,4 +88,9 @@
     <string name="trailer">Trailer :</string>
     <string name="christian_bale">Christian Bale</string>
     <string name="bruce_wayne">Bruce Wayne</string>
+    <string name="characters">Characters :</string>
+    <string name="error_fetching_character">Error fetching character!</string>
+    <string name="error_fetching_video">Error fetching video!</string>
+    <string name="error_fetching_details">Error fetching movie details!</string>
+    <string name="error_loading_favorite">Error loading favorite movies!</string>
 </resources>

@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacer_medium"
-                android:text="Characters :"
+                android:text="@string/characters"
                 android:textColor="@color/hint"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewCharacters"
@@ -199,7 +199,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/videoCard"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="@dimen/layout_xxx_large"
                 android:layout_marginStart="@dimen/spacer_medium"
                 android:layout_marginEnd="@dimen/spacer_medium"
                 android:layout_marginTop="@dimen/spacer_large"
@@ -210,7 +210,7 @@
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
