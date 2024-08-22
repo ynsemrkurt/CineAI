@@ -23,6 +23,7 @@
 
     <!-- Icon Size -->
     <dimen name="icon_size_medium">32dp</dimen>
+    <dimen name="icon_size_medium_ver2">48dp</dimen>
     <dimen name="icon_size_large">64dp</dimen>
 
     <!-- Corner Radius Size -->

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.SettingsFragment">
+
+    <TextView
+        android:id="@+id/textViewLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacer_x_small"
+        android:text="@string/settings"
+        android:textAppearance="?textAppearanceTitleLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacer_medium"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginTitle">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?color"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayoutSignOut"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewSignOut"
+            android:layout_width="@dimen/icon_size_medium_ver2"
+            android:layout_height="@dimen/icon_size_medium_ver2"
+            android:contentDescription="@string/sign_out"
+            android:src="@drawable/sign_out"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginTop="@dimen/spacer_small"
+            android:layout_marginBottom="@dimen/spacer_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:text="@string/sign_out"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewSignOut"
+            app:layout_constraintStart_toEndOf="@+id/imageViewSignOut"
+            app:layout_constraintTop_toTopOf="@+id/imageViewSignOut" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutDeleteAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSignOut">
+
+        <ImageView
+            android:id="@+id/imageViewDeleteAccount"
+            android:layout_width="@dimen/icon_size_medium_ver2"
+            android:layout_height="@dimen/icon_size_medium_ver2"
+            android:contentDescription="@string/delete_account"
+            android:src="@drawable/delete_account"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginTop="@dimen/spacer_small"
+            android:layout_marginBottom="@dimen/spacer_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:text="@string/delete_account"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewDeleteAccount"
+            app:layout_constraintStart_toEndOf="@+id/imageViewDeleteAccount"
+            app:layout_constraintTop_toTopOf="@+id/imageViewDeleteAccount" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
