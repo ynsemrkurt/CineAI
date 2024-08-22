@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.SettingsFragment">
+    tools:context=".ui.fragment.SettingsFragment"
+    android:background="?backgroundColor">
 
     <TextView
         android:id="@+id/textViewLoginTitle"
@@ -22,7 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacer_medium"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLoginTitle">
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginTitle"
+        android:background="?backgroundColor">
 
         <View
             android:layout_width="match_parent"
@@ -69,7 +71,8 @@
         android:id="@+id/constraintLayoutDeleteAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSignOut">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSignOut"
+        android:background="?backgroundColor">
 
         <ImageView
             android:id="@+id/imageViewDeleteAccount"
