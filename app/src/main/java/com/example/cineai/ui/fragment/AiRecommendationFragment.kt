@@ -28,9 +28,16 @@ class AiRecommendationFragment : Fragment() {
 
         viewModel.fetchAndRecommendMovies()
         observeRecommendationStatus()
+        observeError()
 
         binding.buttonCreate.setOnClickListener {
             recommendMovies()
+        }
+    }
+
+    private fun observeError() {
+        viewModel.error.observe(viewLifecycleOwner) { messageResId ->
+            showToast(getString(messageResId))
         }
     }
 

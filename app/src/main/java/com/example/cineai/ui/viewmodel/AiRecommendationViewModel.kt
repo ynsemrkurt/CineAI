@@ -31,6 +31,9 @@ class AiRecommendationViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> get() = _movies
 
+    private val _error = MutableLiveData<Int>()
+    val error: LiveData<Int> get() = _error
+
     companion object {
         private const val AI_MODEL = "gemini-1.5-flash"
     }
@@ -99,14 +102,14 @@ class AiRecommendationViewModel : ViewModel() {
 
     fun fetchMovies(movieTitles: List<String>) {
         viewModelScope.launch(Dispatchers.IO) {
-            val movieList = movieTitles.mapNotNull { movieName ->
-                try {
+            try {
+                val movieList = movieTitles.mapNotNull { movieName ->
                     RetrofitClient.api.searchMovies(movieName).results.find { it.title == movieName }
-                } catch (e: Exception) {
-                    null
                 }
+                _movies.postValue(movieList)
+            } catch (e: Exception) {
+                _error.postValue(R.string.error_generating_recommendations)
             }
-            _movies.postValue(movieList)
         }
     }
 }
