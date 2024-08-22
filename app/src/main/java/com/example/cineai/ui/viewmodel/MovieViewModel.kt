@@ -8,6 +8,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.cineai.R
 import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.network.RetrofitClient
@@ -33,6 +34,9 @@ class MovieViewModel : ViewModel() {
 
     private val _favoriteMovieIds = MutableLiveData<List<String>>()
     val favoriteMovieIds: LiveData<List<String>> get() = _favoriteMovieIds
+
+    private val _error = MutableLiveData<Int>()
+    val error: LiveData<Int> get() = _error
 
     fun addMovieToFavorites(movieId: String) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
@@ -68,7 +72,7 @@ class MovieViewModel : ViewModel() {
                 val ids = snapshot.documents.mapNotNull { it.getString("id") }
                 _favoriteMovieIds.postValue(ids)
             } catch (e: Exception) {
-                _favoriteMovieIds.postValue(emptyList())
+                _error.postValue(R.string.error_loading_favorite)
             }
         }
     }
@@ -89,7 +93,7 @@ class MovieViewModel : ViewModel() {
                 fetchVideo(movieId)
                 fetchCharacter(movieId)
             } catch (e: Exception) {
-                e.printStackTrace()
+                _error.postValue(R.string.error_fetching_details)
             }
         }
     }
@@ -101,7 +105,7 @@ class MovieViewModel : ViewModel() {
                     _video.postValue(it.key)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                _error.postValue(R.string.error_fetching_video)
             }
         }
     }
@@ -112,7 +116,7 @@ class MovieViewModel : ViewModel() {
                 val character = RetrofitClient.api.searchCharacter(movieId)
                 _character.postValue(character)
             } catch (e: Exception) {
-                e.printStackTrace()
+                _error.postValue(R.string.error_fetching_character)
             }
         }
     }
