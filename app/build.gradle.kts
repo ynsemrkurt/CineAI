@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -100,5 +99,5 @@ dependencies {
     implementation(libs.material)
 
     //Ads
-    implementation("com.google.android.gms:play-services-ads-lite:23.3.0")
+    implementation(libs.google.ad)
 }
