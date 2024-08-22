@@ -1,6 +1,5 @@
 package com.example.cineai.ui.activity
 
-import android.content.Context
 import android.os.Bundle
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -12,7 +11,6 @@ import com.example.cineai.databinding.ActivityDetailsBinding
 import com.example.cineai.ui.adapter.CharacterAdapter
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
