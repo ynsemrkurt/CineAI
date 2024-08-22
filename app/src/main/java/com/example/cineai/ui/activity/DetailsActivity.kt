@@ -34,6 +34,13 @@ class DetailsActivity : AppCompatActivity() {
         observeMovieDetails()
         observeVideo()
         observeCharacter()
+        observeError()
+    }
+
+    private fun observeError() {
+        viewModel.error.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun getMovieId() {
