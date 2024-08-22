@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (firebaseAuth.currentUser == null) {
-            firebaseAuth.signOut()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
