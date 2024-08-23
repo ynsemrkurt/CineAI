@@ -100,4 +100,6 @@
     <string name="successfully_signed_out">Successfully signed out...</string>
     <string name="successfully_deleted_account">Successfully Deleted Account...</string>
     <string name="failed_to_delete_account">Failed to delete account</string>
+    <string name="trailer_video">Trailer Video</string>
+    <string name="error_fetching_thumbnail">Error fetching thumbnail</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,16 +23,16 @@
             android:paddingBottom="@dimen/spacer_medium">
 
             <ImageView
-                android:layout_marginTop="@dimen/spacer_medium"
                 android:id="@+id/imageViewBack"
                 android:layout_width="@dimen/icon_size_large"
                 android:layout_height="@dimen/icon_size_large"
+                android:layout_marginTop="@dimen/spacer_medium"
                 android:contentDescription="@string/back"
-                android:src="@drawable/back"
+                android:elevation="@dimen/spacer_x_small"
                 android:padding="@dimen/spacer_medium"
+                android:src="@drawable/back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:elevation="@dimen/spacer_x_small"
                 app:tint="?backgroundColor" />
 
             <ImageView
@@ -190,8 +190,8 @@
                 android:id="@+id/recyclerViewCharacters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/spacer_large"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -202,32 +202,51 @@
                 android:id="@+id/textViewTrailerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_x_small"
                 android:text="@string/trailer"
                 android:textColor="@color/hint"
                 android:textStyle="bold"
-                android:layout_marginStart="@dimen/spacer_x_small"
                 app:layout_constraintBottom_toTopOf="@+id/videoCard"
                 app:layout_constraintStart_toStartOf="@+id/videoCard" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/videoCard"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_xxx_large"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacer_medium"
-                android:layout_marginEnd="@dimen/spacer_medium"
                 android:layout_marginTop="@dimen/spacer_large"
+                android:layout_marginEnd="@dimen/spacer_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewCharacters">
 
-                <WebView
-                    android:id="@+id/webView"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageViewTrailer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/trailer_video"
+                        android:src="@drawable/def_backdrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_large"
+                        android:layout_height="@dimen/icon_size_large"
+                        android:contentDescription="@string/trailer_video"
+                        android:src="@drawable/yt_play"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/imageViewTrailer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
