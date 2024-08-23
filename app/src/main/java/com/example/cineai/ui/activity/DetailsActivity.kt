@@ -1,7 +1,6 @@
 package com.example.cineai.ui.activity
 
 import android.os.Bundle
-import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -30,9 +29,9 @@ class DetailsActivity : AppCompatActivity() {
         loadAds()
         getMovieId()
         observeMovieDetails()
-        observeVideo()
         observeCharacter()
         observeError()
+        observeThumbnail()
 
         binding.imageViewBack.setOnClickListener {
             finish()
@@ -51,29 +50,16 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeThumbnail() {
+        viewModel.thumbnail.observe(this) { thumbnail ->
+            Glide.with(this).load(thumbnail).into(binding.imageViewTrailer)
+        }
+    }
+
     private fun observeCharacter() {
         viewModel.character.observe(this) { character ->
             val adapter = CharacterAdapter(character.cast)
             binding.recyclerViewCharacters.adapter = adapter
-        }
-    }
-
-    private fun observeVideo() {
-        viewModel.video.observe(this) {
-            val video = """
-                <html>
-                <body style="margin:0;padding:0;">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/$it?si=tIzzHIfnlQexEd2z" 
-                    title="YouTube video player" frameborder="0" 
-                    style="border: none; margin: 0; padding: 0;"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </body>
-                </html>
-            """
-            binding.webView.loadData(video, "text/html", "utf-8")
-            binding.webView.settings.javaScriptEnabled = true
-            binding.webView.setWebViewClient(WebViewClient())
         }
     }
 
