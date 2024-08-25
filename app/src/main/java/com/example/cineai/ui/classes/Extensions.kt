@@ -1,5 +1,8 @@
 package com.example.cineai.ui.classes
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -41,4 +44,10 @@ fun Fragment.openFragment(containerViewId: Int, fragment: Fragment) {
         .replace(containerViewId, fragment)
         .addToBackStack(null)
         .commit()
+}
+
+fun Activity.playYouTubeVideoFullScreen(videoId: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(intent)
 }
