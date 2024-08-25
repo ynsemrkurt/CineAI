@@ -11,6 +11,7 @@ import com.example.cineai.R
 import com.example.cineai.data.model.Profile
 import com.example.cineai.databinding.FragmentProfileSetupBinding
 import com.example.cineai.ui.activity.MainActivity
+import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.ProfileSetupViewModel
 
@@ -31,6 +32,7 @@ class ProfileSetupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSave.setOnClickListener {
+            LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewSave)
             val profile = setProfileInfo()
             profileSetupViewModel.saveProfile(profile)
         }
@@ -45,6 +47,7 @@ class ProfileSetupFragment : Fragment() {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }
+            LoadingAnim().hideLoadingAnimation(binding.loadingAnimationView, binding.textViewSave)
         }
     }
 
