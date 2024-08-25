@@ -12,6 +12,7 @@ import com.example.cineai.R
 import com.example.cineai.databinding.FragmentLoginBinding
 import com.example.cineai.databinding.ItemForgotPasswordBinding
 import com.example.cineai.ui.activity.MainActivity
+import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.isValidEmail
 import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
@@ -34,6 +35,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLogin.setOnClickListener {
+            LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewLogin)
             loginUser()
         }
         binding.textViewForgotPassword.setOnClickListener {
@@ -63,6 +65,7 @@ class LoginFragment : Fragment() {
                     openFragment(R.id.fragmentContainerView, ProfileSetupFragment())
                 }
             }
+            LoadingAnim().hideLoadingAnimation(binding.loadingAnimationView, binding.textViewLogin)
         }
     }
 

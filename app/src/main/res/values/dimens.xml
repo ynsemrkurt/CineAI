@@ -7,6 +7,7 @@
 
     <!-- Spacer Size -->
     <dimen name="spacer_x_small">4dp</dimen>
+    <dimen name="spacer_xx_small">7dp</dimen>
     <dimen name="spacer_small">8dp</dimen>
     <dimen name="spacer_small_ver2">10dp</dimen>
     <dimen name="spacer_medium">16dp</dimen>

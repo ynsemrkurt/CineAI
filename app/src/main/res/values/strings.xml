@@ -32,7 +32,7 @@
     <string name="password_characters_error">Password must be at least 6 characters</string>
     <string name="username_already_error">Username already taken</string>
     <string name="error_checking_username">Error checking username</string>
-    <string name="registration_error">Registration Failed: %1$s</string>
+    <string name="registration_error">Registration Failed</string>
     <string name="registration_successful">Registration Successful</string>
     <string name="error_saving_user_data">Error saving user data: %1$s</string>
     <string name="invalid_input">Invalid input</string>
@@ -97,8 +97,8 @@
     <string name="settings">Settings</string>
     <string name="sign_out">Sign Out</string>
     <string name="delete_account">Delete Account</string>
-    <string name="successfully_signed_out">Successfully signed out...</string>
-    <string name="successfully_deleted_account">Successfully Deleted Account...</string>
+    <string name="successfully_signed_out">Successfully signed out…</string>
+    <string name="successfully_deleted_account">Successfully Deleted Account…</string>
     <string name="failed_to_delete_account">Failed to delete account</string>
     <string name="trailer_video">Trailer Video</string>
     <string name="error_fetching_thumbnail">Error fetching thumbnail</string>
