@@ -23,17 +23,20 @@
             android:paddingBottom="@dimen/spacer_medium">
 
             <ImageView
+                android:background="@drawable/button_style"
+                android:backgroundTint="?backgroundColor"
                 android:id="@+id/imageViewBack"
-                android:layout_width="@dimen/icon_size_large"
-                android:layout_height="@dimen/icon_size_large"
-                android:layout_marginTop="@dimen/spacer_medium"
+                android:layout_width="@dimen/icon_size_medium_ver2"
+                android:layout_height="@dimen/icon_size_medium_ver2"
+                android:layout_marginTop="@dimen/icon_size_medium"
+                android:layout_marginStart="@dimen/spacer_medium"
                 android:contentDescription="@string/back"
                 android:elevation="@dimen/spacer_x_small"
-                android:padding="@dimen/spacer_medium"
+                android:padding="@dimen/spacer_small"
                 android:src="@drawable/back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="?backgroundColor" />
+                app:tint="?color" />
 
             <ImageView
                 android:id="@+id/imageViewBackdrop"
