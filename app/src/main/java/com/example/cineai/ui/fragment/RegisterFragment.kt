@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentRegisterBinding
+import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.RegisterViewModel
@@ -29,6 +30,10 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonRegister.setOnClickListener {
+            LoadingAnim().showLoadingAnimation(
+                binding.loadingAnimationView,
+                binding.textViewRegister
+            )
             registerUser()
         }
         observeRegistrationStatus()
@@ -48,6 +53,10 @@ class RegisterFragment : Fragment() {
             if (status == R.string.registration_successful) {
                 openFragment(R.id.fragmentContainerView, ProfileSetupFragment())
             }
+            LoadingAnim().hideLoadingAnimation(
+                binding.loadingAnimationView,
+                binding.textViewRegister
+            )
         }
     }
 }
