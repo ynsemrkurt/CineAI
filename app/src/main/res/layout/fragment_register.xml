@@ -7,16 +7,35 @@
     tools:context=".ui.fragment.RegisterFragment"
     android:background="?backgroundColor">
 
-    <TextView
-        android:id="@+id/textViewRegisterTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacer_x_small"
-        android:text="@string/register"
-        android:textAppearance="?textAppearanceTitleLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewAppLogo"
+            android:layout_width="@dimen/icon_size_large"
+            android:layout_height="@dimen/icon_size_large"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/cineai_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewRegisterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textAppearance="?textAppearanceTitleLarge"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewAppLogo"
+            app:layout_constraintStart_toEndOf="@+id/imageViewAppLogo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewAppLogo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationViewRegister"
@@ -27,7 +46,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewSlogan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegisterTitle"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutApp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/register_anim" />
