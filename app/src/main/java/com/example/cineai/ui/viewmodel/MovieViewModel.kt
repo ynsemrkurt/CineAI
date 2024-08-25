@@ -37,6 +37,9 @@ class MovieViewModel : ViewModel() {
     private val _thumbnail = MutableLiveData<String>()
     val thumbnail: LiveData<String> get() = _thumbnail
 
+    private val _videoId = MutableLiveData<String>()
+    val videoId: LiveData<String> get() = _videoId
+
     private val _error = MutableLiveData<Int>()
     val error: LiveData<Int> get() = _error
 
@@ -104,6 +107,7 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 RetrofitClient.api.searchVideo(movieId).results.find { it.type == "Trailer" }?.let {
+                    _videoId.postValue(it.key)
                     fetchThumbnail(it.key)
                 }
             } catch (e: Exception) {
@@ -126,8 +130,12 @@ class MovieViewModel : ViewModel() {
     private fun fetchThumbnail(videoID: String) {
         viewModelScope.launch {
             try {
-                val thumbnail = RetrofitClient.ytApi.getVideoDetails("snippet", videoID, BuildConfig.YT_API_KEY)
-                _thumbnail.postValue(thumbnail.awaitResponse().body()?.items?.get(0)?.snippet?.thumbnails?.maxres?.url)
+                val thumbnail =
+                    RetrofitClient.ytApi.getVideoDetails("snippet", videoID, BuildConfig.YT_API_KEY)
+                _thumbnail.postValue(
+                    thumbnail.awaitResponse()
+                        .body()?.items?.get(0)?.snippet?.thumbnails?.maxres?.url
+                )
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_thumbnail)
             }
