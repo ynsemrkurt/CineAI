@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/movie_backdrop"
                 android:foreground="@drawable/back_drop_style"
-                android:scaleType="fitStart"
+                android:scaleType="centerCrop"
                 android:src="@drawable/def_backdrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
