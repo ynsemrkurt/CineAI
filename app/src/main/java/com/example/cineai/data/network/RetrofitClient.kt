@@ -35,12 +35,4 @@ object RetrofitClient {
             .build()
             .create(TMDbService::class.java)
     }
-
-    val ytApi: YouTubeApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.YT_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(YouTubeApiService::class.java)
-    }
 }

@@ -8,7 +8,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.cineai.BuildConfig
 import com.example.cineai.R
 import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
@@ -19,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import retrofit2.awaitResponse
 
 class MovieViewModel : ViewModel() {
 
@@ -33,9 +31,6 @@ class MovieViewModel : ViewModel() {
 
     private val _favoriteMovieIds = MutableLiveData<List<String>>()
     val favoriteMovieIds: LiveData<List<String>> get() = _favoriteMovieIds
-
-    private val _thumbnail = MutableLiveData<String>()
-    val thumbnail: LiveData<String> get() = _thumbnail
 
     private val _videoId = MutableLiveData<String>()
     val videoId: LiveData<String> get() = _videoId
@@ -108,7 +103,6 @@ class MovieViewModel : ViewModel() {
             try {
                 RetrofitClient.api.searchVideo(movieId).results.find { it.type == "Trailer" }?.let {
                     _videoId.postValue(it.key)
-                    fetchThumbnail(it.key)
                 }
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_video)
@@ -123,21 +117,6 @@ class MovieViewModel : ViewModel() {
                 _character.postValue(character)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_character)
-            }
-        }
-    }
-
-    private fun fetchThumbnail(videoID: String) {
-        viewModelScope.launch {
-            try {
-                val thumbnail =
-                    RetrofitClient.ytApi.getVideoDetails("snippet", videoID, BuildConfig.YT_API_KEY)
-                _thumbnail.postValue(
-                    thumbnail.awaitResponse()
-                        .body()?.items?.get(0)?.snippet?.thumbnails?.maxres?.url
-                )
-            } catch (e: Exception) {
-                _error.postValue(R.string.error_fetching_thumbnail)
             }
         }
     }

@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.cineai.databinding.ActivityDetailsBinding
 import com.example.cineai.ui.adapter.CharacterAdapter
-import com.example.cineai.ui.classes.playYouTubeVideoFullScreen
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -32,19 +31,9 @@ class DetailsActivity : AppCompatActivity() {
         observeMovieDetails()
         observeCharacter()
         observeError()
-        observeThumbnail()
-        observeVideoId()
 
         binding.imageViewBack.setOnClickListener {
             finish()
-        }
-    }
-
-    private fun observeVideoId() {
-        viewModel.videoId.observe(this) { videoId ->
-            binding.videoCard.setOnClickListener {
-                playYouTubeVideoFullScreen(videoId)
-            }
         }
     }
 
@@ -57,12 +46,6 @@ class DetailsActivity : AppCompatActivity() {
     private fun getMovieId() {
         intent.getStringExtra("movieId")?.let { movieId ->
             viewModel.fetchMovieDetails(movieId)
-        }
-    }
-
-    private fun observeThumbnail() {
-        viewModel.thumbnail.observe(this) { thumbnail ->
-            Glide.with(this).load(thumbnail).into(binding.imageViewTrailer)
         }
     }
 

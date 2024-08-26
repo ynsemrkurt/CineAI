@@ -28,8 +28,6 @@ android {
         buildConfigField("String", "TMDB_API_KEY", properties.getProperty("TMDB_API_KEY"))
         buildConfigField("String", "TMDB_BASE_URL", properties.getProperty("TMDB_BASE_URL"))
         buildConfigField("String", "AI_API_KEY", properties.getProperty("AI_API_KEY"))
-        buildConfigField("String", "YT_BASE_URL", properties.getProperty("YT_BASE_URL"))
-        buildConfigField("String", "YT_API_KEY", properties.getProperty("YT_API_KEY"))
     }
 
     buildTypes {
@@ -102,4 +100,7 @@ dependencies {
 
     //Ads
     implementation(libs.google.ad)
+
+    //Youtube Player
+    implementation(libs.core)
 }
