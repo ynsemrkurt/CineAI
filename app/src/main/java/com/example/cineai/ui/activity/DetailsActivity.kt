@@ -130,7 +130,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.status.text = movie.status
             Glide.with(this).load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .into(binding.imageViewMovie)
-            Glide.with(this).load("https://image.tmdb.org/t/p/w500${movie.backdropPath}")
+            Glide.with(this).load("https://image.tmdb.org/t/p/original${movie.backdropPath}")
                 .into(binding.imageViewBackdrop)
         }
     }

@@ -33,7 +33,7 @@ class CharacterAdapter(private val characters: List<Character>) :
             binding.textViewActorName.text = character.name
             binding.textViewCharacterName.text = character.character
             Glide.with(binding.imageViewMovie.context)
-                .load("https://image.tmdb.org/t/p/w500${character.profilePath}")
+                .load("https://image.tmdb.org/t/p/w300${character.profilePath}")
                 .placeholder(R.drawable.people_32)
                 .into(binding.imageViewMovie)
         }
