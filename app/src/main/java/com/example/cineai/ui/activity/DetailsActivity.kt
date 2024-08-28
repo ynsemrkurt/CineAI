@@ -1,9 +1,7 @@
 package com.example.cineai.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cineai.databinding.ActivityDetailsBinding
@@ -23,22 +21,10 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     private val viewModel: MovieViewModel by viewModels()
 
-    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            if (binding.fullScreenLayout.visibility == View.VISIBLE) {
-                //TODO
-            } else {
-                finish()
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        onBackPressedDispatcher.addCallback(onBackPressedCallback)
 
         loadAds()
         getMovieId()
