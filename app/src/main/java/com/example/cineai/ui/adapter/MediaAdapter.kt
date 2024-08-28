@@ -1,17 +1,15 @@
 package com.example.cineai.ui.adapter
 
 import android.app.Activity
-import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.cineai.R
+import com.example.cineai.ui.classes.FullScreenHelper
+import com.example.cineai.ui.classes.loadImage
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
@@ -36,18 +34,23 @@ class MediaAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TYPE_YOUTUBE_PLAYER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_youtube_player, parent, false)
-                YouTubeViewHolder(view, lifecycle)
-            }
+            TYPE_YOUTUBE_PLAYER -> YouTubeViewHolder(
+                inflater.inflate(
+                    R.layout.item_youtube_player,
+                    parent,
+                    false
+                ), lifecycle
+            )
 
-            TYPE_IMAGE_VIEW -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_image_view, parent, false)
-                ImageViewHolder(view)
-            }
+            TYPE_IMAGE_VIEW -> ImageViewHolder(
+                inflater.inflate(
+                    R.layout.item_image_view,
+                    parent,
+                    false
+                )
+            )
 
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -64,12 +67,8 @@ class MediaAdapter(
 
     class YouTubeViewHolder(itemView: View, lifecycle: Lifecycle) :
         RecyclerView.ViewHolder(itemView) {
-
         private val youTubePlayerView: YouTubePlayerView = itemView.findViewById(R.id.youtubePlayer)
         private var youTubePlayer: YouTubePlayer? = null
-        val activity = itemView.context as Activity
-        val fullScreenLayout = activity.findViewById<FrameLayout>(R.id.fullScreenLayout)
-        val viewPager2 = activity.findViewById<ViewPager2>(R.id.viewPagerMovie)
 
         init {
             lifecycle.addObserver(youTubePlayerView)
@@ -94,38 +93,22 @@ class MediaAdapter(
                     this@YouTubeViewHolder.youTubePlayer = youTubePlayer
                     youTubePlayer.cueVideo(videoId, 0f)
 
+                    val activity = itemView.context as Activity
+
                     youTubePlayerView.addFullscreenListener(object : FullscreenListener {
                         override fun onEnterFullscreen(
                             fullscreenView: View,
                             exitFullscreen: () -> Unit
                         ) {
-                            enterFullScreen(fullscreenView)
+                            FullScreenHelper.enterFullScreen(activity, fullscreenView)
                         }
 
                         override fun onExitFullscreen() {
-                            exitFullScreen()
+                            FullScreenHelper.exitFullScreen(activity)
                         }
                     })
                 }
             }, iFramePlayerOptions)
-        }
-
-        fun enterFullScreen(fullscreenView: View) {
-            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            activity.window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-            viewPager2.visibility = View.GONE
-            fullScreenLayout.visibility = View.VISIBLE
-            fullScreenLayout.addView(fullscreenView)
-        }
-
-        fun exitFullScreen() {
-            viewPager2.visibility = View.VISIBLE
-            fullScreenLayout.visibility = View.GONE
-            fullScreenLayout.removeAllViews()
-            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-            activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
     }
 
@@ -133,9 +116,7 @@ class MediaAdapter(
         private val imageView: ImageView = itemView.findViewById(R.id.imageViewBackdrop)
 
         fun bind(item: ItemType.Image) {
-            Glide.with(imageView).load("https://image.tmdb.org/t/p/original" + item.imageUrl)
-                .placeholder(R.drawable.image_32)
-                .into(imageView)
+            imageView.loadImage("https://image.tmdb.org/t/p/original${item.imageUrl}")
         }
     }
 }
