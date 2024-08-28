@@ -6,11 +6,11 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.cineai.databinding.ActivityDetailsBinding
 import com.example.cineai.ui.adapter.CharacterAdapter
 import com.example.cineai.ui.adapter.ItemType
 import com.example.cineai.ui.adapter.MediaAdapter
+import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -94,8 +94,9 @@ class DetailsActivity : AppCompatActivity() {
             binding.releasedDate.text = movie.releaseDate
             binding.genreName.text = movie.genreIds.joinToString { it.name }
             binding.status.text = movie.status
-            Glide.with(this).load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-                .into(binding.imageViewMovie)
+            binding.imageViewMovie.loadImage(
+                "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+            )
         }
     }
 

@@ -8,11 +8,11 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
 import com.example.cineai.ui.activity.DetailsActivity
+import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.viewmodel.MovieViewModel
 
 class MovieAdapter(private val movieViewModel: MovieViewModel) :
@@ -47,10 +47,7 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
                 textViewMovieName.text = it.title
                 textViewMovieStar.text = it.voteAverage.toString()
                 textViewMovieOverview.text = it.overview
-                Glide.with(holder.itemView.context)
-                    .load("https://image.tmdb.org/t/p/w500${it.posterPath}")
-                    .placeholder(R.drawable.image_32)
-                    .into(imageViewMovie)
+                imageViewMovie.loadImage("https://image.tmdb.org/t/p/w500${it.posterPath}")
             }
 
             movieViewModel.isMovieFavorite(it.id.toString()) { isFavorite ->

@@ -3,8 +3,10 @@ package com.example.cineai.ui.classes
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.cineai.R
 
 fun Fragment.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -41,4 +43,11 @@ fun Fragment.openFragment(containerViewId: Int, fragment: Fragment) {
         .replace(containerViewId, fragment)
         .addToBackStack(null)
         .commit()
+}
+
+fun ImageView.loadImage(url: String, placeholderResId: Int = R.drawable.image_32) {
+    Glide.with(this)
+        .load(url)
+        .placeholder(placeholderResId)
+        .into(this)
 }
