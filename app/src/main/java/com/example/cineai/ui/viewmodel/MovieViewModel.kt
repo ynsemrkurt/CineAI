@@ -38,6 +38,9 @@ class MovieViewModel : ViewModel() {
     private val _error = MutableLiveData<Int>()
     val error: LiveData<Int> get() = _error
 
+    private val _movieBackdrops = MutableLiveData<List<String>>()
+    val movieBackdrops: LiveData<List<String>> get() = _movieBackdrops
+
     fun addMovieToFavorites(movieId: String) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         firestore.collection("users").document(userId).collection("favorites").document(movieId)
@@ -90,6 +93,7 @@ class MovieViewModel : ViewModel() {
             try {
                 val movie = RetrofitClient.api.getDetailsMovies(movieId)
                 _movieDetails.postValue(movie)
+                fetchMovieBackdrops(movieId)
                 fetchVideo(movieId)
                 fetchCharacter(movieId)
             } catch (e: Exception) {
@@ -117,6 +121,17 @@ class MovieViewModel : ViewModel() {
                 _character.postValue(character)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_character)
+            }
+        }
+    }
+
+    private fun fetchMovieBackdrops(movieId: String) {
+        viewModelScope.launch {
+            try {
+                val movieBackdrops = RetrofitClient.api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
+                _movieBackdrops.postValue(movieBackdrops)
+            } catch (e: Exception) {
+                _error.postValue(R.string.error_fetching_movie_backdrops)
             }
         }
     }

@@ -103,4 +103,5 @@
     <string name="trailer_video">Trailer Video</string>
     <string name="error_fetching_thumbnail">Error fetching thumbnail</string>
     <string name="app_logo">App Logo</string>
+    <string name="error_fetching_movie_backdrops">Error fetching movie backdrops</string>
 </resources>
