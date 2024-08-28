@@ -1,12 +1,13 @@
 package com.example.cineai.ui.classes
 
-import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -56,29 +57,24 @@ fun ImageView.loadImage(url: String, placeholderResId: Int = R.drawable.image_32
         .into(this)
 }
 
-fun Activity.hideSystemUI() {
+fun Window.hideSystemUI() {
+    setBackgroundDrawableResource(android.R.color.transparent)
+    setLayout(
+        WindowManager.LayoutParams.MATCH_PARENT,
+        WindowManager.LayoutParams.MATCH_PARENT
+    )
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        window.setDecorFitsSystemWindows(false)
-        window.insetsController?.let {
+        setDecorFitsSystemWindows(false)
+        insetsController?.let {
             it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
             it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     } else {
         @Suppress("DEPRECATION")
-        window.decorView.systemUiVisibility = (
+        decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_FULLSCREEN
                         or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
-    }
-}
-
-fun Activity.showSystemUI() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        window.setDecorFitsSystemWindows(true)
-        window.insetsController?.show(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-    } else {
-        @Suppress("DEPRECATION")
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 }
