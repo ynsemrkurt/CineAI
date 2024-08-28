@@ -11,20 +11,22 @@ class MoviePagingSource(
     private val favList: List<String>? = null
 ) : PagingSource<Int, Movie>() {
 
+    private val apiService = RetrofitClient.api
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val position = params.key ?: 1
         return try {
             val movies: List<Movie> = when (category) {
-                MovieCategory.POPULAR.value -> RetrofitClient.api.getPopularMovies(position).results
-                MovieCategory.TOP_RATED.value -> RetrofitClient.api.getTopRatedMovies(position).results
-                MovieCategory.NOW_PLAYING.value -> RetrofitClient.api.getNowPlayingMovies(position).results
+                MovieCategory.POPULAR.value -> apiService.getPopularMovies(position).results
+                MovieCategory.TOP_RATED.value -> apiService.getTopRatedMovies(position).results
+                MovieCategory.NOW_PLAYING.value -> apiService.getNowPlayingMovies(position).results
+                MovieCategory.UPCOMING.value -> apiService.getUpcomingMovies(position).results
                 MovieCategory.FAVORITE.value -> favList?.drop((position - 1) * params.loadSize)
                     ?.take(params.loadSize)
                     ?.map { movieId ->
-                        RetrofitClient.api.getDetailsMovies(movieId)
+                        apiService.getDetailsMovies(movieId)
                     } ?: emptyList()
 
-                MovieCategory.UPCOMING.value -> RetrofitClient.api.getUpcomingMovies(position).results
                 else -> emptyList()
             }
 
