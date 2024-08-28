@@ -2,6 +2,7 @@ package com.example.cineai.data.network
 
 import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
+import com.example.cineai.data.model.MovieBackdrops
 import com.example.cineai.data.model.MovieResponse
 import com.example.cineai.data.model.VideoResponse
 import retrofit2.http.GET
@@ -48,6 +49,11 @@ interface TMDbService {
     suspend fun searchCharacter(
         @Path("movie_id") movieId: String
     ): CharacterResponse
+
+    @GET(movieBackdrops)
+    suspend fun getMovieBackdrops(
+        @Path("movie_id") movieId: String
+    ): MovieBackdrops
 }
 
 private const val popularMovies = "movie/popular"
@@ -58,3 +64,4 @@ private const val movieDetails = "movie/{movie_id}"
 private const val searchMovies = "search/movie"
 private const val searchVideo = "movie/{movie_id}/videos"
 private const val searchCharacter = "movie/{movie_id}/credits"
+private const val movieBackdrops = "movie/{movie_id}/images"
