@@ -104,4 +104,5 @@
     <string name="error_fetching_thumbnail">Error fetching thumbnail</string>
     <string name="app_logo">App Logo</string>
     <string name="error_fetching_movie_backdrops">Error fetching movie backdrops</string>
+    <string name="error_updating_favorite">Error updating favorite movie</string>
 </resources>

@@ -42,36 +42,46 @@ class MovieViewModel : ViewModel() {
     val movieBackdrops: LiveData<List<String>> get() = _movieBackdrops
 
     fun addMovieToFavorites(movieId: String) {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        firestore.collection("users").document(userId).collection("favorites").document(movieId)
-            .set(mapOf("id" to movieId))
+        updateFavoriteMovie(movieId, isAdding = true)
     }
 
     fun removeMovieFromFavorites(movieId: String) {
+        updateFavoriteMovie(movieId, isAdding = false)
+    }
+
+    private fun updateFavoriteMovie(movieId: String, isAdding: Boolean) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        firestore.collection("users").document(userId).collection("favorites").document(movieId)
-            .delete()
+        val action = if (isAdding) {
+            firestore.collection("users").document(userId).collection("favorites").document(movieId)
+                .set(mapOf("id" to movieId))
+        } else {
+            firestore.collection("users").document(userId).collection("favorites").document(movieId)
+                .delete()
+        }
+        action.addOnFailureListener {
+            _error.value = R.string.error_updating_favorite
+        }
     }
 
     fun isMovieFavorite(movieId: String, callback: (Boolean) -> Unit) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         firestore.collection("users").document(userId).collection("favorites").document(movieId)
-            .get().addOnSuccessListener { document ->
+            .get()
+            .addOnSuccessListener { document ->
                 callback(document.exists())
-            }.addOnFailureListener {
+            }
+            .addOnFailureListener {
                 callback(false)
             }
     }
 
     fun loadFavoriteMovieIds() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
         viewModelScope.launch {
             try {
                 val snapshot =
                     firestore.collection("users").document(userId).collection("favorites").get()
                         .await()
-
                 val ids = snapshot.documents.mapNotNull { it.getString("id") }
                 _favoriteMovieIds.postValue(ids)
             } catch (e: Exception) {
@@ -80,12 +90,11 @@ class MovieViewModel : ViewModel() {
         }
     }
 
-
     fun getMovies(category: String, favList: List<String>? = null): Flow<PagingData<Movie>> {
-        return Pager(config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-            pagingSourceFactory = { MoviePagingSource(category, favList) }).flow.cachedIn(
-            viewModelScope
-        )
+        return Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            pagingSourceFactory = { MoviePagingSource(category, favList) }
+        ).flow.cachedIn(viewModelScope)
     }
 
     fun fetchMovieDetails(movieId: String) {
@@ -128,7 +137,8 @@ class MovieViewModel : ViewModel() {
     private fun fetchMovieBackdrops(movieId: String) {
         viewModelScope.launch {
             try {
-                val movieBackdrops = RetrofitClient.api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
+                val movieBackdrops =
+                    RetrofitClient.api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
                 _movieBackdrops.postValue(movieBackdrops)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_movie_backdrops)
