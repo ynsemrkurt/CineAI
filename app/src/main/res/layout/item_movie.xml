@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/materialCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?backgroundColor"
-    android:layout_margin="@dimen/spacer_x_small">
+    android:layout_margin="@dimen/spacer_x_small"
+    android:background="?backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,6 +28,7 @@
                 android:background="?backgroundColor"
                 android:contentDescription="@string/movie_image"
                 android:scaleType="centerCrop"
+                android:src="@drawable/image_32"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,8 +65,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacer_medium"
-            android:maxLines="3"
             android:ellipsize="end"
+            android:maxLines="3"
             android:text="@string/def_movie_overview"
             app:layout_constraintBottom_toTopOf="@+id/imageViewStar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +78,7 @@
             android:layout_width="@dimen/icon_size_medium"
             android:layout_height="@dimen/icon_size_medium"
             android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginBottom="@dimen/spacer_x_small"
             android:contentDescription="@string/movie_star"
             android:src="@drawable/star_32"
             app:layout_constraintBottom_toBottomOf="@+id/materialCardViewImage"

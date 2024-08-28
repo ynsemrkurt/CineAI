@@ -85,8 +85,12 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerMovie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ads:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="0dp"
+                android:background="@color/hint"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="H,16:9" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewImage"
@@ -103,7 +107,8 @@
                     android:background="?backgroundColor"
                     android:contentDescription="@string/movie_image"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/def_movie_image" />
+                    android:src="@drawable/image_32"
+                    tools:ignore="ImageContrastCheck" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -177,7 +182,8 @@
                     android:contentDescription="@string/movie_star"
                     android:src="@drawable/filled_star_32"
                     app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/textViewMovieStar"

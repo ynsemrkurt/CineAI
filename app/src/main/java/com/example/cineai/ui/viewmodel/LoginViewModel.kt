@@ -43,7 +43,7 @@ class LoginViewModel : ViewModel() {
             }
     }
 
-    private fun checkProfile() {
+    fun checkProfile() {
         val userId = auth.currentUser?.uid ?: return
         firestore.collection("users").document(userId).collection("profile")
             .document("profile_info")
