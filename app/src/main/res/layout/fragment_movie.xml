@@ -11,6 +11,7 @@
         android:id="@+id/imageViewAppLogo"
         android:layout_width="@dimen/icon_size_medium_ver2"
         android:layout_height="@dimen/icon_size_medium_ver2"
+        android:contentDescription="@string/app_logo"
         android:src="@drawable/cineai_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
