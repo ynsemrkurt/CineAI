@@ -11,11 +11,7 @@ object FullScreenHelper {
 
     fun enterFullScreen(activity: Activity, fullscreenView: View) {
         activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        activity.window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                )
+        activity.hideSystemUI()
         val fullScreenLayout = activity.findViewById<FrameLayout>(R.id.fullScreenLayout)
         val viewPager2 = activity.findViewById<ViewPager2>(R.id.viewPagerMovie)
         viewPager2.visibility = View.GONE
@@ -30,6 +26,6 @@ object FullScreenHelper {
         fullScreenLayout.visibility = View.GONE
         fullScreenLayout.removeAllViews()
         activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        activity.showSystemUI()
     }
 }
