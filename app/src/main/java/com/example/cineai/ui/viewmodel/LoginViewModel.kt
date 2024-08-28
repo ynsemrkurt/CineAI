@@ -26,14 +26,8 @@ class LoginViewModel : ViewModel() {
 
     private fun validateInputs(email: String, password: String) {
         when {
-            !email.isValidEmail() -> {
-                _loginStatus.value = R.string.invalid_email_error
-            }
-
-            password.length < 6 -> {
-                _loginStatus.value = R.string.password_characters_error
-            }
-
+            !email.isValidEmail() -> _loginStatus.value = R.string.invalid_email_error
+            password.length < 6 -> _loginStatus.value = R.string.password_characters_error
             else -> performLogin(email, password)
         }
     }
@@ -49,16 +43,16 @@ class LoginViewModel : ViewModel() {
             }
     }
 
-    fun checkProfile() {
+    private fun checkProfile() {
         val userId = auth.currentUser?.uid ?: return
         firestore.collection("users").document(userId).collection("profile")
             .document("profile_info")
             .get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    _loginStatus.value = R.string.login_successful
+                _loginStatus.value = if (document.exists()) {
+                    R.string.login_successful
                 } else {
-                    _loginStatus.value = R.string.profile_missing
+                    R.string.profile_missing
                 }
             }
             .addOnFailureListener {
