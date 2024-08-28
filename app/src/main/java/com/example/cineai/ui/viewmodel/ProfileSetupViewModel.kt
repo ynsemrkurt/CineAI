@@ -18,7 +18,7 @@ class ProfileSetupViewModel : ViewModel() {
 
     fun saveProfile(profile: Profile) {
         if (isProfileValid(profile)) {
-            saveProfileToFirestore(userId, profile)
+            saveProfileToFirestore(profile)
         } else {
             _profileSetupStatus.value = R.string.all_fields_required
         }
@@ -35,7 +35,7 @@ class ProfileSetupViewModel : ViewModel() {
                 profile.travel.isNotEmpty()
     }
 
-    private fun saveProfileToFirestore(userId: String, profile: Profile) {
+    private fun saveProfileToFirestore(profile: Profile) {
         val profileData = hashMapOf(
             "stress" to profile.stress,
             "problemSolving" to profile.problemSolving,
