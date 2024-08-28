@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
     @SerializedName("results")
-    val results: List<Movie>
+    val results: List<Movie>,
 )
 
 data class VideoResponse(
     @SerializedName("results")
-    val results: List<Video>
+    val results: List<Video>,
 )
 
 data class CharacterResponse(
     @SerializedName("cast")
-    val cast: List<Character>
+    val cast: List<Character>,
 )
 
 data class Character(
@@ -58,5 +58,15 @@ data class Genre(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
-    val name: String
+    val name: String,
+)
+
+data class MovieBackdrops(
+    @SerializedName("backdrops")
+    val backdrops: List<ImageFilePath>,
+)
+
+data class ImageFilePath(
+    @SerializedName("file_path")
+    val filePath: String,
 )
