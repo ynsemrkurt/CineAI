@@ -47,17 +47,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/fullScreenLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="@dimen/spacer_xx_large"
-        android:visibility="gone"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
