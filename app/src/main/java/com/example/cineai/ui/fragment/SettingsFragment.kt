@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.cineai.R
 import com.example.cineai.databinding.FragmentSettingsBinding
 import com.example.cineai.ui.activity.LoginActivity
+import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
 import com.google.firebase.auth.FirebaseAuth
 
@@ -30,6 +31,14 @@ class SettingsFragment : Fragment() {
 
         setSignOutButton()
         setDeleteAccountButton()
+
+        binding.constraintLayoutChangeProfile.setOnClickListener {
+            val args = Bundle().apply {
+                putBoolean("should_load_data", true)
+            }
+            openFragment(R.id.fragmentContainerView, ProfileSetupFragment(), args)
+        }
+
     }
 
     private fun setSignOutButton() {

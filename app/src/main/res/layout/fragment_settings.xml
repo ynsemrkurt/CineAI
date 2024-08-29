@@ -18,13 +18,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textViewProfileSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile"
+        android:textColor="@color/hint"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/spacer_small"
+        app:layout_constraintBottom_toTopOf="@+id/viewProfile"
+        app:layout_constraintStart_toStartOf="@+id/viewProfile" />
+
     <View
         android:layout_marginTop="@dimen/spacer_medium"
-        android:id="@+id/viewSettings"
+        android:id="@+id/viewProfile"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="?color"
         app:layout_constraintTop_toBottomOf="@+id/textViewSettingsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutChangeProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/viewProfile"
+        android:background="?backgroundColor">
+
+        <ImageView
+            android:id="@+id/imageViewChangeProfile"
+            android:layout_width="@dimen/icon_size_medium_ver2"
+            android:layout_height="@dimen/icon_size_medium_ver2"
+            android:contentDescription="@string/change_profile"
+            android:src="@drawable/change_profile"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:layout_marginTop="@dimen/spacer_small"
+            android:layout_marginBottom="@dimen/spacer_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_medium"
+            android:text="@string/change_profile"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewChangeProfile"
+            app:layout_constraintStart_toEndOf="@+id/imageViewChangeProfile"
+            app:layout_constraintTop_toTopOf="@+id/imageViewChangeProfile" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/hint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textViewAccountSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account"
+        android:textColor="@color/hint"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/spacer_small"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutDeleteAccount"
+        app:layout_constraintStart_toStartOf="@+id/viewAccount" />
+
+    <View
+        android:layout_marginTop="@dimen/spacer_large"
+        android:id="@+id/viewAccount"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="?color"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutChangeProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -72,7 +144,7 @@
         android:id="@+id/constraintLayoutDeleteAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/viewSettings"
+        app:layout_constraintTop_toBottomOf="@+id/viewAccount"
         android:background="?backgroundColor">
 
         <ImageView
