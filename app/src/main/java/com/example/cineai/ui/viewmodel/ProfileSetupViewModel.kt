@@ -16,6 +16,9 @@ class ProfileSetupViewModel : ViewModel() {
     private val _profileSetupStatus = MutableLiveData<Int>()
     val profileSetupStatus: LiveData<Int> get() = _profileSetupStatus
 
+    private val _profileData = MutableLiveData<Profile>()
+    val profileData: LiveData<Profile> get() = _profileData
+
     fun saveProfile(profile: Profile) {
         if (isProfileValid(profile)) {
             saveProfileToFirestore(profile)
@@ -54,6 +57,32 @@ class ProfileSetupViewModel : ViewModel() {
             }
             .addOnFailureListener {
                 _profileSetupStatus.value = R.string.error_saving_profile_data
+            }
+    }
+
+    fun loadProfileData() {
+        firestore.collection("users").document(userId).collection("profile")
+            .document("profile_info")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val profile = Profile(
+                        stress = document.getString("stress") ?: "",
+                        problemSolving = document.getString("problemSolving") ?: "",
+                        decisionMaking = document.getString("decisionMaking") ?: "",
+                        teamwork = document.getString("teamwork") ?: "",
+                        movieGenres = document.getString("movieGenres") ?: "",
+                        music = document.getString("music") ?: "",
+                        hobbies = document.getString("hobbies") ?: "",
+                        travel = document.getString("travel") ?: ""
+                    )
+                    _profileData.value = profile
+                } else {
+                    _profileSetupStatus.value = R.string.profile_data_not_found
+                }
+            }
+            .addOnFailureListener {
+                _profileSetupStatus.value = R.string.error_loading_profile_data
             }
     }
 }
