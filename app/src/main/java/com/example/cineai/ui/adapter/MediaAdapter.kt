@@ -94,6 +94,7 @@ class MediaAdapter(
                             exitFullscreen: () -> Unit
                         ) {
                             FullScreenHelper.enterFullScreen(activity, fullscreenView)
+                            youTubePlayer.play()
                         }
 
                         override fun onExitFullscreen() {
