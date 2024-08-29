@@ -36,6 +36,10 @@ class RegisterFragment : Fragment() {
             )
             registerUser()
         }
+        binding.imageViewBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         observeRegistrationStatus()
     }
 

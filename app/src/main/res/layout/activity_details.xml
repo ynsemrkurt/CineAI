@@ -11,16 +11,8 @@
 
     <ImageView
         android:id="@+id/imageViewBack"
-        android:layout_width="@dimen/icon_size_medium_ver2"
-        android:layout_height="@dimen/icon_size_medium_ver2"
-        android:layout_marginStart="@dimen/spacer_medium"
-        android:layout_marginTop="@dimen/spacer_small"
-        android:background="@drawable/button_style"
-        android:backgroundTint="?color"
+        style="@style/BackButtonStyle"
         android:contentDescription="@string/back"
-        android:elevation="@dimen/spacer_x_small"
-        android:padding="@dimen/spacer_small"
-        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?backgroundColor" />

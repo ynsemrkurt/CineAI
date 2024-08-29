@@ -7,6 +7,14 @@
     android:background="?backgroundColor"
     tools:context=".ui.fragment.LoginFragment">
 
+    <ImageView
+        android:id="@+id/imageViewBack"
+        style="@style/BackButtonStyle"
+        android:contentDescription="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?backgroundColor" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutApp"
         android:layout_width="wrap_content"

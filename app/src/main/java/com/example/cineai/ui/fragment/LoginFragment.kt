@@ -41,6 +41,9 @@ class LoginFragment : Fragment() {
         binding.textViewForgotPassword.setOnClickListener {
             showForgotPasswordDialog()
         }
+        binding.imageViewBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         observeLoginStatus()
     }
