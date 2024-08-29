@@ -19,6 +19,14 @@ class ProfileSetupFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileSetupBinding
     private val profileSetupViewModel: ProfileSetupViewModel by activityViewModels()
+    private var shouldLoadData = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            shouldLoadData = it.getBoolean("should_load_data", false)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,23 +39,41 @@ class ProfileSetupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (shouldLoadData) profileSetupViewModel.loadProfileData()
+
         binding.buttonSave.setOnClickListener {
             LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewSave)
             val profile = setProfileInfo()
             profileSetupViewModel.saveProfile(profile)
+            observeProfileSetupStatus()
         }
 
-        observeProfileSetupStatus()
+        observeProfileData()
     }
 
     private fun observeProfileSetupStatus() {
         profileSetupViewModel.profileSetupStatus.observe(viewLifecycleOwner) { status ->
             showToast(getString(status))
-            if (status == R.string.profile_setup_successful) {
+            if (status == R.string.profile_setup_successful && shouldLoadData) {
+                parentFragmentManager.popBackStack()
+            } else if (status == R.string.profile_setup_successful) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
-                activity?.finish()
+                requireActivity().finish()
             }
             LoadingAnim().hideLoadingAnimation(binding.loadingAnimationView, binding.textViewSave)
+        }
+    }
+
+    private fun observeProfileData() {
+        profileSetupViewModel.profileData.observe(viewLifecycleOwner) { profile ->
+            binding.editTextQuestionStress.setText(profile.stress)
+            binding.editTextQuestionProblemSolving.setText(profile.problemSolving)
+            binding.editTextQuestionDecisionMaking.setText(profile.decisionMaking)
+            binding.editTextQuestionTeamwork.setText(profile.teamwork)
+            binding.editTextQuestionMovieGenres.setText(profile.movieGenres)
+            binding.editTextQuestionMusic.setText(profile.music)
+            binding.editTextQuestionHobbies.setText(profile.hobbies)
+            binding.editTextQuestionTravel.setText(profile.travel)
         }
     }
 

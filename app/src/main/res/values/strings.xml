@@ -105,4 +105,9 @@
     <string name="app_logo">App Logo</string>
     <string name="error_fetching_movie_backdrops">Error fetching movie backdrops</string>
     <string name="error_updating_favorite">Error updating favorite movie</string>
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="profile_data_not_found">Profile data not found</string>
+    <string name="error_loading_profile_data">Error loading profile data</string>
 </resources>
