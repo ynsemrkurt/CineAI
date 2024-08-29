@@ -37,7 +37,8 @@ fun String.isValidEmail(): Boolean {
     return this.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
-fun Fragment.openFragment(containerViewId: Int, fragment: Fragment) {
+fun Fragment.openFragment(containerViewId: Int, fragment: Fragment, args: Bundle? = null) {
+    fragment.arguments = args
     parentFragmentManager.beginTransaction()
         .setCustomAnimations(
             R.anim.slide_in_right,
