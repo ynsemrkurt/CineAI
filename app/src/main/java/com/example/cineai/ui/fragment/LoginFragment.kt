@@ -1,7 +1,6 @@
 package com.example.cineai.ui.fragment
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import com.example.cineai.databinding.ItemForgotPasswordBinding
 import com.example.cineai.ui.activity.MainActivity
 import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.isValidEmail
+import com.example.cineai.ui.classes.navigateToActivity
 import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.LoginViewModel
@@ -38,9 +38,11 @@ class LoginFragment : Fragment() {
             LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewLogin)
             loginUser()
         }
+
         binding.textViewForgotPassword.setOnClickListener {
             showForgotPasswordDialog()
         }
+
         binding.imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -57,11 +59,10 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginStatus() {
         loginViewModel.loginStatus.observe(viewLifecycleOwner) { status ->
-            showToast(getString(status))
+            requireContext().showToast(getString(status))
             when (status) {
                 R.string.login_successful -> {
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
-                    activity?.finish()
+                    activity?.navigateToActivity(MainActivity::class.java)
                 }
 
                 R.string.profile_missing -> {
@@ -82,7 +83,7 @@ class LoginFragment : Fragment() {
         itemBinding.buttonSend.setOnClickListener {
             val email = itemBinding.editTextMail.text.toString().trim()
             if (!email.isValidEmail()) {
-                showToast(getString(R.string.please_enter_your_email))
+                requireContext().showToast(getString(R.string.please_enter_your_email))
             } else {
                 loginViewModel.sendPasswordResetEmail(email) {
                     dialog.dismiss()

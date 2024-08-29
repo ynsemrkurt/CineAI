@@ -53,7 +53,7 @@ class RegisterFragment : Fragment() {
 
     private fun observeRegistrationStatus() {
         registerViewModel.registrationStatus.observe(viewLifecycleOwner) { status ->
-            showToast(getString(status))
+            requireContext().showToast(getString(status))
             if (status == R.string.registration_successful) {
                 openFragment(R.id.fragmentContainerView, ProfileSetupFragment())
             }

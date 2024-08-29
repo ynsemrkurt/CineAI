@@ -30,12 +30,14 @@ class CharacterAdapter(private val characters: List<Character>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(character: Character) {
-            binding.textViewActorName.text = character.name
-            binding.textViewCharacterName.text = character.character
-            binding.imageViewMovie.loadImage(
-                "https://image.tmdb.org/t/p/w300${character.profilePath}",
-                R.drawable.people_32
-            )
+            with(binding) {
+                textViewActorName.text = character.name
+                textViewCharacterName.text = character.character
+                imageViewMovie.loadImage(
+                    "https://image.tmdb.org/t/p/w300${character.profilePath}",
+                    R.drawable.people_32
+                )
+            }
         }
     }
 }

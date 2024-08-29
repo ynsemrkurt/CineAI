@@ -42,13 +42,13 @@ class AiRecommendationFragment : Fragment() {
 
     private fun observeError() {
         viewModel.error.observe(viewLifecycleOwner) { messageResId ->
-            showToast(getString(messageResId))
+            requireContext().showToast(getString(messageResId))
         }
     }
 
     private fun observeRecommendationStatus() {
         viewModel.recommendationStatus.observe(viewLifecycleOwner) { messageResId ->
-            showToast(getString(messageResId))
+            requireContext().showToast(getString(messageResId))
         }
         LoadingAnim().hideLoadingAnimation(
             binding.loadingAnimationView,

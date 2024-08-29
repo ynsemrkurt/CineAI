@@ -1,7 +1,6 @@
 package com.example.cineai.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cineai.databinding.ActivityDetailsBinding
@@ -9,6 +8,7 @@ import com.example.cineai.ui.adapter.CharacterAdapter
 import com.example.cineai.ui.adapter.ItemType
 import com.example.cineai.ui.adapter.MediaAdapter
 import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -20,6 +20,7 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
     private val viewModel: MovieViewModel by viewModels()
+    private val items = mutableListOf<ItemType>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +28,12 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadAds()
-        getMovieId()
+        fetchMovieDetails()
         observeMovieDetails()
         observeCharacter()
         observeError()
         observeVideo()
+        observeMovieBackdrops()
 
         binding.imageViewBack.setOnClickListener {
             finish()
@@ -40,26 +42,26 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun observeError() {
         viewModel.error.observe(this) { errorMessage ->
-            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            this.showToast(errorMessage.toString())
         }
     }
 
     private fun observeVideo() {
         viewModel.videoId.observe(this) { videoId ->
-            val items = mutableListOf<ItemType>(
-                ItemType.YouTube(videoId)
-            )
-
-            viewModel.movieBackdrops.observe(this) { movieBackdrops ->
-                for (backDrop in movieBackdrops) {
-                    items.add(ItemType.Image(backDrop))
-                }
-                binding.viewPagerMovie.adapter = MediaAdapter(items, lifecycle)
-            }
+            items.add(ItemType.YouTube(videoId))
         }
     }
 
-    private fun getMovieId() {
+    private fun observeMovieBackdrops() {
+        viewModel.movieBackdrops.observe(this) { movieBackdrops ->
+            for (backDrop in movieBackdrops) {
+                items.add(ItemType.Image(backDrop))
+            }
+            binding.viewPagerMovie.adapter = MediaAdapter(items, lifecycle)
+        }
+    }
+
+    private fun fetchMovieDetails() {
         intent.getStringExtra("movieId")?.let { movieId ->
             viewModel.fetchMovieDetails(movieId)
         }
@@ -74,15 +76,17 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun observeMovieDetails() {
         viewModel.movieDetails.observe(this) { movie ->
-            binding.textViewMovieName.text = movie.title
-            binding.textViewMovieStar.text = movie.voteAverage.toString()
-            binding.textViewMovieOverview.text = movie.overview
-            binding.releasedDate.text = movie.releaseDate
-            binding.genreName.text = movie.genreIds.joinToString { it.name }
-            binding.status.text = movie.status
-            binding.imageViewMovie.loadImage(
-                "https://image.tmdb.org/t/p/w500${movie.posterPath}"
-            )
+            with(binding) {
+                textViewMovieName.text = movie.title
+                textViewMovieStar.text = movie.voteAverage.toString()
+                textViewMovieOverview.text = movie.overview
+                releasedDate.text = movie.releaseDate
+                genreName.text = movie.genreIds.joinToString { it.name }
+                status.text = movie.status
+                imageViewMovie.loadImage(
+                    "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+                )
+            }
         }
     }
 

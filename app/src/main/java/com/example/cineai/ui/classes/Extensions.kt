@@ -1,6 +1,8 @@
 package com.example.cineai.ui.classes
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -11,6 +13,7 @@ import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cineai.R
@@ -52,6 +55,14 @@ fun Fragment.openFragment(containerViewId: Int, fragment: Fragment, args: Bundle
         .commit()
 }
 
+fun AppCompatActivity.openFragment(fragment: Fragment, containerId: Int) {
+    supportFragmentManager.beginTransaction()
+        .replace(containerId, fragment)
+        .addToBackStack(null)
+        .commit()
+}
+
+
 fun ImageView.loadImage(url: String, placeholderResId: Int = R.drawable.image_32) {
     Glide.with(this)
         .load(url)
@@ -79,4 +90,9 @@ fun Window.hideSystemUI() {
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
     }
+}
+
+fun Context.navigateToActivity(activityClass: Class<*>) {
+    startActivity(Intent(this, activityClass))
+    if (this is Activity) finish()
 }
