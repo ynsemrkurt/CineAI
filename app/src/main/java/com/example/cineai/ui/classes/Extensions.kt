@@ -1,5 +1,6 @@
 package com.example.cineai.ui.classes
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -14,8 +15,8 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cineai.R
 
-fun Fragment.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(requireContext(), message, duration).show()
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
 }
 
 fun <T : Parcelable> Fragment.getParcelable(key: String, clazz: Class<T>): T? {
