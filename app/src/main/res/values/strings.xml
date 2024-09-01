@@ -110,4 +110,5 @@
     <string name="change_profile">Change Profile</string>
     <string name="profile_data_not_found">Profile data not found</string>
     <string name="error_loading_profile_data">Error loading profile data</string>
+    <string name="search">Search</string>
 </resources>
