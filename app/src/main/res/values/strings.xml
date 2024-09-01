@@ -79,6 +79,7 @@
     <string name="hey">Hello!</string>
     <string name="recommendation">Recommendation:</string>
     <string name="data_info">ⓘ Your data is safe—used only for movie picks!</string>
+    <string name="min_3_characters">ⓘ Minimum 3 characters!</string>
     <string name="movie_backdrop">Movie Backdrop</string>
     <string name="comedy">Comedy</string>
     <string name="def_date">2009/06/02</string>
@@ -109,4 +110,7 @@
     <string name="profile_data_not_found">Profile data not found</string>
     <string name="error_loading_profile_data">Error loading profile data</string>
     <string name="search">Search</string>
+    <string name="no_data">No Data</string>
+    <string name="no_data_long">We can\'t see any movies here,\n let\'s try searching a bit more.</string>
+    <string name="error_search_movies">Error search movies!</string>
 </resources>

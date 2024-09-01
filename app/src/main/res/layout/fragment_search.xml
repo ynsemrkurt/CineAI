@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.SearchFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewAppLogo"
+            android:layout_width="@dimen/icon_size_medium_ver2"
+            android:layout_height="@dimen/icon_size_medium_ver2"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/cineai_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textAppearance="?textAppearanceTitleLarge"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewAppLogo"
+            app:layout_constraintStart_toEndOf="@+id/imageViewAppLogo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewAppLogo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        style="?android:editTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacer_medium"
+        android:layout_marginTop="@dimen/spacer_medium"
+        android:autofillHints="movie"
+        android:maxLength="30"
+        android:hint="@string/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <ImageButton
+        android:id="@+id/imageButtonSearch"
+        android:contentDescription="@string/search"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/icon_size_medium"
+        android:layout_marginEnd="@dimen/spacer_small"
+        android:background="@drawable/button_style"
+        android:paddingVertical="@dimen/spacer_small"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search_60"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSearch"
+        app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
+        app:layout_constraintTop_toTopOf="@+id/editTextSearch"
+        app:tint="?backgroundColor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/min_3_characters"
+        android:textColor="@color/hint"
+        android:textAppearance="?textAppearanceBodySmall"
+        android:layout_marginStart="@dimen/spacer_small_ver2"
+        app:layout_constraintStart_toStartOf="@+id/editTextSearch"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacer_medium"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+        android:visibility="gone"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextSearch">
+
+        <ImageView
+            android:id="@+id/imageViewNoData"
+            android:layout_width="@dimen/icon_size_x_large"
+            android:layout_height="@dimen/icon_size_x_large"
+            android:contentDescription="@string/no_data"
+            android:src="@drawable/no_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNoData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/icon_size_medium"
+            android:textAlignment="center"
+            android:text="@string/no_data_long"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewNoData" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
