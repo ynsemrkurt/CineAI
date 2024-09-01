@@ -41,6 +41,9 @@ class MovieViewModel : ViewModel() {
     private val _movieBackdrops = MutableLiveData<List<String>>()
     val movieBackdrops: LiveData<List<String>> get() = _movieBackdrops
 
+    private val _movies = MutableLiveData<List<Movie>>()
+    val movies: LiveData<List<Movie>> get() = _movies
+
     fun addMovieToFavorites(movieId: String) {
         updateFavoriteMovie(movieId, isAdding = true)
     }
@@ -142,6 +145,17 @@ class MovieViewModel : ViewModel() {
                 _movieBackdrops.postValue(movieBackdrops)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_movie_backdrops)
+            }
+        }
+    }
+
+    fun searchMovies(query: String) {
+        viewModelScope.launch {
+            try {
+                val movie = RetrofitClient.api.searchMovies(query).results
+                _movies.postValue(movie)
+            } catch (e: Exception) {
+                _error.postValue(R.string.error_search_movies)
             }
         }
     }
