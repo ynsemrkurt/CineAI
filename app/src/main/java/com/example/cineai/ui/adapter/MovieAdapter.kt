@@ -3,6 +3,7 @@ package com.example.cineai.ui.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagingDataAdapter
@@ -41,6 +42,9 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val fadeIn = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in)
+        holder.binding.root.startAnimation(fadeIn)
+
         val movie = getItem(position)
         movie?.let {
             with(holder.binding) {
