@@ -10,6 +10,7 @@ import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.fragment.AiRecommendationFragment
 import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.example.cineai.ui.fragment.MovieFragment
+import com.example.cineai.ui.fragment.SearchFragment
 import com.example.cineai.ui.fragment.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
 
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.menu_item_favorite -> {
                     openFragment(BaseMovieFragment.newInstance(MovieCategory.FAVORITE), containerId)
+                    true
+                }
+
+                R.id.menu_item_search -> {
+                    openFragment(SearchFragment(), containerId)
                     true
                 }
 
