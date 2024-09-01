@@ -14,9 +14,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardViewImage"
-            android:layout_width="@dimen/layout_x_large"
+            android:layout_width="0dp"
             android:layout_height="@dimen/layout_xx_large"
             android:layout_margin="@dimen/spacer_medium"
+            app:layout_constraintDimensionRatio="2:3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
