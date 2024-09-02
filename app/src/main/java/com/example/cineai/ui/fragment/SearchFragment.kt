@@ -34,10 +34,19 @@ class SearchFragment : Fragment() {
 
     private fun setClickListeners() {
         binding.imageButtonSearch.setOnClickListener {
-            val query = binding.editTextSearch.text.toString().trim()
-            if (query.isNotEmpty() && query.length >= 3) {
-                viewModel.searchMovies(query)
-            }
+            searchMovies()
+        }
+
+        binding.editTextSearch.setOnEditorActionListener { _, _, _ ->
+            searchMovies()
+            true
+        }
+    }
+
+    private fun searchMovies() {
+        val query = binding.editTextSearch.text.toString().trim()
+        if (query.isNotEmpty() && query.length >= 3) {
+            viewModel.searchMovies(query)
         }
     }
 

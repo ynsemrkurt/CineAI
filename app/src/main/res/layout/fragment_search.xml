@@ -43,19 +43,21 @@
         android:layout_marginHorizontal="@dimen/spacer_medium"
         android:layout_marginTop="@dimen/spacer_medium"
         android:autofillHints="movie"
-        android:maxLength="30"
         android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:maxLength="30"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
     <ImageButton
         android:id="@+id/imageButtonSearch"
-        android:contentDescription="@string/search"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/icon_size_medium"
         android:layout_marginEnd="@dimen/spacer_small"
         android:background="@drawable/button_style"
+        android:contentDescription="@string/search"
         android:paddingVertical="@dimen/spacer_small"
         android:scaleType="fitCenter"
         android:src="@drawable/search_60"
@@ -67,10 +69,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/min_3_characters"
-        android:textColor="@color/hint"
-        android:textAppearance="?textAppearanceBodySmall"
         android:layout_marginStart="@dimen/spacer_small_ver2"
+        android:text="@string/min_3_characters"
+        android:textAppearance="?textAppearanceBodySmall"
+        android:textColor="@color/hint"
         app:layout_constraintStart_toStartOf="@+id/editTextSearch"
         app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
@@ -79,10 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacer_medium"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutNoData"
@@ -108,8 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/icon_size_medium"
-            android:textAlignment="center"
             android:text="@string/no_data_long"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewNoData" />
