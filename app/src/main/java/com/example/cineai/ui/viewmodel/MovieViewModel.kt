@@ -105,9 +105,9 @@ class MovieViewModel : ViewModel() {
             try {
                 val movie = RetrofitClient.api.getDetailsMovies(movieId)
                 _movieDetails.postValue(movie)
-                fetchMovieBackdrops(movieId)
                 fetchVideo(movieId)
                 fetchCharacter(movieId)
+                fetchMovieBackdrops(movieId)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_details)
             }

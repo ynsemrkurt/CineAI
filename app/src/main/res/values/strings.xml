@@ -113,4 +113,6 @@
     <string name="no_data">No Data</string>
     <string name="no_data_long">We can\'t see any movies here,\n let\'s try searching a bit more.</string>
     <string name="error_search_movies">Error search movies!</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="play_button">Play Button</string>
 </resources>

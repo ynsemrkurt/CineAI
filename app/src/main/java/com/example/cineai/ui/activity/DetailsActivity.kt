@@ -3,11 +3,13 @@ package com.example.cineai.ui.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.example.cineai.databinding.ActivityDetailsBinding
 import com.example.cineai.ui.adapter.CharacterAdapter
-import com.example.cineai.ui.adapter.ItemType
 import com.example.cineai.ui.adapter.MediaAdapter
+import com.example.cineai.ui.adapter.MediaListAdapter
 import com.example.cineai.ui.classes.ImageSize
+import com.example.cineai.ui.classes.ItemType
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.classes.toImageUrl
@@ -36,7 +38,6 @@ class DetailsActivity : AppCompatActivity() {
         observeCharacter()
         observeError()
         observeVideo()
-        observeMovieBackdrops()
 
         binding.imageViewBack.setOnClickListener {
             finish()
@@ -52,6 +53,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun observeVideo() {
         viewModel.videoId.observe(this) { videoId ->
             items.add(ItemType.YouTube(videoId))
+            observeMovieBackdrops()
         }
     }
 
@@ -61,6 +63,10 @@ class DetailsActivity : AppCompatActivity() {
                 items.add(ItemType.Image(backDrop))
             }
             binding.viewPagerMovie.adapter = MediaAdapter(items, lifecycle)
+            binding.recyclerViewThumbnail.adapter = MediaListAdapter(items) {
+                binding.viewPagerMovie.setCurrentItem(it, true)
+            }
+            updateThumbnails()
         }
     }
 
@@ -99,5 +105,22 @@ class DetailsActivity : AppCompatActivity() {
         }
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
+    }
+
+    private fun updateThumbnails() {
+        binding.viewPagerMovie.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.recyclerViewThumbnail.smoothScrollToPosition(position)
+
+                (binding.recyclerViewThumbnail.adapter as? MediaListAdapter)?.apply {
+                    val previousSelectedPosition = selectedPosition
+                    selectedPosition = position
+                    notifyItemChanged(previousSelectedPosition)
+                    notifyItemChanged(selectedPosition)
+                }
+            }
+        })
     }
 }

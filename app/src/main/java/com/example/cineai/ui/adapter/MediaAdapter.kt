@@ -10,6 +10,7 @@ import com.example.cineai.databinding.ItemImageViewBinding
 import com.example.cineai.databinding.ItemYoutubePlayerBinding
 import com.example.cineai.ui.classes.FullScreenHelper
 import com.example.cineai.ui.classes.ImageSize
+import com.example.cineai.ui.classes.ItemType
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.toImageUrl
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -116,9 +117,4 @@ class MediaAdapter(
             binding.imageViewBackdrop.loadImage(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
         }
     }
-}
-
-sealed class ItemType {
-    data class YouTube(val videoId: String) : ItemType()
-    data class Image(val imageUrl: String) : ItemType()
 }
