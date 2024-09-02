@@ -28,6 +28,7 @@ android {
         buildConfigField("String", "TMDB_API_KEY", properties.getProperty("TMDB_API_KEY"))
         buildConfigField("String", "TMDB_BASE_URL", properties.getProperty("TMDB_BASE_URL"))
         buildConfigField("String", "AI_API_KEY", properties.getProperty("AI_API_KEY"))
+        buildConfigField("String", "IMAGE_BASE_URL", properties.getProperty("IMAGE_BASE_URL"))
     }
 
     buildTypes {

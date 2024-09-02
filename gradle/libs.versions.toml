@@ -1,8 +1,8 @@
 [versions]
-agp = "8.5.2"
+agp = "8.6.0"
 core = "12.1.0"
 firebaseAuth = "23.0.0"
-firebaseBom = "33.1.2"
+firebaseBom = "33.2.0"
 fragmentKtx = "1.8.2"
 generativeai = "0.9.0"
 kotlin = "2.0.0"
