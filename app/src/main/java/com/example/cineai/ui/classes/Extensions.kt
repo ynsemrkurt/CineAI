@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.cineai.BuildConfig
 import com.example.cineai.R
 
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -95,4 +96,8 @@ fun Window.hideSystemUI() {
 fun Context.navigateToActivity(activityClass: Class<*>) {
     startActivity(Intent(this, activityClass))
     if (this is Activity) finish()
+}
+
+fun String?.toImageUrl(size: ImageSize): String {
+    return BuildConfig.IMAGE_BASE_URL + size.value + this
 }
