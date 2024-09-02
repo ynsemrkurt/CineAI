@@ -15,6 +15,7 @@ import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -78,7 +79,7 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.movieDetails.observe(this) { movie ->
             with(binding) {
                 textViewMovieName.text = movie.title
-                textViewMovieStar.text = movie.voteAverage.toString()
+                textViewMovieStar.text = String.format(Locale.getDefault(), "%.1f", movie.voteAverage)
                 textViewMovieOverview.text = movie.overview
                 releasedDate.text = movie.releaseDate
                 genreName.text = movie.genreIds.joinToString { it.name }

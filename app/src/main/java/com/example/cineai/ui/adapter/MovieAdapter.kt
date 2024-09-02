@@ -15,6 +15,7 @@ import com.example.cineai.databinding.ItemMovieBinding
 import com.example.cineai.ui.activity.DetailsActivity
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.viewmodel.MovieViewModel
+import java.util.Locale
 
 class MovieAdapter(private val movieViewModel: MovieViewModel) :
     PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
@@ -49,7 +50,7 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
         movie?.let {
             with(holder.binding) {
                 textViewMovieName.text = it.title
-                textViewMovieStar.text = it.voteAverage.toString()
+                textViewMovieStar.text = String.format(Locale.getDefault(), "%.1f", it.voteAverage)
                 textViewMovieOverview.text = it.overview
                 imageViewMovie.loadImage("https://image.tmdb.org/t/p/w500${it.posterPath}")
             }
