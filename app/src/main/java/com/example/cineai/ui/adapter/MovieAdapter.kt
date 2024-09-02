@@ -13,7 +13,9 @@ import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
 import com.example.cineai.ui.activity.DetailsActivity
+import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.toImageUrl
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import java.util.Locale
 
@@ -52,7 +54,7 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
                 textViewMovieName.text = it.title
                 textViewMovieStar.text = String.format(Locale.getDefault(), "%.1f", it.voteAverage)
                 textViewMovieOverview.text = it.overview
-                imageViewMovie.loadImage("https://image.tmdb.org/t/p/w500${it.posterPath}")
+                imageViewMovie.loadImage(it.posterPath.toImageUrl(ImageSize.W500))
             }
 
             movieViewModel.isMovieFavorite(it.id.toString()) { isFavorite ->

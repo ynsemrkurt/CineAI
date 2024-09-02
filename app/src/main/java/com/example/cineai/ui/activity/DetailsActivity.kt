@@ -7,8 +7,10 @@ import com.example.cineai.databinding.ActivityDetailsBinding
 import com.example.cineai.ui.adapter.CharacterAdapter
 import com.example.cineai.ui.adapter.ItemType
 import com.example.cineai.ui.adapter.MediaAdapter
+import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.showToast
+import com.example.cineai.ui.classes.toImageUrl
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -79,14 +81,13 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.movieDetails.observe(this) { movie ->
             with(binding) {
                 textViewMovieName.text = movie.title
-                textViewMovieStar.text = String.format(Locale.getDefault(), "%.1f", movie.voteAverage)
+                textViewMovieStar.text =
+                    String.format(Locale.getDefault(), "%.1f", movie.voteAverage)
                 textViewMovieOverview.text = movie.overview
                 releasedDate.text = movie.releaseDate
                 genreName.text = movie.genreIds.joinToString { it.name }
                 status.text = movie.status
-                imageViewMovie.loadImage(
-                    "https://image.tmdb.org/t/p/w500${movie.posterPath}"
-                )
+                imageViewMovie.loadImage(movie.posterPath.toImageUrl(ImageSize.W300))
             }
         }
     }

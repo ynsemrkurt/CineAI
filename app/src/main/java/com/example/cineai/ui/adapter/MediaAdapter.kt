@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cineai.databinding.ItemImageViewBinding
 import com.example.cineai.databinding.ItemYoutubePlayerBinding
 import com.example.cineai.ui.classes.FullScreenHelper
+import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.toImageUrl
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
@@ -111,7 +113,7 @@ class MediaAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ItemType.Image) {
-            binding.imageViewBackdrop.loadImage("https://image.tmdb.org/t/p/original${item.imageUrl}")
+            binding.imageViewBackdrop.loadImage(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
         }
     }
 }

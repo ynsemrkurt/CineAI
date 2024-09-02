@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cineai.R
 import com.example.cineai.data.model.Character
 import com.example.cineai.databinding.ItemCharacterBinding
+import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.toImageUrl
 
 class CharacterAdapter(private val characters: List<Character>) :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
@@ -34,7 +36,7 @@ class CharacterAdapter(private val characters: List<Character>) :
                 textViewActorName.text = character.name
                 textViewCharacterName.text = character.character
                 imageViewMovie.loadImage(
-                    "https://image.tmdb.org/t/p/w300${character.profilePath}",
+                    character.profilePath.toImageUrl(ImageSize.W300),
                     R.drawable.people_32
                 )
             }
