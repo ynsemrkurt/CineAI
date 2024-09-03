@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewAppLogo"
         app:tabIndicatorColor="@color/indicator"
-        app:tabMode="auto"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/indicator">
 
         <com.google.android.material.tabs.TabItem

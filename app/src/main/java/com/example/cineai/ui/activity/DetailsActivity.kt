@@ -53,8 +53,8 @@ class DetailsActivity : AppCompatActivity() {
     private fun observeVideo() {
         viewModel.videoId.observe(this) { videoId ->
             items.add(ItemType.YouTube(videoId))
-            observeMovieBackdrops()
         }
+        observeMovieBackdrops()
     }
 
     private fun observeMovieBackdrops() {
