@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cineai.databinding.ItemImageViewBinding
@@ -13,6 +14,7 @@ import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.ItemType
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.toImageUrl
+import com.example.cineai.ui.fragment.ImageDialogFragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
@@ -115,6 +117,16 @@ class MediaAdapter(
 
         fun bind(item: ItemType.Image) {
             binding.imageViewBackdrop.loadImage(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
+
+            binding.imageViewBackdrop.setOnClickListener {
+                val fragment = ImageDialogFragment().apply {
+                    setImageUrl(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
+                }
+
+                (binding.root.context as? AppCompatActivity)?.supportFragmentManager?.let {
+                    fragment.show(it, "ImageDialog")
+                }
+            }
         }
     }
 }
