@@ -104,4 +104,7 @@ dependencies {
 
     //Youtube Player
     implementation(libs.core)
+
+    //Photo View
+    implementation(libs.photoview)
 }
