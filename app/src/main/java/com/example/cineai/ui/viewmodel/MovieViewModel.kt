@@ -15,6 +15,7 @@ import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.data.paging.MoviePagingSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await

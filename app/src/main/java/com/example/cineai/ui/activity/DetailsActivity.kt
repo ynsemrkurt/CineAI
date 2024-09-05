@@ -52,21 +52,25 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun observeVideo() {
         viewModel.videoId.observe(this) { videoId ->
-            items.add(ItemType.YouTube(videoId))
+            if (!videoId.isNullOrEmpty()) {
+                items.add(ItemType.YouTube(videoId))
+            }
+            observeMovieBackdrops()
         }
-        observeMovieBackdrops()
     }
 
     private fun observeMovieBackdrops() {
         viewModel.movieBackdrops.observe(this) { movieBackdrops ->
-            for (backDrop in movieBackdrops) {
-                items.add(ItemType.Image(backDrop))
+            if (movieBackdrops.isNotEmpty()) {
+                for (backDrop in movieBackdrops) {
+                    items.add(ItemType.Image(backDrop))
+                }
+                binding.viewPagerMovie.adapter = MediaAdapter(items, lifecycle)
+                binding.recyclerViewThumbnail.adapter = MediaListAdapter(items) {
+                    binding.viewPagerMovie.setCurrentItem(it, true)
+                }
+                updateThumbnails()
             }
-            binding.viewPagerMovie.adapter = MediaAdapter(items, lifecycle)
-            binding.recyclerViewThumbnail.adapter = MediaListAdapter(items) {
-                binding.viewPagerMovie.setCurrentItem(it, true)
-            }
-            updateThumbnails()
         }
     }
 
