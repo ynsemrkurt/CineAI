@@ -119,4 +119,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="close_page">Close Page</string>
     <string name="download_image">Download Image</string>
+    <string name="image_downloading">Image Downloading...</string>
+    <string name="downloading_image">Downloading Image</string>
+    <string name="downloading_image_from">Downloading image from %1$s</string>
 </resources>
