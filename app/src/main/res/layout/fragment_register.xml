@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?backgroundColor"
+    tools:context=".ui.fragment.RegisterFragment">
+
+    <ImageView
+        android:id="@+id/imageViewBack"
+        style="@style/BackButtonStyle"
+        android:contentDescription="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?backgroundColor" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewAppLogo"
+            android:layout_width="@dimen/icon_size_large"
+            android:layout_height="@dimen/icon_size_large"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/cineai_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewRegisterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textAppearance="?textAppearanceTitleLarge"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewAppLogo"
+            app:layout_constraintStart_toEndOf="@+id/imageViewAppLogo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewAppLogo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationViewRegister"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/spacer_medium"
+        android:layout_marginEnd="@dimen/spacer_medium"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSlogan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutApp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/register_anim" />
+
+
+    <TextView
+        android:id="@+id/textViewSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_large"
+        android:layout_marginEnd="@dimen/spacer_large"
+        android:layout_marginBottom="@dimen/spacer_medium"
+        android:text="@string/register_slogan"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceBody1"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_large"
+        android:layout_marginEnd="@dimen/spacer_large"
+        android:layout_marginBottom="@dimen/spacer_large"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textViewUserNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_small"
+            android:text="@string/user_name"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextUserName"
+            app:layout_constraintStart_toStartOf="@+id/editTextUserName" />
+
+        <EditText
+            android:id="@+id/editTextUserName"
+            style="?android:editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacer_large"
+            android:autofillHints="username"
+            android:hint="@string/def_user_name"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewEmailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_small"
+            android:text="@string/email"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmail" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            style="?android:editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:hint="@string/def_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPasswordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacer_small"
+            android:text="@string/password"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+            app:layout_constraintStart_toStartOf="@+id/editTextPassword" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            style="?android:editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacer_large"
+            android:autofillHints="password"
+            android:hint="@string/john_america123"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonRegister"
+        style="@style/CustomButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_large"
+        android:layout_marginEnd="@dimen/spacer_large"
+        android:layout_marginBottom="@dimen/spacer_large"
+        android:clickable="true"
+        android:padding="@dimen/spacer_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textViewRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacer_xx_small"
+            android:text="@string/register"
+            android:textColor="?backgroundColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimationView"
+            android:layout_width="@dimen/icon_size_medium"
+            android:layout_height="@dimen/icon_size_medium"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_anim" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

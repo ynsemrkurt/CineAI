@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="hint">#767676</color>
+    <color name="indicator">#00BCD4</color>
+    <color name="ai_blue">#29B6F3</color>
+    <color name="ai_water_blue">#29DBF3</color>
+    <color name="ai_green">#29F3B6</color>
+    <color name="transparent">#00000000</color>
+    <color name="lite_white">#80FFFFFF</color>
 </resources>

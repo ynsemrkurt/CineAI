@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Size -->
+    <style name="TitleLargeTextStyle">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Body1TextStyle">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Button Style -->
+    <style name="CustomButtonStyle">
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">?backgroundColor</item>
+        <item name="android:padding">@dimen/spacer_medium</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="BackButtonStyle">
+        <item name="android:layout_width">@dimen/icon_size_medium_ver2</item>
+        <item name="android:layout_height">@dimen/icon_size_medium_ver2</item>
+        <item name="android:layout_marginStart">@dimen/spacer_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacer_small</item>
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:backgroundTint">?color</item>
+        <item name="android:elevation">@dimen/spacer_x_small</item>
+        <item name="android:padding">@dimen/spacer_small</item>
+        <item name="android:src">@drawable/back</item>
+    </style>
+
+    <!-- EditText Style -->
+    <style name="CustomEditTextStyle">
+        <item name="android:background">@drawable/edit_text_style</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:padding">@dimen/spacer_medium</item>
+    </style>
+</resources>
