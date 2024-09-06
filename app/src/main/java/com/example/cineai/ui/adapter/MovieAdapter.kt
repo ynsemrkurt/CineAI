@@ -1,41 +1,38 @@
 package com.example.cineai.ui.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
-import com.example.cineai.ui.activity.DetailsActivity
-import com.example.cineai.ui.activity.DetailsActivity.Companion.MOVIE_ID
 import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.toImageUrl
-import com.example.cineai.ui.viewmodel.MovieViewModel
 import java.util.Locale
 
-class MovieAdapter(private val movieViewModel: MovieViewModel) :
-    PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
+class MovieAdapter(
+    private val isMovieFavorite: (String, (Boolean) -> Unit) -> Unit,
+    private val addMovieToFavorites: (String) -> Unit,
+    private val removeMovieFromFavorites: (String) -> Unit,
+    private val onMovieClick: (String) -> Unit
+) : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     inner class MovieViewHolder(val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
                 val movieId = getItem(bindingAdapterPosition)?.id
-                val intent = Intent(itemView.context, DetailsActivity::class.java)
-                intent.putExtra(MOVIE_ID, movieId.toString())
-                startActivity(itemView.context, intent, null)
+                movieId?.let { onMovieClick(it.toString()) }
             }
 
             binding.imageViewStar.setOnClickListener {
                 val movieId = getItem(bindingAdapterPosition)?.id
-                handleStarClick(movieId.toString(), binding.imageViewStar)
+                movieId?.let { handleStarClick(it.toString(), binding.imageViewStar) }
             }
         }
     }
@@ -58,7 +55,7 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
                 imageViewMovie.loadImage(it.posterPath.toImageUrl(ImageSize.W500))
             }
 
-            movieViewModel.isMovieFavorite(it.id.toString()) { isFavorite ->
+            isMovieFavorite(it.id.toString()) { isFavorite ->
                 holder.binding.imageViewStar.setImageResource(
                     if (isFavorite) R.drawable.filled_star_32 else R.drawable.star_32
                 )
@@ -67,12 +64,12 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
     }
 
     private fun handleStarClick(movieId: String, starImageView: ImageView) {
-        movieViewModel.isMovieFavorite(movieId) { isFavorite ->
+        isMovieFavorite(movieId) { isFavorite ->
             if (isFavorite) {
-                movieViewModel.removeMovieFromFavorites(movieId)
+                removeMovieFromFavorites(movieId)
                 starImageView.setImageResource(R.drawable.star_32)
             } else {
-                movieViewModel.addMovieToFavorites(movieId)
+                addMovieToFavorites(movieId)
                 starImageView.setImageResource(R.drawable.filled_star_32)
             }
         }

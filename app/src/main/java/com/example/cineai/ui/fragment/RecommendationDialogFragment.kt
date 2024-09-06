@@ -1,5 +1,6 @@
 package com.example.cineai.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import com.example.cineai.databinding.FragmentRecommendationDialogBinding
+import com.example.cineai.ui.activity.DetailsActivity
 import com.example.cineai.ui.adapter.MovieAdapter
 import com.example.cineai.ui.viewmodel.AiRecommendationViewModel
 import com.example.cineai.ui.viewmodel.MovieViewModel
@@ -18,6 +20,7 @@ class RecommendationDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRecommendationDialogBinding
     private val aiRecommendationViewModel: AiRecommendationViewModel by viewModels()
+    private val movieViewModel: MovieViewModel by viewModels()
 
     companion object {
         private const val ARG_RECOMMENDATIONS = "recommendations"
@@ -43,7 +46,22 @@ class RecommendationDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieAdapter = MovieAdapter(MovieViewModel())
+        val movieAdapter = MovieAdapter(
+            isMovieFavorite = { movieId, callback ->
+                movieViewModel.isMovieFavorite(movieId, callback)
+            },
+            addMovieToFavorites = { movieId ->
+                movieViewModel.addMovieToFavorites(movieId)
+            },
+            removeMovieFromFavorites = { movieId ->
+                movieViewModel.removeMovieFromFavorites(movieId)
+            },
+            onMovieClick = { movieId ->
+                val intent = Intent(requireContext(), DetailsActivity::class.java)
+                intent.putExtra(DetailsActivity.MOVIE_ID, movieId)
+                startActivity(intent)
+            }
+        )
         binding.list.adapter = movieAdapter
 
         setMovies()

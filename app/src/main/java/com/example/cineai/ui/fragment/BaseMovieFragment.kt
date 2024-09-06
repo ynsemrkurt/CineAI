@@ -1,5 +1,6 @@
 package com.example.cineai.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.cineai.databinding.FragmentBaseMovieBinding
+import com.example.cineai.ui.activity.DetailsActivity
 import com.example.cineai.ui.adapter.MovieAdapter
 import com.example.cineai.ui.classes.MovieCategory
 import com.example.cineai.ui.classes.getParcelable
@@ -49,7 +51,23 @@ class BaseMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieAdapter = MovieAdapter(movieViewModel)
+        val movieAdapter = MovieAdapter(
+            isMovieFavorite = { movieId, callback ->
+                movieViewModel.isMovieFavorite(movieId, callback)
+            },
+            addMovieToFavorites = { movieId ->
+                movieViewModel.addMovieToFavorites(movieId)
+            },
+            removeMovieFromFavorites = { movieId ->
+                movieViewModel.removeMovieFromFavorites(movieId)
+            },
+            onMovieClick = { movieId ->
+                val intent = Intent(requireContext(), DetailsActivity::class.java)
+                intent.putExtra(DetailsActivity.MOVIE_ID, movieId)
+                startActivity(intent)
+            }
+        )
+
         binding.recyclerViewList.adapter = movieAdapter
 
         if (movieCategory == MovieCategory.FAVORITE) {

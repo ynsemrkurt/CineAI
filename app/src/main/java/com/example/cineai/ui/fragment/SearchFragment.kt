@@ -1,5 +1,6 @@
 package com.example.cineai.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import com.example.cineai.databinding.FragmentSearchBinding
+import com.example.cineai.ui.activity.DetailsActivity
 import com.example.cineai.ui.adapter.MovieAdapter
 import com.example.cineai.ui.viewmodel.MovieViewModel
 import kotlinx.coroutines.launch
@@ -56,10 +58,25 @@ class SearchFragment : Fragment() {
                 binding.recyclerViewSearch.visibility = View.VISIBLE
                 binding.layoutNoData.visibility = View.GONE
 
-                val adapter = MovieAdapter(viewModel)
-                binding.recyclerViewSearch.adapter = adapter
+                val movieAdapter = MovieAdapter(
+                    isMovieFavorite = { movieId, callback ->
+                        viewModel.isMovieFavorite(movieId, callback)
+                    },
+                    addMovieToFavorites = { movieId ->
+                        viewModel.addMovieToFavorites(movieId)
+                    },
+                    removeMovieFromFavorites = { movieId ->
+                        viewModel.removeMovieFromFavorites(movieId)
+                    },
+                    onMovieClick = { movieId ->
+                        val intent = Intent(requireContext(), DetailsActivity::class.java)
+                        intent.putExtra(DetailsActivity.MOVIE_ID, movieId)
+                        startActivity(intent)
+                    }
+                )
+                binding.recyclerViewSearch.adapter = movieAdapter
                 lifecycleScope.launch {
-                    adapter.submitData(PagingData.from(movies))
+                    movieAdapter.submitData(PagingData.from(movies))
                 }
             } else {
                 binding.recyclerViewSearch.visibility = View.GONE
