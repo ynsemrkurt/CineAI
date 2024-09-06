@@ -13,6 +13,7 @@ import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
 import com.example.cineai.ui.activity.DetailsActivity
+import com.example.cineai.ui.activity.DetailsActivity.Companion.MOVIE_ID
 import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.loadImage
 import com.example.cineai.ui.classes.toImageUrl
@@ -28,7 +29,7 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
             itemView.setOnClickListener {
                 val movieId = getItem(bindingAdapterPosition)?.id
                 val intent = Intent(itemView.context, DetailsActivity::class.java)
-                intent.putExtra("movieId", movieId.toString())
+                intent.putExtra(MOVIE_ID, movieId.toString())
                 startActivity(itemView.context, intent, null)
             }
 

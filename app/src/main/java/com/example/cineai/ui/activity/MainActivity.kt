@@ -1,6 +1,7 @@
 package com.example.cineai.ui.activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cineai.R
 import com.example.cineai.databinding.ActivityMainBinding
@@ -12,12 +13,14 @@ import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.example.cineai.ui.fragment.MovieFragment
 import com.example.cineai.ui.fragment.SearchFragment
 import com.example.cineai.ui.fragment.SettingsFragment
+import com.example.cineai.ui.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +29,22 @@ class MainActivity : AppCompatActivity() {
 
         if (firebaseAuth.currentUser == null) {
             this.navigateToActivity(LoginActivity::class.java)
+        } else {
+            loginViewModel.checkProfile()
+            observeLoginStatus()
         }
         setNavigationBar()
+    }
+
+    private fun observeLoginStatus() {
+        loginViewModel.loginStatus.observe(this) { status ->
+            when (status) {
+                R.string.profile_missing -> {
+                    firebaseAuth.signOut()
+                    this.navigateToActivity(LoginActivity::class.java)
+                }
+            }
+        }
     }
 
     private fun setNavigationBar() {

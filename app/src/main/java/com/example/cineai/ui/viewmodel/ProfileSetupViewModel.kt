@@ -39,14 +39,16 @@ class ProfileSetupViewModel : ViewModel() {
     }
 
     private fun isProfileValid(profile: Profile): Boolean {
-        return profile.stress.isNotEmpty() &&
-                profile.problemSolving.isNotEmpty() &&
-                profile.decisionMaking.isNotEmpty() &&
-                profile.teamwork.isNotEmpty() &&
-                profile.movieGenres.isNotEmpty() &&
-                profile.music.isNotEmpty() &&
-                profile.hobbies.isNotEmpty() &&
-                profile.travel.isNotEmpty()
+        with(profile) {
+            return stress.isNotEmpty() &&
+                    problemSolving.isNotEmpty() &&
+                    decisionMaking.isNotEmpty() &&
+                    teamwork.isNotEmpty() &&
+                    movieGenres.isNotEmpty() &&
+                    music.isNotEmpty() &&
+                    hobbies.isNotEmpty() &&
+                    travel.isNotEmpty()
+        }
     }
 
     private fun saveProfileToFirestore(profile: Profile) {

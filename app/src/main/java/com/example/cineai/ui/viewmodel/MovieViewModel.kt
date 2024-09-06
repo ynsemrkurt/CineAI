@@ -24,6 +24,8 @@ import kotlinx.coroutines.tasks.await
 
 class MovieViewModel : ViewModel() {
 
+    private val api = RetrofitClient.api
+
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _movieDetails = MutableLiveData<Movie>()
@@ -115,7 +117,7 @@ class MovieViewModel : ViewModel() {
     fun fetchMovieDetails(movieId: String) {
         viewModelScope.launch {
             try {
-                val movie = RetrofitClient.api.getDetailsMovies(movieId)
+                val movie = api.getDetailsMovies(movieId)
                 _movieDetails.postValue(movie)
                 fetchVideo(movieId)
                 fetchCharacter(movieId)
@@ -129,7 +131,7 @@ class MovieViewModel : ViewModel() {
     private fun fetchVideo(movieId: String) {
         viewModelScope.launch {
             try {
-                RetrofitClient.api.searchVideo(movieId).results.find { it.type == TRAILER }?.let {
+                api.searchVideo(movieId).results.find { it.type == TRAILER }?.let {
                     _videoId.postValue(it.key)
                 }
             } catch (e: Exception) {
@@ -141,7 +143,7 @@ class MovieViewModel : ViewModel() {
     private fun fetchCharacter(movieId: String) {
         viewModelScope.launch {
             try {
-                val character = RetrofitClient.api.searchCharacter(movieId)
+                val character = api.searchCharacter(movieId)
                 _character.postValue(character)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_character)
@@ -152,8 +154,7 @@ class MovieViewModel : ViewModel() {
     private fun fetchMovieBackdrops(movieId: String) {
         viewModelScope.launch {
             try {
-                val movieBackdrops =
-                    RetrofitClient.api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
+                val movieBackdrops = api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
                 _movieBackdrops.postValue(movieBackdrops)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_movie_backdrops)
@@ -164,7 +165,7 @@ class MovieViewModel : ViewModel() {
     fun searchMovies(query: String) {
         viewModelScope.launch {
             try {
-                val movie = RetrofitClient.api.searchMovies(query).results
+                val movie = api.searchMovies(query).results
                 _movies.postValue(movie)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_search_movies)

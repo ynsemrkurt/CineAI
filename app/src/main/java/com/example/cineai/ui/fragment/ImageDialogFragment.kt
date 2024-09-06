@@ -30,19 +30,20 @@ class ImageDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Close button
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
         binding.imageButtonClose.setOnClickListener {
             dismiss()
         }
 
-        // Load image into PhotoView
         imageUrl?.let {
             Glide.with(this)
                 .load(it)
                 .into(binding.photoView)
         }
 
-        // Download button
         binding.imageButtonDownload.setOnClickListener {
             imageUrl?.let {
                 downloadImage(it, it.substringAfterLast("/"))
@@ -52,7 +53,10 @@ class ImageDialogFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 
@@ -67,7 +71,8 @@ class ImageDialogFragment : DialogFragment() {
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "$fileName.jpg")
 
-        val downloadManager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val downloadManager =
+            requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
 
         requireContext().showToast(getString(R.string.image_downloading))

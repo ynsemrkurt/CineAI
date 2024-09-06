@@ -21,10 +21,14 @@ class ProfileSetupFragment : Fragment() {
     private val profileSetupViewModel: ProfileSetupViewModel by activityViewModels()
     private var shouldLoadData = false
 
+    companion object {
+        const val LOAD_DATA_KEY = "should_load_data"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            shouldLoadData = it.getBoolean("should_load_data", false)
+            shouldLoadData = it.getBoolean(LOAD_DATA_KEY, false)
         }
     }
 

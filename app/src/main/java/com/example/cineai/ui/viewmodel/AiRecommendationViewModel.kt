@@ -21,6 +21,8 @@ import kotlinx.coroutines.tasks.await
 
 class AiRecommendationViewModel : ViewModel() {
 
+    private val api = RetrofitClient.api
+
     private val firestore = FirebaseFirestore.getInstance()
     private val userId: String? get() = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -108,7 +110,7 @@ class AiRecommendationViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val movieList = movieTitles.mapNotNull { movieName ->
-                    RetrofitClient.api.searchMovies(movieName).results.find { it.title == movieName }
+                    api.searchMovies(movieName).results.find { it.title == movieName }
                 }
                 _movies.postValue(movieList)
             } catch (e: Exception) {

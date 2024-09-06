@@ -11,6 +11,7 @@ import com.example.cineai.ui.activity.LoginActivity
 import com.example.cineai.ui.classes.navigateToActivity
 import com.example.cineai.ui.classes.openFragment
 import com.example.cineai.ui.classes.showToast
+import com.example.cineai.ui.fragment.ProfileSetupFragment.Companion.LOAD_DATA_KEY
 import com.google.firebase.auth.FirebaseAuth
 
 class SettingsFragment : Fragment() {
@@ -34,7 +35,7 @@ class SettingsFragment : Fragment() {
 
         binding.constraintLayoutChangeProfile.setOnClickListener {
             val args = Bundle().apply {
-                putBoolean("should_load_data", true)
+                putBoolean(LOAD_DATA_KEY, true)
             }
             openFragment(R.id.fragmentContainerView, ProfileSetupFragment(), args)
         }

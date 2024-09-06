@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cineai.R
+import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_PROFILE
 import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
 import com.example.cineai.ui.classes.FirestoreConstants.DOCUMENT_PROFILE_INFO

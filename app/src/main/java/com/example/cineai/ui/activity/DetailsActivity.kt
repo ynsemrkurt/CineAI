@@ -27,6 +27,10 @@ class DetailsActivity : AppCompatActivity() {
     private val viewModel: MovieViewModel by viewModels()
     private val items = mutableListOf<ItemType>()
 
+    companion object {
+        const val MOVIE_ID = "movieId"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -75,7 +79,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun fetchMovieDetails() {
-        intent.getStringExtra("movieId")?.let { movieId ->
+        intent.getStringExtra(MOVIE_ID)?.let { movieId ->
             viewModel.fetchMovieDetails(movieId)
         }
     }
