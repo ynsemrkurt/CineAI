@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cineai.R
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_PROFILE
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
+import com.example.cineai.ui.classes.FirestoreConstants.DOCUMENT_PROFILE_INFO
 import com.example.cineai.ui.classes.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,8 +48,8 @@ class LoginViewModel : ViewModel() {
 
     fun checkProfile() {
         val userId = auth.currentUser?.uid ?: return
-        firestore.collection("users").document(userId).collection("profile")
-            .document("profile_info")
+        firestore.collection(COLLECTION_USERS).document(userId).collection(COLLECTION_PROFILE)
+            .document(DOCUMENT_PROFILE_INFO)
             .get()
             .addOnSuccessListener { document ->
                 _loginStatus.value = if (document.exists()) {

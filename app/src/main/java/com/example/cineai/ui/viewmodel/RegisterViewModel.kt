@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cineai.R
 import com.example.cineai.data.model.User
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
+import com.example.cineai.ui.classes.FirestoreConstants.FIELD_USERNAME
 import com.example.cineai.ui.classes.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,7 +54,7 @@ class RegisterViewModel : ViewModel() {
         email: String,
         password: String
     ) {
-        firestore.collection("users").whereEqualTo("username", username).get()
+        firestore.collection(COLLECTION_USERS).whereEqualTo(FIELD_USERNAME, username).get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     _registrationStatus.value = R.string.username_already_error
@@ -80,7 +82,7 @@ class RegisterViewModel : ViewModel() {
     private fun saveUserToFirestore(username: String, userId: String?) {
         val user = User(username, userId)
         userId?.let {
-            firestore.collection("users").document(it).set(user)
+            firestore.collection(COLLECTION_USERS).document(it).set(user)
                 .addOnSuccessListener {
                     _registrationStatus.value = R.string.registration_successful
                 }

@@ -13,6 +13,9 @@ import com.example.cineai.data.model.CharacterResponse
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.data.paging.MoviePagingSource
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_FAVORITES
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
+import com.example.cineai.ui.classes.FirestoreConstants.FIELD_ID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
@@ -52,13 +55,19 @@ class MovieViewModel : ViewModel() {
         updateFavoriteMovie(movieId, isAdding = false)
     }
 
+    companion object {
+        private const val TRAILER = "Trailer"
+    }
+
     private fun updateFavoriteMovie(movieId: String, isAdding: Boolean) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val action = if (isAdding) {
-            firestore.collection("users").document(userId).collection("favorites").document(movieId)
-                .set(mapOf("id" to movieId))
+            firestore.collection(COLLECTION_USERS).document(userId).collection(COLLECTION_FAVORITES)
+                .document(movieId)
+                .set(mapOf(FIELD_ID to movieId))
         } else {
-            firestore.collection("users").document(userId).collection("favorites").document(movieId)
+            firestore.collection(COLLECTION_USERS).document(userId).collection(COLLECTION_FAVORITES)
+                .document(movieId)
                 .delete()
         }
         action.addOnFailureListener {
@@ -68,7 +77,8 @@ class MovieViewModel : ViewModel() {
 
     fun isMovieFavorite(movieId: String, callback: (Boolean) -> Unit) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        firestore.collection("users").document(userId).collection("favorites").document(movieId)
+        firestore.collection(COLLECTION_USERS).document(userId).collection(COLLECTION_FAVORITES)
+            .document(movieId)
             .get()
             .addOnSuccessListener { document ->
                 callback(document.exists())
@@ -83,9 +93,11 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val snapshot =
-                    firestore.collection("users").document(userId).collection("favorites").get()
+                    firestore.collection(COLLECTION_USERS).document(userId).collection(
+                        COLLECTION_FAVORITES
+                    ).get()
                         .await()
-                val ids = snapshot.documents.mapNotNull { it.getString("id") }
+                val ids = snapshot.documents.mapNotNull { it.getString(FIELD_ID) }
                 _favoriteMovieIds.postValue(ids)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_loading_favorite)
@@ -117,7 +129,7 @@ class MovieViewModel : ViewModel() {
     private fun fetchVideo(movieId: String) {
         viewModelScope.launch {
             try {
-                RetrofitClient.api.searchVideo(movieId).results.find { it.type == "Trailer" }?.let {
+                RetrofitClient.api.searchVideo(movieId).results.find { it.type == TRAILER }?.let {
                     _videoId.postValue(it.key)
                 }
             } catch (e: Exception) {

@@ -9,6 +9,8 @@ import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.model.Profile
 import com.example.cineai.data.network.RetrofitClient
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
+import com.example.cineai.ui.classes.FirestoreConstants.DOCUMENT_PROFILE_INFO
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,8 +54,8 @@ class AiRecommendationViewModel : ViewModel() {
     private suspend fun fetchUserProfile(): Profile? {
         return try {
             val document = userId?.let {
-                firestore.collection("users").document(it)
-                    .collection("profile").document("profile_info").get().await()
+                firestore.collection(COLLECTION_USERS).document(it)
+                    .collection(COLLECTION_USERS).document(DOCUMENT_PROFILE_INFO).get().await()
             }
             document?.let {
                 if (it.exists()) it.toObject(Profile::class.java) else null
@@ -87,17 +89,19 @@ class AiRecommendationViewModel : ViewModel() {
     }
 
     private fun buildPromptFromProfile(profile: Profile): String {
-        return """
+        with(profile) {
+            return """
             Based on the following profile information, recommend 3 movies. Provide only movie names separated by a newline:
-            Stress Management: ${profile.stress}
-            Problem Solving: ${profile.problemSolving}
-            Decision Making: ${profile.decisionMaking}
-            Teamwork: ${profile.teamwork}
-            Movie Genres: ${profile.movieGenres}
-            Music: ${profile.music}
-            Hobbies: ${profile.hobbies}
-            Travel: ${profile.travel}
+            Stress Management: $stress
+            Problem Solving: $problemSolving
+            Decision Making: $decisionMaking
+            Teamwork: $teamwork
+            Movie Genres: $movieGenres
+            Music: $music
+            Hobbies: $hobbies
+            Travel: $travel
         """.trimIndent()
+        }
     }
 
     fun fetchMovies(movieTitles: List<String>) {
