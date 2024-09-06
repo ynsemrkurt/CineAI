@@ -112,14 +112,13 @@
     <string name="search">Search</string>
     <string name="no_data">No Data</string>
     <string name="no_data_long">We can\'t see any movies here,\n let\'s try searching a bit more.</string>
+    <string name="no_data_favorite">We can\'t see any movies here.\nTry adding some favorite movies.</string>
     <string name="error_search_movies">Error search movies!</string>
     <string name="thumbnail">Thumbnail</string>
     <string name="play_button">Play Button</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="close_page">Close Page</string>
     <string name="download_image">Download Image</string>
-    <string name="image_downloading">Image Downloading...</string>
+    <string name="image_downloading">Image Downloading…</string>
     <string name="downloading_image">Downloading Image</string>
     <string name="downloading_image_from">Downloading image from %1$s</string>
 </resources>

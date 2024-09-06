@@ -19,6 +19,7 @@ import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 
 class DetailsActivity : AppCompatActivity() {
@@ -107,12 +108,13 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun loadAds() {
-        val backgroundScope = CoroutineScope(Dispatchers.IO)
-        backgroundScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             MobileAds.initialize(this@DetailsActivity)
+            withContext(Dispatchers.Main) {
+                val adRequest = AdRequest.Builder().build()
+                binding.adView.loadAd(adRequest)
+            }
         }
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
     }
 
     private fun updateThumbnails() {

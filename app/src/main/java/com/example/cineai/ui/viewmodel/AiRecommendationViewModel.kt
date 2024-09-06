@@ -9,6 +9,7 @@ import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.data.model.Profile
 import com.example.cineai.data.network.RetrofitClient
+import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_PROFILE
 import com.example.cineai.ui.classes.FirestoreConstants.COLLECTION_USERS
 import com.example.cineai.ui.classes.FirestoreConstants.DOCUMENT_PROFILE_INFO
 import com.google.ai.client.generativeai.GenerativeModel
@@ -57,7 +58,7 @@ class AiRecommendationViewModel : ViewModel() {
         return try {
             val document = userId?.let {
                 firestore.collection(COLLECTION_USERS).document(it)
-                    .collection(COLLECTION_USERS).document(DOCUMENT_PROFILE_INFO).get().await()
+                    .collection(COLLECTION_PROFILE).document(DOCUMENT_PROFILE_INFO).get().await()
             }
             document?.let {
                 if (it.exists()) it.toObject(Profile::class.java) else null

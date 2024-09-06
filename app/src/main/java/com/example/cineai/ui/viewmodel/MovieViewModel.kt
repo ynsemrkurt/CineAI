@@ -119,14 +119,15 @@ class MovieViewModel : ViewModel() {
             try {
                 val movie = api.getDetailsMovies(movieId)
                 _movieDetails.postValue(movie)
-                fetchVideo(movieId)
-                fetchCharacter(movieId)
-                fetchMovieBackdrops(movieId)
+                launch { fetchVideo(movieId) }
+                launch { fetchCharacter(movieId) }
+                launch { fetchMovieBackdrops(movieId) }
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_details)
             }
         }
     }
+
 
     private fun fetchVideo(movieId: String) {
         viewModelScope.launch {

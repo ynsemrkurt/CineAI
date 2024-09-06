@@ -62,7 +62,11 @@ class BaseMovieFragment : Fragment() {
 
     private fun observeFavoriteMovieIds(adapter: MovieAdapter) {
         movieViewModel.favoriteMovieIds.observe(viewLifecycleOwner) { favoriteMovieIds ->
-            getMovies(adapter, favoriteMovieIds)
+            if (favoriteMovieIds.isNullOrEmpty()) {
+                binding.layoutNoData.visibility = View.VISIBLE
+            } else {
+                getMovies(adapter, favoriteMovieIds)
+            }
         }
     }
 
