@@ -11,7 +11,17 @@
         android:icon="@drawable/favorite_32"/>
 
     <item
+        android:id="@+id/menu_item_search"
+        android:title="@string/search"
+        android:icon="@drawable/search_60"/>
+
+    <item
         android:id="@+id/menu_item_ai"
         android:title="@string/ai"
         android:icon="@drawable/ai"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/settings_32"/>
 </menu>

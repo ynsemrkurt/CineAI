@@ -21,16 +21,35 @@
             android:layout_marginStart="@dimen/spacer_medium"
             android:layout_marginEnd="@dimen/spacer_medium">
 
-            <TextView
-                android:id="@+id/textViewAppName"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacer_x_small"
-                android:text="@string/app_name"
-                android:textAppearance="?textAppearanceTitleLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageViewAppLogo"
+                    android:layout_width="@dimen/icon_size_medium_ver2"
+                    android:layout_height="@dimen/icon_size_medium_ver2"
+                    android:contentDescription="@string/app_logo"
+                    android:src="@drawable/cineai_logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAppearance="?textAppearanceTitleLarge"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewAppLogo"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewAppLogo"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewAppLogo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <TextView
@@ -41,7 +60,7 @@
                 android:text="@string/introduce_yourself"
                 android:textAppearance="?textAppearanceTitleMedium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAppName" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutApp" />
 
             <TextView
                 android:id="@+id/textViewInfo"
@@ -58,10 +77,12 @@
                 android:id="@+id/textViewQuestionStress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/how_do_you_relax_in_stressful_situations"
                 android:textAppearance="?textAppearanceBody1"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewInfo" />
 
@@ -84,10 +105,12 @@
                 android:id="@+id/textViewQuestionProblemSolving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/how_do_you_usually_solve_problems"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionStress" />
 
@@ -108,13 +131,15 @@
 
             <TextView
                 android:id="@+id/textViewQuestionDecisionMaking"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/do_you_make_decisions_quickly_or_thoroughly"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionProblemSolving" />
 
             <EditText
@@ -134,13 +159,15 @@
 
             <TextView
                 android:id="@+id/textViewQuestionTeamwork"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/do_you_prefer_leader_or_team_member"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionDecisionMaking" />
 
             <EditText
@@ -162,10 +189,12 @@
                 android:id="@+id/textViewQuestionMovieGenres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/what_movie_genres_do_you_enjoy"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionTeamwork" />
 
@@ -188,10 +217,12 @@
                 android:id="@+id/textViewQuestionMusic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/what_types_of_music_do_you_like"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionMovieGenres" />
 
@@ -214,10 +245,12 @@
                 android:id="@+id/textViewQuestionHobbies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
                 android:text="@string/what_do_you_enjoy_doing_in_free_time"
+                android:textAlignment="center"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionMusic" />
 
@@ -240,10 +273,12 @@
                 android:id="@+id/textViewQuestionTravel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacer_small"
+                android:layout_marginHorizontal="@dimen/spacer_small"
                 android:layout_marginTop="@dimen/spacer_medium"
+                android:textAlignment="center"
                 android:text="@string/what_types_of_places_do_you_like_to_visit"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextQuestionHobbies" />
 
@@ -262,16 +297,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTravel" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/buttonSave"
+                style="@style/CustomButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacer_medium"
-                android:text="@string/save"
+                android:clickable="true"
+                android:padding="@dimen/spacer_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionTravel" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestionTravel">
+
+                <TextView
+                    android:id="@+id/textViewSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacer_xx_small"
+                    android:text="@string/save"
+                    android:textColor="?backgroundColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loadingAnimationView"
+                    android:layout_width="@dimen/icon_size_medium"
+                    android:layout_height="@dimen/icon_size_medium"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading_anim" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

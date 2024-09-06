@@ -4,7 +4,33 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
     @SerializedName("results")
-    val results: List<Movie>
+    val results: List<Movie>,
+)
+
+data class VideoResponse(
+    @SerializedName("results")
+    val results: List<Video>,
+)
+
+data class CharacterResponse(
+    @SerializedName("cast")
+    val cast: List<Character>,
+)
+
+data class Character(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("character")
+    val character: String,
+    @SerializedName("profile_path")
+    val profilePath: String,
+)
+
+data class Video(
+    @SerializedName("key")
+    val key: String,
+    @SerializedName("type")
+    val type: String,
 )
 
 data class Movie(
@@ -18,4 +44,29 @@ data class Movie(
     val voteAverage: Double,
     @SerializedName("overview")
     val overview: String,
+    @SerializedName("release_date")
+    val releaseDate: String,
+    @SerializedName("backdrop_path")
+    val backdropPath: String,
+    @SerializedName("genres")
+    val genreIds: List<Genre>,
+    @SerializedName("status")
+    val status: String,
+)
+
+data class Genre(
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String,
+)
+
+data class MovieBackdrops(
+    @SerializedName("backdrops")
+    val backdrops: List<ImageFilePath>,
+)
+
+data class ImageFilePath(
+    @SerializedName("file_path")
+    val filePath: String,
 )

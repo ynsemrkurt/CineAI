@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.databinding.FragmentAiRecommendationBinding
+import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.AiRecommendationViewModel
 
@@ -28,16 +29,31 @@ class AiRecommendationFragment : Fragment() {
 
         viewModel.fetchAndRecommendMovies()
         observeRecommendationStatus()
+        observeError()
 
         binding.buttonCreate.setOnClickListener {
+            LoadingAnim().showLoadingAnimation(
+                binding.loadingAnimationView,
+                binding.textViewRecommendation
+            )
             recommendMovies()
+        }
+    }
+
+    private fun observeError() {
+        viewModel.error.observe(viewLifecycleOwner) { messageResId ->
+            requireContext().showToast(getString(messageResId))
         }
     }
 
     private fun observeRecommendationStatus() {
         viewModel.recommendationStatus.observe(viewLifecycleOwner) { messageResId ->
-            showToast(getString(messageResId))
+            requireContext().showToast(getString(messageResId))
         }
+        LoadingAnim().hideLoadingAnimation(
+            binding.loadingAnimationView,
+            binding.textViewRecommendation
+        )
     }
 
     private fun recommendMovies() {
@@ -47,6 +63,10 @@ class AiRecommendationFragment : Fragment() {
                     RecommendationDialogFragment.newInstance(recommendations.split("\n"))
                 bottomSheet.show(childFragmentManager, "ModalBottomSheet")
             }
+            LoadingAnim().hideLoadingAnimation(
+                binding.loadingAnimationView,
+                binding.textViewRecommendation
+            )
         }
     }
 }

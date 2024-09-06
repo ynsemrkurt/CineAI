@@ -2,25 +2,37 @@ package com.example.cineai.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.cineai.R
 import com.example.cineai.data.model.Movie
 import com.example.cineai.databinding.ItemMovieBinding
-import com.example.cineai.ui.viewmodel.MovieViewModel
+import com.example.cineai.ui.classes.ImageSize
+import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.toImageUrl
+import java.util.Locale
 
-class MovieAdapter(private val movieViewModel: MovieViewModel) :
-    PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
+class MovieAdapter(
+    private val isMovieFavorite: (String, (Boolean) -> Unit) -> Unit,
+    private val addMovieToFavorites: (String) -> Unit,
+    private val removeMovieFromFavorites: (String) -> Unit,
+    private val onMovieClick: (String) -> Unit
+) : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     inner class MovieViewHolder(val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
+            itemView.setOnClickListener {
+                val movieId = getItem(bindingAdapterPosition)?.id
+                movieId?.let { onMovieClick(it.toString()) }
+            }
+
             binding.imageViewStar.setOnClickListener {
-                val movieId = getItem(bindingAdapterPosition)?.id ?: return@setOnClickListener
-                handleStarClick(movieId.toString(), binding.imageViewStar)
+                val movieId = getItem(bindingAdapterPosition)?.id
+                movieId?.let { handleStarClick(it.toString(), binding.imageViewStar) }
             }
         }
     }
@@ -31,19 +43,19 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val fadeIn = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in)
+        holder.binding.root.startAnimation(fadeIn)
+
         val movie = getItem(position)
         movie?.let {
             with(holder.binding) {
                 textViewMovieName.text = it.title
-                textViewMovieStar.text = it.voteAverage.toString()
+                textViewMovieStar.text = String.format(Locale.getDefault(), "%.1f", it.voteAverage)
                 textViewMovieOverview.text = it.overview
-                Glide.with(holder.itemView.context)
-                    .load("https://image.tmdb.org/t/p/w500${it.posterPath}")
-                    .placeholder(R.drawable.image_32)
-                    .into(imageViewMovie)
+                imageViewMovie.loadImage(it.posterPath.toImageUrl(ImageSize.W500))
             }
 
-            movieViewModel.isMovieFavorite(it.id.toString()) { isFavorite ->
+            isMovieFavorite(it.id.toString()) { isFavorite ->
                 holder.binding.imageViewStar.setImageResource(
                     if (isFavorite) R.drawable.filled_star_32 else R.drawable.star_32
                 )
@@ -52,12 +64,12 @@ class MovieAdapter(private val movieViewModel: MovieViewModel) :
     }
 
     private fun handleStarClick(movieId: String, starImageView: ImageView) {
-        movieViewModel.isMovieFavorite(movieId) { isFavorite ->
+        isMovieFavorite(movieId) { isFavorite ->
             if (isFavorite) {
-                movieViewModel.removeMovieFromFavorites(movieId)
+                removeMovieFromFavorites(movieId)
                 starImageView.setImageResource(R.drawable.star_32)
             } else {
-                movieViewModel.addMovieToFavorites(movieId)
+                addMovieToFavorites(movieId)
                 starImageView.setImageResource(R.drawable.filled_star_32)
             }
         }

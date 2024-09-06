@@ -7,16 +7,24 @@
     tools:context=".ui.fragment.MovieFragment"
     android:background="?backgroundColor">
 
+    <ImageView
+        android:id="@+id/imageViewAppLogo"
+        android:layout_width="@dimen/icon_size_medium_ver2"
+        android:layout_height="@dimen/icon_size_medium_ver2"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/cineai_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacer_medium"
-        android:layout_marginTop="@dimen/spacer_x_small"
         android:text="@string/app_name"
         android:textAppearance="?textAppearanceTitleLarge"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAppLogo"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAppLogo"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAppLogo" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -25,9 +33,9 @@
         android:background="?backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAppLogo"
         app:tabIndicatorColor="@color/indicator"
-        app:tabMode="auto"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/indicator">
 
         <com.google.android.material.tabs.TabItem
