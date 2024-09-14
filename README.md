@@ -46,6 +46,6 @@
 
 # 🙏 Thanks
 
-Thanks to everyone who contributed to the development process and supported the project.
+Thanks to Mobillium for the development process and to everyone who supported the project.
 
 </div>
