@@ -1,5 +1,7 @@
 *.iml
 .gradle
+/local.properties
+/gradle.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -12,6 +14,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+gradle.properties
 # Created by https://www.toptal.com/developers/gitignore/api/kotlin,android,androidstudio,firebase,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=kotlin,android,androidstudio,firebase,git
 
