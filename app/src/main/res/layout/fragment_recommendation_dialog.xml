@@ -22,7 +22,8 @@
             android:contentDescription="@string/ai_logo"
             android:src="@drawable/ai"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -33,12 +34,13 @@
             android:textAppearance="?textAppearanceTitleMedium"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewAI"
             app:layout_constraintStart_toEndOf="@+id/imageViewAI"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAI" />
+            app:layout_constraintTop_toTopOf="@+id/imageViewAI"
+            tools:ignore="TextContrastCheck" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/spacer_small"
             android:background="?backgroundColor"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

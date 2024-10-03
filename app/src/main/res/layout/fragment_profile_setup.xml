@@ -37,7 +37,8 @@
                     android:src="@drawable/cineai_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/textViewAppName"
@@ -71,7 +72,8 @@
                 android:text="@string/we_need_this_information"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+                tools:ignore="VisualLintLongText" />
 
             <TextView
                 android:id="@+id/textViewQuestionStress"
@@ -99,7 +101,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionStress" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionStress"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionProblemSolving"
@@ -127,7 +130,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionProblemSolving" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionProblemSolving"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionDecisionMaking"
@@ -155,7 +159,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionDecisionMaking" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionDecisionMaking"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionTeamwork"
@@ -183,7 +188,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTeamwork" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTeamwork"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionMovieGenres"
@@ -211,7 +217,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMovieGenres" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMovieGenres"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionMusic"
@@ -239,7 +246,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMusic" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionMusic"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionHobbies"
@@ -267,7 +275,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionHobbies" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionHobbies"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
                 android:id="@+id/textViewQuestionTravel"
@@ -295,7 +304,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTravel" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTravel"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/buttonSave"

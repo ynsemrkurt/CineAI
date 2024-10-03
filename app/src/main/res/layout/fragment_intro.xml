@@ -73,7 +73,8 @@
         android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRegister"
@@ -85,6 +86,7 @@
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

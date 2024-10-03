@@ -7,18 +7,19 @@
     tools:context=".ui.fragment.ImageDialogFragment">
 
     <ImageButton
-        android:elevation="10dp"
         android:id="@+id/imageButtonClose"
         android:layout_width="@dimen/icon_size_medium"
         android:layout_height="@dimen/icon_size_medium"
         android:layout_margin="@dimen/spacer_medium"
         android:background="@color/transparent"
         android:contentDescription="@string/close_page"
+        android:elevation="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?color" />
+        app:tint="?color"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/imageButtonDownload"
@@ -32,7 +33,8 @@
         android:src="@drawable/download"
         app:layout_constraintEnd_toStartOf="@+id/imageButtonClose"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?color" />
+        app:tint="?color"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photoView"

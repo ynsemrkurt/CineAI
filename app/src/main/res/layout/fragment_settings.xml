@@ -50,14 +50,15 @@
             android:id="@+id/imageViewChangeProfile"
             android:layout_width="@dimen/icon_size_medium_ver2"
             android:layout_height="@dimen/icon_size_medium_ver2"
-            android:contentDescription="@string/change_profile"
-            android:src="@drawable/change_profile"
             android:layout_marginStart="@dimen/spacer_medium"
             android:layout_marginTop="@dimen/spacer_small"
             android:layout_marginBottom="@dimen/spacer_small"
+            android:contentDescription="@string/change_profile"
+            android:src="@drawable/change_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"

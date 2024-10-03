@@ -9,4 +9,5 @@
     <color name="ai_green">#29F3B6</color>
     <color name="transparent">#00000000</color>
     <color name="lite_white">#80FFFFFF</color>
+    <color name="hint_black">#616161</color>
 </resources>

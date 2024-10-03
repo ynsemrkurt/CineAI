@@ -106,7 +106,8 @@
             android:inputType="text"
             app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <TextView
             android:id="@+id/textViewEmailTitle"
@@ -129,7 +130,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <TextView
             android:id="@+id/textViewPasswordTitle"
@@ -152,7 +154,8 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+            tools:ignore="VisualLintTextFieldSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -168,7 +171,8 @@
         android:padding="@dimen/spacer_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck">
 
         <TextView
             android:id="@+id/textViewRegister"

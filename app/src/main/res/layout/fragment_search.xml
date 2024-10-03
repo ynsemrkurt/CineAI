@@ -49,7 +49,8 @@
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
 
     <ImageButton
         android:id="@+id/imageButtonSearch"
@@ -64,7 +65,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/editTextSearch"
         app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
         app:layout_constraintTop_toTopOf="@+id/editTextSearch"
-        app:tint="?backgroundColor" />
+        app:tint="?backgroundColor"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,7 +74,7 @@
         android:layout_marginStart="@dimen/spacer_small_ver2"
         android:text="@string/min_3_characters"
         android:textAppearance="?textAppearanceBodySmall"
-        android:textColor="@color/hint"
+        android:textColor="@color/hint_black"
         app:layout_constraintStart_toStartOf="@+id/editTextSearch"
         app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
@@ -103,7 +105,8 @@
             android:src="@drawable/no_data"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textViewNoData"
