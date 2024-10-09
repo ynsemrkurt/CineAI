@@ -132,8 +132,11 @@ class MovieViewModel : ViewModel() {
     private fun fetchVideo(movieId: String) {
         viewModelScope.launch {
             try {
-                api.searchVideo(movieId).results.find { it.type == TRAILER }?.let {
+                val results = api.searchVideo(movieId).results
+                results.find { it.type == TRAILER }?.let {
                     _videoId.postValue(it.key)
+                }.run {
+                    _videoId.postValue(results.firstOrNull()?.key)
                 }
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_video)
@@ -155,7 +158,9 @@ class MovieViewModel : ViewModel() {
     private fun fetchMovieBackdrops(movieId: String) {
         viewModelScope.launch {
             try {
-                val movieBackdrops = api.getMovieBackdrops(movieId).backdrops.map { it.filePath }
+                val response = api.getMovieBackdrops(movieId)
+                val movieBackdrops =
+                    response.backdrops.map { it.filePath } + response.posters.map { it.filePath }
                 _movieBackdrops.postValue(movieBackdrops)
             } catch (e: Exception) {
                 _error.postValue(R.string.error_fetching_movie_backdrops)
