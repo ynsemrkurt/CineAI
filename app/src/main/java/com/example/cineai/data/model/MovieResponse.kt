@@ -64,6 +64,8 @@ data class Genre(
 data class MovieBackdrops(
     @SerializedName("backdrops")
     val backdrops: List<ImageFilePath>,
+    @SerializedName("posters")
+    val posters: List<ImageFilePath>,
 )
 
 data class ImageFilePath(
