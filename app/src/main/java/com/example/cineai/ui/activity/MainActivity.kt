@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cineai.R
+import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.databinding.ActivityMainBinding
 import com.example.cineai.ui.classes.MovieCategory
 import com.example.cineai.ui.classes.navigateToActivity
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             observeLoginStatus()
         }
         setNavigationBar()
+
+        RetrofitClient.setLanguage(resources.configuration.locales.get(0).language)
     }
 
     private fun observeLoginStatus() {
