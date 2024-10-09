@@ -8,6 +8,12 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
+    private var language: String = "en-US"
+
+    fun setLanguage(lang: String) {
+        language = lang
+    }
+
     private val client = OkHttpClient.Builder()
         .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -17,6 +23,7 @@ object RetrofitClient {
             val url = originalRequest.url
                 .newBuilder()
                 .addQueryParameter(API_KEY_PARAM, BuildConfig.TMDB_API_KEY)
+                .addQueryParameter(LANGUAGE_PARAM, language)
                 .build()
 
             val request = originalRequest.newBuilder()
@@ -38,6 +45,7 @@ object RetrofitClient {
     }
 }
 
+private const val LANGUAGE_PARAM = "language"
 private const val API_KEY_PARAM = "api_key"
 private const val ACCEPT_HEADER = "Accept"
 private const val APPLICATION_JSON = "application/json"
