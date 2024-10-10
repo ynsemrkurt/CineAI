@@ -10,7 +10,10 @@ import com.example.cineai.ui.adapter.MediaAdapter
 import com.example.cineai.ui.adapter.MediaListAdapter
 import com.example.cineai.ui.classes.ImageSize
 import com.example.cineai.ui.classes.ItemType
+import com.example.cineai.ui.classes.isInternetAvailable
 import com.example.cineai.ui.classes.loadImage
+import com.example.cineai.ui.classes.restartCurrentActivity
+import com.example.cineai.ui.classes.showNoInternetDialog
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.classes.toImageUrl
 import com.example.cineai.ui.viewmodel.MovieViewModel
@@ -36,6 +39,10 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (!isInternetAvailable()) {
+            showNoInternetDialog { restartCurrentActivity() }
+        }
 
         loadAds()
         fetchMovieDetails()

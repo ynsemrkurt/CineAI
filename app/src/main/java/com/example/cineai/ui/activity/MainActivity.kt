@@ -7,8 +7,11 @@ import com.example.cineai.R
 import com.example.cineai.data.network.RetrofitClient
 import com.example.cineai.databinding.ActivityMainBinding
 import com.example.cineai.ui.classes.MovieCategory
+import com.example.cineai.ui.classes.isInternetAvailable
 import com.example.cineai.ui.classes.navigateToActivity
 import com.example.cineai.ui.classes.openFragment
+import com.example.cineai.ui.classes.restartCurrentActivity
+import com.example.cineai.ui.classes.showNoInternetDialog
 import com.example.cineai.ui.fragment.AiRecommendationFragment
 import com.example.cineai.ui.fragment.BaseMovieFragment
 import com.example.cineai.ui.fragment.MovieFragment
@@ -27,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (!isInternetAvailable()) {
+            showNoInternetDialog { restartCurrentActivity() }
+        }
 
         if (firebaseAuth.currentUser == null) {
             this.navigateToActivity(LoginActivity::class.java)
