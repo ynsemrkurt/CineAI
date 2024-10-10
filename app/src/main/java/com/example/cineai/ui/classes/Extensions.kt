@@ -1,8 +1,11 @@
 package com.example.cineai.ui.classes
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -18,6 +21,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cineai.BuildConfig
 import com.example.cineai.R
+import com.example.cineai.databinding.ItemNoConnectionBinding
 
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
@@ -100,4 +104,44 @@ fun Context.navigateToActivity(activityClass: Class<*>) {
 
 fun String?.toImageUrl(size: ImageSize): String {
     return BuildConfig.IMAGE_BASE_URL + size.value + this
+}
+
+fun Context.isInternetAvailable(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val network = connectivityManager.activeNetwork ?: return false
+    val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+    return when {
+        activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+        activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+        else -> false
+    }
+}
+
+fun Activity.showNoInternetDialog(restartActivity: () -> Unit) {
+    val builder = AlertDialog.Builder(this, R.style.TransparentDialog)
+    val itemBinding = ItemNoConnectionBinding.inflate(layoutInflater)
+    val cardView = itemBinding.root
+    builder.setView(cardView).setCancelable(false)
+
+    val dialog = builder.create()
+
+    itemBinding.buttonTryAgain.setOnClickListener {
+        if (isInternetAvailable()) {
+            dialog.dismiss()
+            restartActivity()
+        } else {
+            Toast.makeText(this, R.string.still_no_wifi, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    dialog.show()
+}
+
+fun Activity.restartCurrentActivity() {
+    val intent = (this as? AppCompatActivity)?.intent
+    if (intent != null) {
+        this.finish()
+        this.startActivity(intent)
+    }
 }
