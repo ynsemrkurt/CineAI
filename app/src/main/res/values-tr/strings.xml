@@ -121,4 +121,8 @@
     <string name="image_downloading">Resim İndiriliyor…</string>
     <string name="downloading_image">Resim İndiriliyor</string>
     <string name="downloading_image_from">Resim %1$s adresinden indiriliyor</string>
+    <string name="no_wifi">Bağlantı Yok</string>
+    <string name="try_again">Tekrar Dene</string>
+    <string name="no_wifi_context">İnternet Bağlantısı Yok!\nLütfen internet bağlantınızı kontrol edin.</string>
+    <string name="still_no_wifi">İnternet Bağlantısı Yok!</string>
 </resources>
