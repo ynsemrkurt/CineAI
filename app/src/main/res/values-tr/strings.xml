@@ -125,4 +125,7 @@
     <string name="try_again">Tekrar Dene</string>
     <string name="no_wifi_context">İnternet Bağlantısı Yok!\nLütfen internet bağlantınızı kontrol edin.</string>
     <string name="still_no_wifi">İnternet Bağlantısı Yok!</string>
+    <string name="delete">Sil</string>
+    <string name="cancel">İptal</string>
+    <string name="delete_user_context">Bu işlem geri alınamaz.\nHesabını silmek istediğine emin misin?</string>
 </resources>

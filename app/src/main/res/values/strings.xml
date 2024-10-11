@@ -125,4 +125,7 @@
     <string name="try_again">Try Again</string>
     <string name="no_wifi_context">No Internet Connection!\nPlease check your internet connection.</string>
     <string name="still_no_wifi">No Internet Connection!</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_user_context">This action cannot be undone.\nAre you sure you want to delete the user?</string>
 </resources>

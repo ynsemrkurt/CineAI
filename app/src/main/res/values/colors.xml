@@ -10,4 +10,5 @@
     <color name="transparent">#00000000</color>
     <color name="lite_white">#80FFFFFF</color>
     <color name="hint_black">#616161</color>
+    <color name="negative_red">#ED0C0C</color>
 </resources>
