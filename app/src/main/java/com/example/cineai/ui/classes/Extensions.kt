@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cineai.BuildConfig
 import com.example.cineai.R
+import com.example.cineai.databinding.ItemDeleteUserBinding
 import com.example.cineai.databinding.ItemNoConnectionBinding
 
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -144,4 +145,24 @@ fun Activity.restartCurrentActivity() {
         this.finish()
         this.startActivity(intent)
     }
+}
+
+fun Fragment.showUserDeleteDialog(deleteAccount: () -> Unit) {
+    val builder = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
+    val itemBinding = ItemDeleteUserBinding.inflate(layoutInflater)
+    val cardView = itemBinding.root
+    builder.setView(cardView).setCancelable(false)
+
+    val dialog = builder.create()
+
+    itemBinding.buttonCancel.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    itemBinding.buttonDelete.setOnClickListener {
+        deleteAccount()
+        dialog.dismiss()
+    }
+
+    dialog.show()
 }
