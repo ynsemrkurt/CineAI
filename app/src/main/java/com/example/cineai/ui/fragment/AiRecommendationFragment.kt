@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cineai.databinding.FragmentAiRecommendationBinding
+import com.example.cineai.ui.classes.AdManager
 import com.example.cineai.ui.classes.LoadingAnim
 import com.example.cineai.ui.classes.showToast
 import com.example.cineai.ui.viewmodel.AiRecommendationViewModel
@@ -15,6 +16,7 @@ class AiRecommendationFragment : Fragment() {
 
     private lateinit var binding: FragmentAiRecommendationBinding
     private val viewModel: AiRecommendationViewModel by viewModels()
+    private lateinit var adManager: AdManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,15 +30,24 @@ class AiRecommendationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.fetchAndRecommendMovies()
+        adManager = AdManager(requireActivity())
         observeRecommendationStatus()
         observeError()
+        createButtonListener()
+    }
 
+    private fun createButtonListener() {
         binding.buttonCreate.setOnClickListener {
             LoadingAnim().showLoadingAnimation(
                 binding.loadingAnimationView,
                 binding.textViewRecommendation
             )
-            recommendMovies()
+
+            adManager.loadRewardedAd(
+                onAdLoaded = {
+                    recommendMovies()
+                }
+            )
         }
     }
 
