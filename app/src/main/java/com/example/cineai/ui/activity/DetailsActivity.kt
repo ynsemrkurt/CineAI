@@ -40,17 +40,23 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!isInternetAvailable()) {
-            showNoInternetDialog { restartCurrentActivity() }
-        }
-
+        checkInternetConnection()
         loadAds()
+        backButtonListener()
         fetchMovieDetails()
         observeMovieDetails()
         observeCharacter()
         observeError()
         observeVideo()
+    }
 
+    private fun checkInternetConnection() {
+        if (!isInternetAvailable()) {
+            showNoInternetDialog { restartCurrentActivity() }
+        }
+    }
+
+    private fun backButtonListener() {
         binding.imageViewBack.setOnClickListener {
             finish()
         }

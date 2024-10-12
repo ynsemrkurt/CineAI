@@ -32,18 +32,10 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setSignOutButton()
-        setDeleteAccountButton()
-
-        binding.constraintLayoutChangeProfile.setOnClickListener {
-            val args = Bundle().apply {
-                putBoolean(LOAD_DATA_KEY, true)
-            }
-            openFragment(R.id.fragmentContainerView, ProfileSetupFragment(), args)
-        }
+        setClickListeners()
     }
 
-    private fun setSignOutButton() {
+    private fun setClickListeners() {
         binding.constraintLayoutSignOut.setOnClickListener {
             viewModel.signOut().observe(viewLifecycleOwner) { isSignedOut ->
                 if (isSignedOut) {
@@ -52,11 +44,16 @@ class SettingsFragment : Fragment() {
                 }
             }
         }
-    }
 
-    private fun setDeleteAccountButton() {
         binding.constraintLayoutDeleteAccount.setOnClickListener {
             showUserDeleteDialog(deleteAccount = { deleteAccount() })
+        }
+
+        binding.constraintLayoutChangeProfile.setOnClickListener {
+            val args = Bundle().apply {
+                putBoolean(LOAD_DATA_KEY, true)
+            }
+            openFragment(R.id.fragmentContainerView, ProfileSetupFragment(), args)
         }
     }
 

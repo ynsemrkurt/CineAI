@@ -43,15 +43,17 @@ class ProfileSetupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (shouldLoadData) profileSetupViewModel.loadProfileData()
+        setSaveButtonClickListener()
+        observeProfileData()
+    }
 
+    private fun setSaveButtonClickListener() {
         binding.buttonSave.setOnClickListener {
             LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewSave)
             val profile = setProfileInfo()
             profileSetupViewModel.saveProfile(profile)
             observeProfileSetupStatus()
         }
-
-        observeProfileData()
     }
 
     private fun observeProfileSetupStatus() {

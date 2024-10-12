@@ -18,7 +18,11 @@ import com.example.cineai.ui.fragment.MovieFragment
 import com.example.cineai.ui.fragment.SearchFragment
 import com.example.cineai.ui.fragment.SettingsFragment
 import com.example.cineai.ui.viewmodel.LoginViewModel
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,8 +37,15 @@ class MainActivity : AppCompatActivity() {
 
         checkInternetConnection()
         checkUserStatus()
+        initializeAds()
         setNavigationBar()
         setLanguage()
+    }
+
+    private fun initializeAds() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@MainActivity)
+        }
     }
 
     private fun checkUserStatus() {

@@ -29,6 +29,11 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setButtonListeners()
+        observeRegistrationStatus()
+    }
+
+    private fun setButtonListeners() {
         binding.buttonRegister.setOnClickListener {
             LoadingAnim().showLoadingAnimation(
                 binding.loadingAnimationView,
@@ -36,11 +41,10 @@ class RegisterFragment : Fragment() {
             )
             registerUser()
         }
+
         binding.imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
-        observeRegistrationStatus()
     }
 
     private fun registerUser() = with(binding) {

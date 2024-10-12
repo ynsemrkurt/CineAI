@@ -16,10 +16,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        checkInternetConnection()
+        checkUserStatus()
+    }
+
+    private fun checkInternetConnection() {
         if (!isInternetAvailable()) {
             showNoInternetDialog { restartCurrentActivity() }
         }
+    }
 
+    private fun checkUserStatus() {
         if (auth.currentUser != null) {
             auth.signOut()
         }

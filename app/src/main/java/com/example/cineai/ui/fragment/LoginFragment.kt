@@ -34,6 +34,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setButtonListeners()
+        observeLoginStatus()
+    }
+
+    private fun setButtonListeners() {
         binding.buttonLogin.setOnClickListener {
             LoadingAnim().showLoadingAnimation(binding.loadingAnimationView, binding.textViewLogin)
             loginUser()
@@ -46,8 +51,6 @@ class LoginFragment : Fragment() {
         binding.imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
-        observeLoginStatus()
     }
 
     private fun loginUser() = with(binding) {

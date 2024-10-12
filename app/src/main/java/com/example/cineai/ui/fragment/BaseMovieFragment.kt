@@ -23,6 +23,7 @@ class BaseMovieFragment : Fragment() {
     private lateinit var binding: FragmentBaseMovieBinding
     private val movieViewModel: MovieViewModel by viewModels()
     private lateinit var movieCategory: MovieCategory
+    private var movieAdapter: MovieAdapter? = null
 
     companion object {
         private const val ARG_CATEGORY = "movieCategory"
@@ -51,7 +52,12 @@ class BaseMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieAdapter = MovieAdapter(
+        setMovieAdapter()
+        getMovies()
+    }
+
+    private fun setMovieAdapter() {
+        movieAdapter = MovieAdapter(
             isMovieFavorite = { movieId, callback ->
                 movieViewModel.isMovieFavorite(movieId, callback)
             },
@@ -69,12 +75,16 @@ class BaseMovieFragment : Fragment() {
         )
 
         binding.recyclerViewList.adapter = movieAdapter
+    }
 
-        if (movieCategory == MovieCategory.FAVORITE) {
-            movieViewModel.loadFavoriteMovieIds()
-            observeFavoriteMovieIds(movieAdapter)
-        } else {
-            getMovies(movieAdapter)
+    private fun getMovies() {
+        movieAdapter?.let {
+            if (movieCategory == MovieCategory.FAVORITE) {
+                movieViewModel.loadFavoriteMovieIds()
+                observeFavoriteMovieIds(it)
+            } else {
+                getMovies(it)
+            }
         }
     }
 

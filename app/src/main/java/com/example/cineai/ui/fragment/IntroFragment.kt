@@ -24,6 +24,10 @@ class IntroFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setListeners()
+    }
+
+    private fun setListeners() {
         binding.buttonRegister.setOnClickListener {
             openFragment(R.id.fragmentContainerView, RegisterFragment())
         }
