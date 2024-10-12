@@ -31,19 +31,29 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!isInternetAvailable()) {
-            showNoInternetDialog { restartCurrentActivity() }
-        }
+        checkInternetConnection()
+        checkUserStatus()
+        setNavigationBar()
+        setLanguage()
+    }
 
+    private fun checkUserStatus() {
         if (firebaseAuth.currentUser == null) {
             this.navigateToActivity(LoginActivity::class.java)
         } else {
             loginViewModel.checkProfile()
             observeLoginStatus()
         }
-        setNavigationBar()
+    }
 
+    private fun setLanguage() {
         RetrofitClient.setLanguage(resources.configuration.locales.get(0).language)
+    }
+
+    private fun checkInternetConnection() {
+        if (!isInternetAvailable()) {
+            showNoInternetDialog { restartCurrentActivity() }
+        }
     }
 
     private fun observeLoginStatus() {
