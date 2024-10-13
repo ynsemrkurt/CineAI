@@ -109,4 +109,7 @@ dependencies {
 
     //Photo View
     implementation(libs.photoview)
+
+    //Shimmer
+    implementation(libs.shimmer)
 }
