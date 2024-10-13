@@ -7,7 +7,7 @@
     <string name="ok">OK</string>
     <string name="movie_star">Movie Star</string>
     <string name="def_movie_star">5.0</string>
-    <string name="def_movie_overview">The Amazing Movie</string>
+    <string name="def_movie_overview">The\n Ama\nzing\n Movie</string>
     <string name="overview">Overview :</string>
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
