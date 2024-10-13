@@ -1,6 +1,7 @@
 package com.example.cineai.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -21,6 +22,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
@@ -40,6 +42,7 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        startShimmer()
         checkInternetConnection()
         loadAds()
         backButtonListener()
@@ -48,6 +51,21 @@ class DetailsActivity : AppCompatActivity() {
         observeCharacter()
         observeError()
         observeVideo()
+    }
+
+    private fun startShimmer() {
+        binding.scrollView2.visibility = View.GONE
+        binding.shimmerContainer.visibility = View.VISIBLE
+        binding.shimmerContainer.startShimmer()
+    }
+
+    private fun stopShimmer() {
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            binding.scrollView2.visibility = View.VISIBLE
+            binding.shimmerContainer.visibility = View.GONE
+            binding.shimmerContainer.stopShimmer()
+        }
     }
 
     private fun checkInternetConnection() {
@@ -89,6 +107,7 @@ class DetailsActivity : AppCompatActivity() {
                 }
                 updateThumbnails()
             }
+            stopShimmer()
         }
     }
 
