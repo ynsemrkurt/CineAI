@@ -21,7 +21,7 @@
             android:contentDescription="@string/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/def_backdrop"
+            android:background="@color/hint"
             android:scaleType="centerCrop"/>
 
         <ImageView

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/materialCardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?backgroundColor">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardViewImage"
+            android:layout_width="@dimen/layout_x_large"
+            android:layout_height="@dimen/layout_xx_large"
+            android:layout_margin="@dimen/spacer_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageViewMovie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/hint"
+                android:contentDescription="@string/movie_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textViewActorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:maxWidth="@dimen/layout_x_large"
+            android:text="@string/christian_bale"
+            android:textColor="@color/hint"
+            android:background="@color/hint"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/spacer_x_small"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardViewImage"
+            app:layout_constraintStart_toStartOf="@+id/materialCardViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardViewImage" />
+
+    <TextView
+        android:id="@+id/textViewCharacterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/layout_x_large"
+        android:text="@string/bruce_wayne"
+        android:textColor="@color/hint"
+        android:background="@color/hint"
+        android:maxLines="1"
+        android:layout_marginTop="@dimen/spacer_x_small"
+        android:textAppearance="?textAppearanceBodySmall"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/materialCardViewImage"
+        app:layout_constraintStart_toStartOf="@+id/materialCardViewImage"
+        app:layout_constraintTop_toBottomOf="@+id/textViewActorName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
