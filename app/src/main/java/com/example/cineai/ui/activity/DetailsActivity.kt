@@ -54,14 +54,14 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun startShimmer() {
-        binding.scrollView2.visibility = View.GONE
+        binding.scrollView2.visibility = View.INVISIBLE
         binding.shimmerContainer.visibility = View.VISIBLE
         binding.shimmerContainer.startShimmer()
     }
 
     private fun stopShimmer() {
         CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
+            delay(2000)
             binding.scrollView2.visibility = View.VISIBLE
             binding.shimmerContainer.visibility = View.GONE
             binding.shimmerContainer.stopShimmer()
