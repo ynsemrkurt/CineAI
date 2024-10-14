@@ -63,7 +63,7 @@ class AiRecommendationViewModel : ViewModel() {
             document?.let {
                 if (it.exists()) it.toObject(Profile::class.java) else null
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
@@ -86,7 +86,7 @@ class AiRecommendationViewModel : ViewModel() {
                     recommendedMovies.take(3).joinToString(separator = "\n")
                 _recommendations.postValue(formattedRecommendations)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             _recommendationStatus.postValue(R.string.error_generating_recommendations)
         }
     }
@@ -114,7 +114,7 @@ class AiRecommendationViewModel : ViewModel() {
                     api.searchMovies(movieName).results.find { it.title == movieName }
                 }
                 _movies.postValue(movieList)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_generating_recommendations)
             }
         }

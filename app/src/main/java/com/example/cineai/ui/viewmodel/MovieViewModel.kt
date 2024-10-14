@@ -101,7 +101,7 @@ class MovieViewModel : ViewModel() {
                         .await()
                 val ids = snapshot.documents.mapNotNull { it.getString(FIELD_ID) }
                 _favoriteMovieIds.postValue(ids)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_loading_favorite)
             }
         }
@@ -122,7 +122,7 @@ class MovieViewModel : ViewModel() {
                 launch { fetchVideo(movieId) }
                 launch { fetchCharacter(movieId) }
                 launch { fetchMovieBackdrops(movieId) }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_fetching_details)
             }
         }
@@ -138,7 +138,7 @@ class MovieViewModel : ViewModel() {
                 }.run {
                     _videoId.postValue(results.firstOrNull()?.key)
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_fetching_video)
             }
         }
@@ -149,7 +149,7 @@ class MovieViewModel : ViewModel() {
             try {
                 val character = api.searchCharacter(movieId)
                 _character.postValue(character)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_fetching_character)
             }
         }
@@ -162,7 +162,7 @@ class MovieViewModel : ViewModel() {
                 val movieBackdrops =
                     response.backdrops.map { it.filePath } + response.posters.map { it.filePath }
                 _movieBackdrops.postValue(movieBackdrops)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_fetching_movie_backdrops)
             }
         }
@@ -173,7 +173,7 @@ class MovieViewModel : ViewModel() {
             try {
                 val movie = api.searchMovies(query).results
                 _movies.postValue(movie)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _error.postValue(R.string.error_search_movies)
             }
         }
