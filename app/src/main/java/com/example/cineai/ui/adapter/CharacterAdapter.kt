@@ -31,15 +31,13 @@ class CharacterAdapter(private val characters: List<Character>) :
     inner class CharacterViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(character: Character) {
-            with(binding) {
-                textViewActorName.text = character.name
-                textViewCharacterName.text = character.character
-                imageViewMovie.loadImage(
-                    character.profilePath.toImageUrl(ImageSize.W300),
-                    R.drawable.people_32
-                )
-            }
+        fun bind(character: Character) = with(binding) {
+            textViewActorName.text = character.name
+            textViewCharacterName.text = character.character
+            imageViewMovie.loadImage(
+                character.profilePath.toImageUrl(ImageSize.W300),
+                R.drawable.people_32
+            )
         }
     }
 }

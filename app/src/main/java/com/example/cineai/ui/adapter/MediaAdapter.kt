@@ -115,18 +115,20 @@ class MediaAdapter(
         private val binding: ItemImageViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ItemType.Image) {
-            binding.imageViewBackdrop.loadImage(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
+        fun bind(item: ItemType.Image) = with(binding) {
+            imageViewBackdrop.loadImage(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
 
-            binding.imageViewBackdrop.setOnClickListener {
+            imageViewBackdrop.setOnClickListener {
                 val fragment = ImageDialogFragment().apply {
                     setImageUrl(item.imageUrl.toImageUrl(ImageSize.ORIGINAL))
                 }
 
-                (binding.root.context as? AppCompatActivity)?.supportFragmentManager?.let {
-                    fragment.show(it, "ImageDialog")
+                (root.context as? AppCompatActivity)?.supportFragmentManager?.let {
+                    fragment.show(it, IMG_DIALOG_KEY)
                 }
             }
         }
     }
 }
+
+const val IMG_DIALOG_KEY = "ImageDialog"
