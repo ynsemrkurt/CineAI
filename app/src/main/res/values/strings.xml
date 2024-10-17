@@ -76,7 +76,7 @@
     <string name="ai_slogan">Our AI has picked some awesome movies just for you!\nDive in and find your next favorite film.🎬✨</string>
     <string name="create_recommendation">Create Recommendation</string>
     <string name="movie_board">Movie Board</string>
-    <string name="hey">Hello!</string>
+    <string name="hey">Hey!</string>
     <string name="recommendation">Recommendation:</string>
     <string name="data_info">ⓘ Your data is safe—used only for movie picks!</string>
     <string name="min_3_characters">ⓘ Minimum 3 characters!</string>
