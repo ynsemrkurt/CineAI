@@ -69,7 +69,8 @@ class ImageDialogFragment : DialogFragment() {
             .setTitle(getString(R.string.downloading_image))
             .setDescription(getString(R.string.downloading_image_from, imageUrl))
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "$fileName.jpg")
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
+                getString(R.string.jpg, fileName))
 
         val downloadManager =
             requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager

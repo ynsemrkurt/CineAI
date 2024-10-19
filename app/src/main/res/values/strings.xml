@@ -128,4 +128,5 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="delete_user_context">This action cannot be undone.\nAre you sure you want to delete the user?</string>
+    <string name="jpg">%1$s.jpg</string>
 </resources>
