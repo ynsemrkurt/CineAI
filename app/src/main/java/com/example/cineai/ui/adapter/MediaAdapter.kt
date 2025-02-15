@@ -28,6 +28,7 @@ class MediaAdapter(
     companion object {
         private const val TYPE_YOUTUBE_PLAYER = 0
         private const val TYPE_IMAGE_VIEW = 1
+        private const val IMG_DIALOG_KEY = "ImageDialog"
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -130,5 +131,3 @@ class MediaAdapter(
         }
     }
 }
-
-const val IMG_DIALOG_KEY = "ImageDialog"
