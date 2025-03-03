@@ -17,6 +17,9 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cineai.BuildConfig
@@ -76,26 +79,27 @@ fun ImageView.loadImage(url: String, placeholderResId: Int = R.drawable.image_32
         .into(this)
 }
 
-fun Window.hideSystemUI() {
+fun Window.hideSystemUI(activity: Activity) {
     setBackgroundDrawableResource(android.R.color.transparent)
     setLayout(
         WindowManager.LayoutParams.MATCH_PARENT,
         WindowManager.LayoutParams.MATCH_PARENT
     )
+    val window = activity.window
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        setDecorFitsSystemWindows(false)
-        insetsController?.let {
-            it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-            it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+        val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+
+        insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        insetsController.hide(WindowInsetsCompat.Type.systemBars())
     } else {
         @Suppress("DEPRECATION")
-        decorView.systemUiVisibility = (
+        window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_FULLSCREEN
                         or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
     }
+
 }
 
 fun Context.navigateToActivity(activityClass: Class<*>) {

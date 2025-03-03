@@ -21,7 +21,7 @@ object FullScreenHelper {
         dialog = Dialog(activity).apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setContentView(fullscreenView)
-            window?.hideSystemUI()
+            window?.hideSystemUI(activity)
 
             setOnDismissListener {
                 exitFullScreen(activity)
